@@ -5,20 +5,13 @@ function main(client, options = {}) {
 	const endpoints = {
 		get: {
 			method: 'get',
-			url: `commands/${commandId}`
+			url: `guilds/${guildId}/commands/${commandId}/permissions`,
+			bodyNeed: false
 		},
 		getAll: {
 			method: 'get',
-			url: `commands`
-		},
-		create: {
-			method: 'post',
-			url: `commands`
-		},
-		edit: {
-			method: 'patch',
-			url: `commands/${commandId}`
-		},
-		
+			url: `guilds/${guildId}/commands/permissions`,
+			bodyNeed: false
+		}
 	}
 }
