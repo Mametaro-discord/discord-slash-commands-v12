@@ -4,13 +4,13 @@ const fetch = require('node-fetch');
 
 async function main(options = {}) {
 	const { method, url, client, body } = options;
-	const header = {
+	const headers = {
 		'Authorization': `Bot ${client.token}`,
 		'Content-Type': 'application/json'
 	};
 	let fetchOption = {
 		method: method,
-		header: header
+		headers: header
 	};
 	if (body) {
 		fetchOption.body = body;

@@ -1,8 +1,8 @@
 'use strict';
 
 function main(client, options = {}) {
-	const globalCommand = require('./globalCommand.js');
-	const guildCommand = require('./guildCommand.js');
+	const globalCommand = require('./command/global.js');
+	const guildCommand = require('./command/guild.js');
 
 	return {
 		global: globalCommand(client, options),

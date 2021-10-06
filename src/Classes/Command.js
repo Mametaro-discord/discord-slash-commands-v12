@@ -11,7 +11,7 @@ class Command extends BaseCommand {
 	* @param (Client) client from discord.js
 	* @param (object) data of interaction
 	 */
-	constructor(client, data) {
+	constructor(client, data = {}) {
 		super(client, data);
 	};
 	/**

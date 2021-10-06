@@ -1,22 +1,28 @@
 'use strict';
 
-const Base = require('../../Classes/Base.js');
-const Application = require('./Application.js');
+const BaseAPIHandler = require('./BaseAPIHandler.js');
+const GuildApplication = require('./GuildApplication.js');
+const GlobalApplication = require('./GlobalApplication.js');
 
 /**
  * @extends (Base)
  */
-class APIHandler extends Base {
+class APIHandler extends BaseAPIHandler {
 	/**
 	 * @param (Client) client from discord.js
+	 * @optional (Snowflake) guildId
 	 */
-	constructor(client) {
-		super(client);
+	constructor(client, guildId) {
+		super(client, guildId);
 	};
 	/**
-	 * @return (Application)
+	 * @return (GlobalApplication)
 	 */
 	applications() {
-		return new Application(this.client);
+		if (this.inGuild) {
+			return new GuildApplication(this.client);
+		} else {
+			return new GlobalApplication(this.client);
+		};
 	};
 };

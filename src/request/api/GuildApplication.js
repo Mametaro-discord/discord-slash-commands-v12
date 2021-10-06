@@ -1,13 +1,13 @@
 'use strict';
 
-const BaseApplication = require('./BaseApplication.js');
+const Base = require('../../Classes/Base.js');
 const ApplicationCommand = require('./ApplicationCommand.js');
 const ApplicationCommandAll = require('./ApplicationCommandAll.js');
 
 /**
  * @extends (BaseApplication)
  */
-class GlobalApplication extends BaseApplication {
+class GuildApplication extends Base {
 	/**
 	 * @param (Client) client from discord.js
 	 */
@@ -15,12 +15,13 @@ class GlobalApplication extends BaseApplication {
 		super(client);
 	};
 	/**
-	 * @param (commandId)
+	 * @param (Client) client from discord.js
 	 * @return (ApplicationCommand)
 	 */
 	commands(commandId) {
 		const options = {
-			commandId: commandId
+			commandId: commandId,
+			guildId: this.guildId
 		};
 		return new ApplicationCommand(this.client, options);
 	};
@@ -28,7 +29,9 @@ class GlobalApplication extends BaseApplication {
 	 * @return (ApplicationCommandAll)
 	 */
 	get commands() {
-		const options = {};
+		const options = {
+			guildId: this.guildId
+		};
 		return new ApplicationCommandAll(this.client, options);
 	};
 };

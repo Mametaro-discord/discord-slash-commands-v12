@@ -14,7 +14,7 @@ class CommandInteraction extends Base {
 	* @param (Client) client from discord.js
 	* @param (object) data of interaction
 	 */
-	constructor(client, data) {
+	constructor(client, data = {}) {
 		super(client);
 
 		this.applicationId = data.application_id ? data.application_id : client.user.id;

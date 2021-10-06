@@ -11,7 +11,7 @@ class CommandAuthor extends Base {
 	* @param (object) data of interaction
 	* @param (CommandInteraction) CommandInteraction
 	 */
-	constructor(client, data, cmdIa) {
+	constructor(client, data = {}, cmdIa = {}) {
 		this.id = data.guild_id ? data.member.user.id : data.user.id;
 
 		this.user = client.users.cache.get(this.id);

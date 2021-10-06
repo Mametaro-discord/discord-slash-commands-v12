@@ -6,7 +6,7 @@ const getEndpoints = require('../endpoints/index.js');
 /**
  * @extends (BaseApplication)
  */
-class BaseApplication extends Base {
+class BaseApplicationCommand extends Base {
 	/**
 	 * @param (Client) client from discord.js
 	 * @param (object) options
@@ -18,11 +18,14 @@ class BaseApplication extends Base {
 			value: options
 		});
 
-		this.endpoints = getEndpoints(client, options);
+		const endpoints = getEndpoints(client, options);
+		this.endpoints = options.guildId ? endpoints.guild : endpoints.global;
 
-		this.header = {
+		this.headers = {
 			'Authorization': `Bot ${client.token}`,
 			'Content-Type': 'application/json'
 		};
 	};
 };
+
+module.exports = BaseApplicationCommand;

@@ -10,7 +10,7 @@ class CommandPermissions extends Base {
 	 * @param (Client) client
 	 * @param (object) data of command
 	 */
-	constructor(client, data) {
+	constructor(client, data = {}) {
 		super(client);
 	};
 }
