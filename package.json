@@ -1,0 +1,22 @@
+{
+  "name": "discord.js-slash-command",
+  "version": "1.0.0",
+  "description": "handling discord slash command",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mametaro-discord/discordjs-slash-command-v12.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mametaro-discord/discordjs-slash-command-v12/issues"
+  },
+  "homepage": "https://github.com/Mametaro-discord/discordjs-slash-command-v12#readme"
+}

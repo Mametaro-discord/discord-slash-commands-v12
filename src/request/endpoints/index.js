@@ -70,7 +70,20 @@ class GetEndpoints extends Base {
 			create: `callback`
 		};
 		for (let k in endpoints) {
-			endpoints[k] = `https://discord.com/api/v8/interaction/${interactionId}/${interactionToken}` + endpoints[k];
+			endpoints[k] = `https://discord.com/api/v8/interactions/${interactionId}/${interactionToken}/` + endpoints[k];
+		};
+		return endpoints;
+	};
+	/**
+	 * @return (string{})
+	 */
+	get webhook() {
+		const { webhookId, webhookToken } = this.options;
+		const base = 'https://discord.com/api/v8/';
+		const endpoints = {
+			messages(id) {
+				return `https://discord.com/api/v8/webhooks/${webhookId}/${webhookToken}/messages/${id}`;
+			}
 		};
 		return endpoints;
 	};

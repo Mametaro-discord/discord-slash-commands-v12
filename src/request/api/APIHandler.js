@@ -26,6 +26,7 @@ class APIHandler extends BaseAPIHandler {
 		};
 	};
 	/**
+	 * @param (Client) from discord.js
 	 * @param (Snowflake) id of interaction
 	 * @param (string) token of interaction
 	 * @return (Interaction)
@@ -34,8 +35,9 @@ class APIHandler extends BaseAPIHandler {
 		new Interaction(this.client, id, token);
 	};
 	/**
-	 * @param (Snowflake) id of application
-	 * @param (string) token of interaction
+	 * @param (Client) from discord.js
+	 * @param (Snowflake) id of webhook
+	 * @param (string) token of webhook
 	 * @return (Webhook) 
 	 */
 	webhooks(id, token) {
