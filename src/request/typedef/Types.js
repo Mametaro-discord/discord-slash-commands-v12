@@ -53,3 +53,14 @@ module.exports.ChannelTypes = generateEnum([
 		'GUILD_PRIVATE_THREAD',
 		'GUILD_STAGE_VOICE'
 	]);
+
+module.exports.InteractionCallbackTypes = generateEnum([
+		null,
+		'PONG',
+		null,
+		null,
+		'CHANNEL_MESSAGE_WITH_SOURCE',
+		'DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE',
+		'DEFERRED_UPDATE_MESSAGE',
+		'UPDATE_MESSAGE'
+	]);

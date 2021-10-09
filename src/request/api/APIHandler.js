@@ -16,7 +16,7 @@ class APIHandler extends BaseAPIHandler {
 		super(client, guildId);
 	};
 	/**
-	 * @return (GlobalApplication)
+	 * @return (GuildApplication|GlobalApplication)
 	 */
 	applications() {
 		if (this.inGuild) {
@@ -24,5 +24,21 @@ class APIHandler extends BaseAPIHandler {
 		} else {
 			return new GlobalApplication(this.client);
 		};
+	};
+	/**
+	 * @param (Snowflake) id of interaction
+	 * @param (string) token of interaction
+	 * @return (Interaction)
+	 */
+	interactions(id, token) {
+		new Interaction(this.client, id, token);
+	};
+	/**
+	 * @param (Snowflake) id of application
+	 * @param (string) token of interaction
+	 * @return (Webhook) 
+	 */
+	webhooks(id, token) {
+		new Webhook(this.client, id, token);
 	};
 };

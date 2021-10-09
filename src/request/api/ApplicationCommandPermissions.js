@@ -1,7 +1,7 @@
 'use strict';
 
 const BaseApplicationCommandPermissions = require('./BaseApplicationCommandPermissions.js');
-const BasePermissions = require('../../Classes/BasePermissions.js');
+const { transformApplicationCommandPermissions } = require('../../util/Util.js');
 const fetch = require('node-fetch');
 
 /**
@@ -19,9 +19,23 @@ class ApplicationCommandPermissions extends BaseApplicationCommandPermissions {
 	 * @return (BasePermissions) 
 	 */
 	async get() {
-		const json = await fetch(this.get, {
+		const json = await fetch(this.endpoints.get, {
 			method: 'get',
+			headers: this.headers
+		}).then(res => res.json());
+		return transformApplicationCommandPermissions(json);
+	};
+	/**
+	 * @param (object) source of body json
+	 * @return ()
+	 */
+	async edit(bodySource) {
+		const json = await fetch(this.endpoints.edit, {
+			method: 'patch',
+			body: JSON.stringify(bodySource),
 			headers: this.headers
 		}).then(res => res.json());
 	};
 };
+
+module.exports = ApplicationCommandPermissions;

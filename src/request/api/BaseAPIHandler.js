@@ -1,6 +1,6 @@
 'use strict';
 
-const Base = require('../../Classes/Base.js');
+const Base = require('../../classes/Base.js');
 
 /**
  * @extends (Base)

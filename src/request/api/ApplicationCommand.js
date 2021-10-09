@@ -2,8 +2,7 @@
 
 const ApplicationCommandPermissions = require('./ApplicationCommandPermissions.js');
 const BaseApplicationCommand = require('./BaseApplicationCommand.js');
-const BaseCommand = require('../../Classes/BaseCommand.js');
-const getEndpoints = require('../endpoints/index.js');
+const { transformApplicationCommand } = require('../../util/Util.js');
 const fetch = require('node-fetch');
 
 /**
@@ -24,18 +23,18 @@ class ApplicationCommand extends BaseApplicationCommand {
 		return new ApplicationCommandPermissions(this.client, this.options);
 	};
 	/**
-	 * @return (BaseCommand) command data
+	 * @return (CommandData) from interfaces.ts
 	 */
 	async get() {
 		const json = await fetch(this.endpoints.get, {
 			method: 'get',
 			headers: this.headers
 		}).then(res => res.json());
-		return new BaseCommand(this.client, json);
+		return transformApplicationCommand(json);
 	};
 	/**
 	 * @param (object) source of body json
-	 * @return (BaseCommand) command data
+	 * @return (CommandData) from interfaces.ts
 	 */
 	async edit(bodySource) {
 		const json = await fetch(this.endpoints.edit, {
@@ -43,10 +42,10 @@ class ApplicationCommand extends BaseApplicationCommand {
 			body: JSON.stringify(bodySource),
 			headers: this.headers
 		}).then(res => res.json);
-		return new BaseCommand(this.client, json);
+		return transformApplicationCommand(this.client, json);
 	};
 	/**
-	 * @return (BaseCommand) command data
+	 * @return (CommandData) from interfaces.ts
 	 */
 	async delete() {
 		const json = await fetch(this.endpoints.delete, {
@@ -54,7 +53,7 @@ class ApplicationCommand extends BaseApplicationCommand {
 			body: JSON.stringify(bodySource),
 			headers: this.headers
 		});
-		return new BaseCommand(this.client, json);
+		return transformApplicationCommand(this.client, json);
 	};
 };
 
