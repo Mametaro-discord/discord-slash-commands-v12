@@ -6,6 +6,13 @@
   "directories": {
     "test": "test"
   },
+  "files": [
+    "src",
+    "LICENSE"
+  ],
+  "keywords": [
+    "discord.js"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
