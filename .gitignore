@@ -1,4 +1,5 @@
-#requestHandler
-src/request/
+node_modules/
+
+/src/old-classes/
 
 package-lock.json
