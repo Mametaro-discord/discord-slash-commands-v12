@@ -1,14 +1,14 @@
 'use strict';
 
-const BaseCommandInteraction = require('./BaseCommandInteraction.js');
+const BaseInteraction = require('./BaseInteraction.js');
 const { deconstructor } = require('discord.js').SnowflakeUtil;
 
 /**
- * @extends (BaseCommandInteraction)
+ * @extends (BaseInteraction)
  */
-class CommandInteraction extends BaseCommandInteraction {
+class CommandInteraction extends BaseInteraction {
 	/**
-	 * @param (Client)
+	 * @param (Client) from discord.js
 	 * @param (object)
 	 */
 	constructor(client, data = {}) {
@@ -31,6 +31,12 @@ class CommandInteraction extends BaseCommandInteraction {
 	 */
 	get ephemeral() {
 		return this.reply.ephemeral;
+	};
+	/**
+	* @return (Command)
+	 */
+	get command() {
+		return this.client.commands.get(this.commandId);
 	};
 	/**
 	 * @return (number)

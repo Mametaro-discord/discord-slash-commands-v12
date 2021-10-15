@@ -1,36 +1,43 @@
 'use strict';
 
-const Base = require('./Base.js');
+const Base = require('discord.js');
+const { ApplicationCommandTypes } = require('../interfaces/Types.js');
 const Util = require('../util/Util.js');
 
 /**
-* @extends (Base)
+ * @extends (Base)
  */
 class BaseCommand extends Base {
 	/**
-	* @param (Client) client from discord.js
-	* @param (object) data of command
+	 * @param (Client) from discord.js
+	 * @param (object) data of command
 	 */
 	constructor(client, data = {}) {
 		super(client);
 
-		this.applicationId = data.application_id;
-
-		this.id = data.id;
-
-		this.name = data.name;
-
-		this.description = data.description;
-
-		this.version = data.version;
+		this.application_id = data.application_id;
 
 		this.defaultPermission = data.default_permission;
 
-		this.type = Util.transformType(data.type, 'string');
+		this.description = data.description;
 
-		this.guild = data.guild_id ? client.guilds.cache.get(data.guild_id) : undefined;
+		this.guildId = data.guild_id;
 
-		this.options = Util.transformOptions(data.options);
+		this.guild = this.guildId ? client.guilds.cache.get(this.guildId) : undefined;
+
+		this.id = data.id;
+
+		this.manager = new CommandManager();
+
+		this.name = data.name;
+
+		this.options = Util.transformApplicationCommandOptions(data.options);
+
+		this.permissions = new CommandPermissionsManager();
+
+		this.type = ApplicationCommandTypes[data.type];
+
+		this.version = data.version;
 	};
 };
 

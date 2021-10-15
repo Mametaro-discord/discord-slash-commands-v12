@@ -1,3 +1,4 @@
 #requestHandler
+src/request/
+
 package-lock.json
-src/request/**.js

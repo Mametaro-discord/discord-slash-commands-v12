@@ -18,7 +18,7 @@ class BasePermissions extends Base {
 
 		this.type = ApplicationCommandPermissionsTypes[data.type];
 
-		this.permission = this.permission;
+		this.permission = data.permission;
 	};
 };
 

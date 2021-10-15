@@ -54,17 +54,6 @@ interface CommandPermissionsObject {
 };
 
 /**
- * @input
- * @optional ALL
- */
-interface EndpointsOption {
-	commandId: Snowflake,
-	guildId: Snowflake,
-	interactionId: Snowflake,
-	interactionToken: string
-};
-
-/**
  * @input @output
  * @optional ALL
  */

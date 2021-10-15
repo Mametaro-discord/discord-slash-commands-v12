@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/Mametaro-discord/discordjs-slash-command-v12/issues"
   },
-  "homepage": "https://github.com/Mametaro-discord/discordjs-slash-command-v12#readme"
+  "homepage": "https://github.com/Mametaro-discord/discordjs-slash-command-v12#readme",
+  "dependencies": {
+    "fs": "0.0.1-security"
+  }
 }

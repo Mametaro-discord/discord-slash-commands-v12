@@ -54,7 +54,14 @@ module.exports.ChannelTypes = generateEnum([
 		'GUILD_STAGE_VOICE'
 	]);
 
-module.exports.InteractionCallbackTypes = generateEnum([
+module.exports.InteractionTypes = generateEnum([
+		null,
+		'PING',
+		'APPLICATION_COMMAND',
+		'MESSAGE_COMPONENT'
+	]);
+
+module.exports.InteractionReplyTypes = generateEnum([
 		null,
 		'PONG',
 		null,
@@ -63,4 +70,11 @@ module.exports.InteractionCallbackTypes = generateEnum([
 		'DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE',
 		'DEFERRED_UPDATE_MESSAGE',
 		'UPDATE_MESSAGE'
+	]);
+
+module.exports.MessageComponentTypes = generateEnum([
+		null,
+		'ACTION_ROW',
+		'BUTTON',
+		'SELECT_MENU'
 	]);

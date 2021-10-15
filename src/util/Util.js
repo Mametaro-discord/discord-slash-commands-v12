@@ -1,6 +1,6 @@
 'use strict';
 
-const { ApplicationCommandTypes, ApplicationCommandOptionsTypes, ApplicationCommandPermissionsTypes } = require('../request/typedef/Types.js');
+const { ApplicationCommandTypes, ApplicationCommandOptionsTypes, ApplicationCommandPermissionsTypes } = require('../interfaces/Types.js');
 
 class Util {
 	/**
@@ -59,16 +59,9 @@ class Util {
 		const target = options instanceof Array ? options : [options]
 		const transformed = target.map(element => {
 			return {
-				id: element.id,
-				application_id: element.application_id,
-				guild_id: element.guild_id,
-				permissions: element.permissions.map(elm => {
-					return {
-						id: elm.id,
-						type: ApplicationCommandPermissionsTypes[elm.type],
-						permission: elm.permission
-					};
-				})
+				id: elm.id,
+				type: ApplicationCommandPermissionsTypes[elm.type],
+				permission: elm.permission
 			};
 		});
 		return options instanceof Array ? transformed : transformed.shift();
