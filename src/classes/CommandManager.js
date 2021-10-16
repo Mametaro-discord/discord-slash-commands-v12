@@ -35,8 +35,9 @@ class CommandManager extends Base {
 	 */
 	async create(commandData, guildId) {
 		const data = (guildId
-		? (await this.client.api.applications(this.client.id).guilds(guildId).commands)
-		: (await this.client.api.applications(this.client.id).commands))
+		? (await this.client.api.applications(this.client.id).guilds(guildId))
+		: (await this.client.api.applications(this.client.id)))
+		.commands
 		.post({
 			data: commandData
 		});
@@ -49,8 +50,9 @@ class CommandManager extends Base {
 	 */
 	async delete(commandId, guildId) {
 		const data = (guildId
-		? (await this.client.api.applications(this.client.id).guilds(guildId).commands(commandId))
-		: (await this.client.api.applications(this.client.id).commands(commandId)))
+		? (await this.client.api.applications(this.client.id).guilds(guildId))
+		: (await this.client.api.applications(this.client.id)))
+		.commands(commandId)
 		.delete()
 		return new Command(this.client, data);
 	};
@@ -62,8 +64,9 @@ class CommandManager extends Base {
  	 */
  	async edit(commandId, commandData, guildId) {
  		const data = (guildId 
- 		? (await this.client.api.applications(this.client.id).guilds(guildId).commands(commandId))
- 		: (await this.client.api.applications(this.client.id).commands(commandId)))
+ 		? (await this.client.api.applications(this.client.id).guilds(guildId))
+ 		: (await this.client.api.applications(this.client.id)))
+ 		.commands(commandId)
  		.patch({
  			data: commandData
  		});
@@ -75,11 +78,12 @@ class CommandManager extends Base {
 	 * @return (Promise<(Command|Collection<Snowflake, Command>)>)
 	 */
 	async fetch(commandId, guildId) {
-		let data = commandId 
+		let data = (commandId 
 		? guildId
-		? (await this.client.api.applications(this.client.id).guilds(guildId).commands(commandId).get())
-		: (await this.client.api.applications(this.client.id).commands(commandId).get())
-		: (await this.client.api.applications(this.client.id).commands.get());
+		? (await this.client.api.applications(this.client.id).guilds(guildId).commands(commandId))
+		: (await this.client.api.applications(this.client.id).commands(commandId))
+		: (await this.client.api.applications(this.client.id).commands))
+		.get();
 
 		if (data instanceof Array) {
 			data = data.map(elm => new Command(this.client, elm));
@@ -95,9 +99,11 @@ class CommandManager extends Base {
 	 * @return (Promise<Collection<Snowflake, Command>>)
 	 */
 	async set(arr, guildId) {
-		const data = guildId 
-		? (await this.client.api.applications(this.client.id).guilds(guildId).commands.put(arr))
-		: (await this.client.api.applications(this.client.id).commands.put(arr));
+		const data = (guildId 
+		? (await this.client.api.applications(this.client.id).guilds(guildId))
+		: (await this.client.api.applications(this.client.id)))
+		.commands
+		.put(arr);
 		return new Command(this.client, data);
 	};
 };

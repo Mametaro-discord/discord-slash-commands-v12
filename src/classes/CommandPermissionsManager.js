@@ -53,7 +53,9 @@ class CommandPermissionsManager extends Base {
 		const data = await this.client.api.applications(this.client.id)
 		.guilds(this.guildId ? this.guildid : guildId)
 		.commands(this.commandId ? this.commandId : commandId)
-		.put(permissions);
+		.put({
+			data: permissions
+		});
 		return Util.transformApplicationCommandPermissions(data.permissions);
 	};
 	/**
@@ -64,14 +66,12 @@ class CommandPermissionsManager extends Base {
 		let data = !this.commandId&&!commandId
 		? (await this.client.api.applications(this.client.id)
 		.guilds(this.guildId ? this.guildId : guildId)
-		.commands
-		.permissions
-		.get())
+		.commands)
 		: (await this.client.api.applications(this.client.id)
 		.guilds(this.guildId ? this.guildId : guildId)
-		.commands(this.commandId ? this.commandId : commandId)
+		.commands(this.commandId ? this.commandId : commandId))
 		.permissions
-		.get());
+		.get();
 
 		if (data instanceof Array) {
 			data = data.map(elm => Util.transformApplicationCommandPermissions(elm.permissions));
@@ -107,7 +107,9 @@ class CommandPermissionsManager extends Base {
 		.guilds(guild)
 		.commands(command)
 		.permissions
-		.put(permissions);
+		.put({
+			data: permissions
+		});
 
 		return Util.transformApplicationCommandPermissions(data.permissions);
 	};
@@ -123,14 +125,18 @@ class CommandPermissionsManager extends Base {
 			.guilds(guild)
 			.commands
 			.permissions
-			.put(fullPermissions);
+			.put({
+				data: fullPermissions
+			});
 		} else {
 			const command = this.commandId ? this.commandId : commandId;
 			data = await this.client.api.applications(this.client.id)
 			.guilds(guild)
 			.commands(command)
 			.permissions
-			.put(permissions);
+			.put({
+				data: permissions
+			});
 		};
 
 		if (data instanceof Array) {

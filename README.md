@@ -1,8 +1,8 @@
 # discord-slash-command-v12
 
 ## Description 
-By using this, You can use slash commands even if you use discord.js@12 
-However, you cannot use MessageComponents; 
+By using this, You can use slash commands even if you use discord.js@12  
+However, you cannot use MessageComponents;  
 
 ## Install
 ```
@@ -32,7 +32,7 @@ const ping = {
 	name: 'ping',
 	description: 'pong!'
 };
-await client.commands.create(ping, '000000000000000000' /* id of guild*/);
+client.commands.create(ping);
 
 client.on('command', data => {
 	if (data.commandName === 'ping') {
@@ -45,8 +45,8 @@ client.on('command', data => {
 [my discord server](https://discord.gg/UQSUBHwM7T)
 
 ## Commemt
-I hope I did no mistake; 
-Give issues if you find bugs! 
+I hope I did no mistake;  
+Give issues if you find bugs!  
  
-I will make MessageComponents usable. 
-So, wait for next new releases. 
+I will make MessageComponents usable.  
+So, wait for next new releases.  
