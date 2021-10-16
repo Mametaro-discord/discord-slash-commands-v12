@@ -54,7 +54,7 @@ client.on('command', data => {
 
 ## Commemt
 I hope I did no mistake;  
-Give issues if you find bugs!  
+Give me issues if you find bugs!  
  
 I will make MessageComponents usable.  
 So, wait for next new releases.  
