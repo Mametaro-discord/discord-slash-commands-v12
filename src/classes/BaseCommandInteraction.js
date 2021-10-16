@@ -20,50 +20,84 @@ class BaseCommandInteraction extends Base {
 
 		this.type = InteractionTypes[data.type];
 
-		this.applicationId = data.application_id ? data.application_id : client.user.id;
+		this.id = data.id;
 
-		this.author = new CommandAuthor(client, data, this);
+		this.token = data.token;
+
+		this.applicationId = data.application_id ? data.application_id : client.user.id;
 
 		this.channelId = data.channel_id;
 
-		this.channel = this.client.channels.cache.get(this.channelId);
-
 		this.guildId = data.guild_id;
 
-		this.guild = this.guildId ? client.guilds.cache.get(this.guildId) : undefined;
-
-		this.commandId = data.data.id;
-
-		this.command = (this.guild ? this.guild : this.client).commands.col.get(this.commandId);
-
-		this.commandName = this.command.name;
-
-		this.options = Util.transformApplicationCommandOptions(data.options);
-
-		this.id = data.id;
-
-		this.userId = data.member.user.id;
+		this.userId = (data.guild_id ? data.member.user : data.user).id;
 
 		this.user = this.client.users.cache.get(this.userId);
 
 		this.member = this.guild ? this.guild.members.cache.get(this.userId) : undefined;
 
-		this.token = data.token;
-
 		this.version = data.version;
 
+
+		// COMMAND 
+		this.commandId = data.data.id;
+
+		this.commandName = data.data.name;
+
+		this.author = new CommandAuthor(client, data, this);
+
+		this.command = (this.guild ? this.guild : this.client).commands.cache.get(this.commandId);
+
+		this.options = Util.transformApplicationCommandOptions(data.options);
+
 		this.reply = new Reply(
-				this.client,
-				this,
-				new ExtendedWebhookClient(data.application_id, data.token, this.client.options)
-			);
+			this.client,
+			this,
+			new ExtendedWebhookClient(this.applicationId, this.token, this.client.options)
+		);
 
 		this.followup = new Followup(
-				this.client,
-				this,
-				new ExtendedWebhookClient(data.application_id, data.token, this.client.options)
-			);
-	};
+			this.client,
+			this,
+			new ExtendedWebhookClient(this.applicationId, this.token, this.client.options)
+		);
+	}
+
+	/**
+	 * The timestamp the interaction was created at
+	 * @type {number}
+	 * @readonly
+	 */
+	get createdTimestamp() {
+		return SnowflakeUtil.deconstruct(this.id).timestamp;
+	}
+
+	/**
+	 * The time the interaction was created at
+	 * @type {Date}
+	 * @readonly
+	 */
+	get createdAt() {
+		return new Date(this.createdTimestamp);
+	}
+
+	/**
+	 * The channel this interaction was sent in
+	 * @type {?Channel}
+	 * @readonly
+	 */
+	get channel() {
+		return this.client.channels.cache.get(this.channelId);
+	}
+
+	/**
+	 * The guild this interaction was sent in
+	 * @type {?Guild}
+	 * @readonly
+	 */
+	get guild() {
+		return this.client.guilds.cache.get(this.guildId);
+	}
 };
 
 module.exports = BaseCommandInteraction;

@@ -5,34 +5,34 @@ const ExtendedClient = require('./structures/ExtendedClient.js');
 const ExtendedGuild = require('./structures/ExtendedGuild.js');
 const CommandInteraction = require('./classes/CommandInteraction.js');
 const CommandManager = require('./classes/CommandManager.js');
-
-const InteractionTypes = createEnum([null, 'PING', 'APPLICATION_COMMAND', 'MESSAGE_COMPONENT']);
+const { InteractionTypes } = require('./interfaces/Types.js');
 
 module.exports = function(client) {
-	if (!client||!client instanceof Client) throw new Error('INVAILD_ARGS');
+	if (!client || !client instanceof Client) throw new Error('INVAILD_ARGS');
 
 	client.commands = new CommandManager(client);
 
-	if (!Guild.prototype.commands||!Guild.prototype.commands instanceof CommandManager) {
-		Structures.extend('Guild', () => ExtendedGuild);
-	};
+	const guildCommandManagers = new WeakMap();
+	Object.defineProperty(Guild.prototype, 'commands', {
+		get() {
+			let manager = guildCommandManagers.get(this);
+			if (manager) return manager;
+			manager = new CommandManager(this.client);
+			guildCommandManagers.set(this, manager);
+			return manager;
+		}
+	});
 
 	client.ws.on('INTERACTION_CREATE', data => {
-		if (data.type === InteractionTypes['APPLICATION_COMMAND']) {
-			client.emit('command', new CommandInteraction(client, data));
-		};
+		try {
+			if (data.type === InteractionTypes['APPLICATION_COMMAND']) {
+				client.emit('command', new CommandInteraction(client, data));
+			};
+		} catch (e) {
+			console.error(e)
+		}
 	});
 };
-
-function createEnum(keys) {
-	  const obj = {};
-	  for (const [index, key] of keys.entries()) {
-		    if (key === null) continue;
-		    obj[key] = index;
-		    obj[index] = key;
-	  }
-	  return obj;
-}
 
 // CLASSES
 module.exports.Base = require('./classes/Base.js');
