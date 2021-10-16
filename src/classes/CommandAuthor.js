@@ -12,7 +12,7 @@ class CommandAuthor extends Base {
 	* @param (CommandInteraction) CommandInteraction
 	 */
 	constructor(client, data = {}, cmdIa = {}) {
-		super();
+		super(client);
 		this.id = data.guild_id ? data.member.user.id : data.user.id;
 
 		this.user = client.users.cache.get(this.id);
