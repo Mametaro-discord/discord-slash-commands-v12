@@ -6,6 +6,8 @@ const ExtendedGuild = require('./structures/ExtendedGuild.js');
 const CommandInteraction = require('./classes/CommandInteraction.js');
 const CommandManager = require('./classes/CommandManager.js');
 
+const InteractionTypes = createEnum([null, 'PING', 'APPLICATION_COMMAND', 'MESSAGE_COMPONENT']);
+
 module.exports = function(client) {
 	if (!client||!client instanceof Client) throw new Error('INVAILD_ARGS');
 
@@ -16,11 +18,21 @@ module.exports = function(client) {
 	};
 
 	client.ws.on('INTERACTION_CREATE', data => {
-		if (interaction.type === InteractionTypes['APPLICATION_COMMAND']) {
+		if (data.type === InteractionTypes['APPLICATION_COMMAND']) {
 			client.emit('command', new CommandInteraction(client, data));
 		};
 	});
 };
+
+function createEnum(keys) {
+	  const obj = {};
+	  for (const [index, key] of keys.entries()) {
+		    if (key === null) continue;
+		    obj[key] = index;
+		    obj[index] = key;
+	  }
+	  return obj;
+}
 
 // CLASSES
 module.exports.Base = require('./classes/Base.js');
