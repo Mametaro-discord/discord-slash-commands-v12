@@ -33,7 +33,7 @@ class CommandPermissionsManager extends Base {
 		let colSrc;
 		const guilds = this.client.guilds.fetch();
 		for (guild of guilds) {
-			const commands = this.client.api.applications(this.client.id)
+			const commands = this.client.api.applications(this.client.user.id)
 			.guilds(guild.id)
 			.commands
 			.get();
@@ -50,7 +50,7 @@ class CommandPermissionsManager extends Base {
 	 * @return (Promise<Array<CommandPermissions>>)
 	 */
 	async add({ guildId, commandId, permissions = [] } = options) {
-		const data = await this.client.api.applications(this.client.id)
+		const data = await this.client.api.applications(this.client.user.id)
 		.guilds(this.guildId ? this.guildid : guildId)
 		.commands(this.commandId ? this.commandId : commandId)
 		.put({
@@ -64,10 +64,10 @@ class CommandPermissionsManager extends Base {
 	 */
 	async fetch({ guildId, commandId } = options) {
 		let data = !this.commandId&&!commandId
-		? (await this.client.api.applications(this.client.id)
+		? (await this.client.api.applications(this.client.user.id)
 		.guilds(this.guildId ? this.guildId : guildId)
 		.commands)
-		: (await this.client.api.applications(this.client.id)
+		: (await this.client.api.applications(this.client.user.id)
 		.guilds(this.guildId ? this.guildId : guildId)
 		.commands(this.commandId ? this.commandId : commandId))
 		.permissions
@@ -89,7 +89,7 @@ class CommandPermissionsManager extends Base {
 		const guild = this.guildId ? this.guildId : guildId;
 		const command = this.commandId ? this.commandId : commandId;
 
-		const src = await this.api.applications(this.client.id)
+		const src = await this.api.applications(this.client.user.id)
 		.guilds(guild)
 		.commands(command)
 		.permissions
@@ -103,7 +103,7 @@ class CommandPermissionsManager extends Base {
 			};
 		});
 
-		const data = await this.client.api.applications(this.client.id)
+		const data = await this.client.api.applications(this.client.user.id)
 		.guilds(guild)
 		.commands(command)
 		.permissions
@@ -121,7 +121,7 @@ class CommandPermissionsManager extends Base {
 		let data;
 		const guild = this.guildId ? this.guildId : guildId;
 		if (fullPermissions) {
-			data = await this.client.api.applications(this.client.id)
+			data = await this.client.api.applications(this.client.user.id)
 			.guilds(guild)
 			.commands
 			.permissions
@@ -130,7 +130,7 @@ class CommandPermissionsManager extends Base {
 			});
 		} else {
 			const command = this.commandId ? this.commandId : commandId;
-			data = await this.client.api.applications(this.client.id)
+			data = await this.client.api.applications(this.client.user.id)
 			.guilds(guild)
 			.commands(command)
 			.permissions

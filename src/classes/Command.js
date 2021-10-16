@@ -44,13 +44,13 @@ class Command extends BaseCommand {
 	 * @return (Promise<Command>)
 	 */
 	async edit(data) {
-		return await this.manager.edit(this, data, this.guildId);
+		return await this.manager.edit(this.id, data, this.guildId);
 	};
 	/**
 	 * @return (Promise<Command>)
 	 */
 	async delete() {
-		return await this.manager.delete(this, this.guildId);
+		return await this.manager.delete(this.id, this.guildId);
 	};
 };
 

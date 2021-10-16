@@ -4,9 +4,17 @@
 By using this, You can use slash commands even if you use discord.js@12  
 However, you cannot use MessageComponents;  
 
-## Install
+## Before Using
+**Install**  
 ```
 npm i discord-slash-commands-v12 
+```  
+  
+**Give Scopes**
+You need to give scope 'applications.commands' to your bot for using slash commands.  
+↓url example
+```
+https://discord.com/api/oauth2/authorize?client_id={YOUR_BOT's_ID}&permissions=0&scope=bot%20applications.commands
 ```
 
 ## Usage 
