@@ -2,8 +2,7 @@
 
 const Base = require('./Base.js');
 const CommandAuthor = require('./CommandAuthor.js');
-const ExtendedClient = require('./ExtendedClient.js');
-const ExtendedWebhookClient = require('./ExtendedWebhookClient.js');
+const ExtendedWebhookClient = require('../structures/ExtendedWebhookClient.js');
 const { InteractionTypes } = require('../interfaces/Types.js');
 const Followup = require('./Followup.js');
 const Reply = require('./Reply.js');

@@ -1,6 +1,6 @@
 'use strict';
 
-const Base = require('discord.js');
+const Base = require('./Base.js');
 const { ApplicationCommandTypes } = require('../interfaces/Types.js');
 const Util = require('../util/Util.js');
 

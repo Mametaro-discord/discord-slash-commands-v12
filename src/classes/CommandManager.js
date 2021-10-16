@@ -1,5 +1,6 @@
 'use strict';
 
+const Base = require('./Base.js');
 const Command = require('./Command.js');
 const CommandPermissionsManager = require('./CommandPermissionsManager.js');
 const { makeCol } = require('../util/functions.js');
@@ -8,20 +9,18 @@ const { makeCol } = require('../util/functions.js');
  * @description () This is CommandManager for client.
  * @extends (Base)
  */
-class CommandManager {
+class CommandManager extends Base {
 	/**
 	 * @param (Client)
 	 */
 	constructor(client) {
-		Object.defineProperty(this, 'client', {
-			value: client
-		});
+		super(client);
 	};
 	/**
 	 * @return (Collection<Snowflake, Command>)
 	 */
 	get col() {
-		return await this.fetch();
+		return this.fetch();
 	};
 	/**
 	 * @return (CommandPermissionsManager)

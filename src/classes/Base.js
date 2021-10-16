@@ -1,7 +1,6 @@
 'use strict';
 
 const { Client } = require('discord.js');
-const ExtendedClient = require('./ExtendedClient.js');
 
 class Base {
 	/**
@@ -11,7 +10,7 @@ class Base {
 		if (client instanceof Client) return;
 
 		Object.defineProperty(this, 'client', {
-			value: new ExtendedClient(client.options)
+			value: client
 		});
 	};
 };

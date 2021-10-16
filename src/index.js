@@ -1,7 +1,6 @@
 'use strict';
 
-const { Structures, Client } = require('discord.js');
-const APIHandler = require('./request/api/APIHandler.js');
+const { Structures, Client, Guild } = require('discord.js');
 const ExtendedClient = require('./structures/ExtendedClient.js');
 const ExtendedGuild = require('./structures/ExtendedGuild.js');
 const CommandInteraction = require('./classes/CommandInteraction.js');
@@ -10,10 +9,10 @@ const CommandManager = require('./classes/CommandManager.js');
 module.exports = function(client) {
 	if (!client||!client instanceof Client) throw new Error('INVAILD_ARGS');
 
-	client.commands = new CommanManager(client);
+	client.commands = new CommandManager(client);
 
 	if (!Guild.prototype.commands||!Guild.prototype.commands instanceof CommandManager) {
-		Structures.extends('Guild', () => ExtendedGuild);
+		Structures.extend('Guild', () => ExtendedGuild);
 	};
 
 	client.ws.on('INTERACTION_CREATE', data => {

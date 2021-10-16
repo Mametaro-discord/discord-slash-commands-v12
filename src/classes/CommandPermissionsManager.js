@@ -16,7 +16,7 @@ class CommandPermissionsManager extends Base {
 	constructor(manager) {
 		this.manager = manager;
 
-		this.client = manager.client;
+		super(manager.client);
 
 		this.guild = manager.guild 
 		? manager.guild 
@@ -31,9 +31,9 @@ class CommandPermissionsManager extends Base {
 	 */
 	get col() {
 		let colSrc;
-		const guilds = await this.client.guilds.fetch();
+		const guilds = this.client.guilds.fetch();
 		for (guild of guilds) {
-			const commands = await this.client.api.applications(this.client.id)
+			const commands = this.client.api.applications(this.client.id)
 			.guilds(guild.id)
 			.commands
 			.get();
