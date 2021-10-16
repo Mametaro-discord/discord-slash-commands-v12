@@ -41,9 +41,12 @@ client.on('command', data => {
 });
 ``` 
 
+## You need more help?
+[my discord server](https://discord.gg/UQSUBHwM7T)
+
 ## Commemt
 I hope I did no mistake; 
 Give issues if you find bugs! 
-
-I will make MessageComponents usable.
-So, wait for next new releases.
+ 
+I will make MessageComponents usable. 
+So, wait for next new releases. 

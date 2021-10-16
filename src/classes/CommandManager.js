@@ -34,9 +34,12 @@ class CommandManager extends Base {
 	 * @optional (Promise<Command>)
 	 */
 	async create(commandData, guildId) {
-		const data = guildId
-		? (await this.client.api.applications(this.client.id).guilds(guildId).commands.post(commandData))
-		: (await this.client.api.applications(this.client.id).commands.post(commandData));
+		const data = (guildId
+		? (await this.client.api.applications(this.client.id).guilds(guildId).commands)
+		: (await this.client.api.applications(this.client.id).commands))
+		.post({
+			data: commandData
+		});
 		return new Command(this.client, data);
 	};
 	/**
@@ -45,9 +48,10 @@ class CommandManager extends Base {
 	 * @return (Promise<Command>)
 	 */
 	async delete(commandId, guildId) {
-		const data = guildId
-		? (await this.client.api.applications(this.client.id).guilds(guildId).commands(commandId).delete())
-		: (await this.client.api.applications(this.client.id).commands(commandId).delete());
+		const data = (guildId
+		? (await this.client.api.applications(this.client.id).guilds(guildId).commands(commandId))
+		: (await this.client.api.applications(this.client.id).commands(commandId)))
+		.delete()
 		return new Command(this.client, data);
 	};
 	/**
@@ -57,9 +61,12 @@ class CommandManager extends Base {
 	 * @return (Promise<Command>)
  	 */
  	async edit(commandId, commandData, guildId) {
- 		const data = guildId 
- 		? (await this.client.api.applications(this.client.id).guilds(guildId).commands(commandId).patch(commandData))
- 		: (await this.client.api.applications(this.client.id).commands(commandId).patch(commandData));
+ 		const data = (guildId 
+ 		? (await this.client.api.applications(this.client.id).guilds(guildId).commands(commandId))
+ 		: (await this.client.api.applications(this.client.id).commands(commandId)))
+ 		.patch({
+ 			data: commandData
+ 		});
  		return new Command(this.client, data);
  	};
 	/**

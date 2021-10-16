@@ -27,13 +27,9 @@ class BaseCommand extends Base {
 
 		this.id = data.id;
 
-		this.manager = new CommandManager();
-
 		this.name = data.name;
 
 		this.options = Util.transformApplicationCommandOptions(data.options);
-
-		this.permissions = new CommandPermissionsManager();
 
 		this.type = ApplicationCommandTypes[data.type];
 
