@@ -1,7 +1,7 @@
 #Base
 
 param|type|description  
----|---|---|---  
+---|---|--- 
 client|Client|discord client(discord.js)  
   
 ## properties   
