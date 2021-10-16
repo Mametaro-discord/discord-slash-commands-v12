@@ -1,6 +1,6 @@
-#Data models this package use
+# Data models this package use
 
-### CommandData
+## CommandData
 prop|type|description|optional|default  
 ---|---|---|---|---  
 name|string|name of command|no|none  
@@ -8,7 +8,7 @@ description|string|description of command|yes|none
 options|Array(CommandOptions)|options of command|no|none  
 default_permission|boolean|whether everyone can use command|yes|true  
 
-### CommandOptions
+## CommandOptions
 prop|type|description  
 ---|---|---  
 type|CommandOptionsType|type of option|no|none  
@@ -18,13 +18,13 @@ required|boolean|whether option is required|yes|false
 choices|Array(CommandOptionsChoices)|choices of option|yes|none  
 options|Array(CommandOptions)|options of subcommand|yes|none  
 
-### CommandOptionsChoices
+## CommandOptionsChoices
 prop|type|description|optional|default  
 ---|---|---|---|---  
 name|string|name of choice|no|none  
 value|string or number|value of choice|no|none  
 
-### CommandOptionsType
+## CommandOptionsType
 **SUB_COMMAND**  
 **SUB_COMMAND_GROUP**  
 **STRING**  
