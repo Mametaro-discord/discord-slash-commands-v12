@@ -33,7 +33,7 @@ client.on('command', (data) => {
 });
 ``` 
 
-**Ping-Pong ex** 
+**Ping-Pong** 
 ```js
 slash(client);
 const ping = {
