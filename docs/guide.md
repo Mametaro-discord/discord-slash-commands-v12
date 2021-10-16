@@ -1,6 +1,6 @@
-#Command registing etc...
+# Command registing etc...
 
-### Checkit
+## Checkit
 The commands property of 'client' or 'guild' is instance of the class 'CommandManager'.  
 
 On methods of 'client.commands',  
@@ -8,7 +8,7 @@ If the argument 'guildId' don't exist, global command is selected as target.
 Not global command + guild command.
 
 
-##### registing command
+## registing command
 **global command**  
 ```js
 client.commands.create(commandData);
@@ -24,7 +24,7 @@ guild.commands.create(commandData);
 
 **return**: Command  
 
-##### getting Collection(discord.js)<Command>
+## getting Collection(discord.js)<Command>
 **global command**  
 ```js
 client.commands.col
@@ -35,7 +35,7 @@ client.commands.col
 guild.commands.col
 ```  
 
-#####getting permissions
+## getting permissions
 ```js
 command.permissions
 ```  
@@ -50,7 +50,7 @@ client.commands.permissions
 guild.commands.permissions
 ```  
 
-##### fetching command
+## fetching command
 **global command**  
 ```js
 client.commands.fetch(); //all global commands
@@ -68,7 +68,7 @@ guild.commands.fetch(); // all guild commands
 guild.commands.fetch({ commandId: '000000000000000000'});
 ```  
 
-##### deleting command
+## deleting command
 ```js
 command.delete();
 ```  
@@ -87,7 +87,7 @@ client.commands.delete('000000000000000000' /*commandId*/, '000000000000000000' 
 guild.commands.delete('000000000000000000');
 ```  
 
-##### editing command
+## editing command
 ```js
 command.edit(commandData);
 ```  
@@ -106,7 +106,7 @@ client.commands.edit('000000000000000000' /*commandId*/, commandData, '000000000
 guild.commands.edit('000000000000000000', commandData);
 ```
 
-##### Overwriting command  
+## Overwriting command  
 **global command**
 ```js
 client.commands.set(commandData[]);

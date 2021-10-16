@@ -4,8 +4,8 @@
 prop|type|description|optional|default  
 ---|---|---|---|---  
 name|string|name of command|no|none  
-description|string|description of command|yes|none  
-options|Array(CommandOptions)|options of command|no|none  
+description|string|description of command|no|none  
+options|Array(CommandOptions)|options of command|yes|none  
 default_permission|boolean|whether everyone can use command|yes|true  
 
 ## CommandOptions
