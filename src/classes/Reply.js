@@ -72,7 +72,9 @@ class Reply extends Base {
 	async edit(content, options) {
 		if (!this.replied) throw new Error('NO_REPLY: This interaction has no reply.');
 
-		return await this.webhook.editMessage('@original', content, options);
+		await this.webhook.editMessage('@original', content, options);
+
+		return this;
 	};
 	/**
 	 * @optional (boolean)
@@ -136,7 +138,9 @@ class Reply extends Base {
 		if (!this.replied) throw new Error('NO_REPLY: This interaction has no reply.');
 		if (this.isEphemeral) throw new Error('EPHEMERAL: This reply is ephemeral.');
 
-		return await this.webhook.deleteMessage('@original');
+		await this.webhook.deleteMessage('@original');
+
+		return this;
 	};
 };
 
