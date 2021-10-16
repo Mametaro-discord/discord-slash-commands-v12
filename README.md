@@ -10,7 +10,7 @@ However, you cannot use MessageComponents;
 npm i discord-slash-commands-v12 
 ```  
   
-**Give Scopes**
+**Give Scopes**  
 You need to give scope 'applications.commands' to your bot for using slash commands.  
 ↓url example
 ```
