@@ -1,15 +1,15 @@
-#discord-slash-command-v12
+# discord-slash-command-v12
 
-##Description 
+## Description 
 discordのスラッシュコマンドをv12で操作できます。 
-MessageComponentsには対応していないので完全版とは言えません。  
+MessageComponentsには対応していませんotl 
 
-##Install
+## Install
 ```
 npm i discord-slash-commands-v12
 ```
 
-##Usage 
+## Usage 
 **setup** 
 ```js
 const { Client } = require('discord.js');
