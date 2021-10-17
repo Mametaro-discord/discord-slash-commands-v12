@@ -5,6 +5,7 @@ const ExtendedClient = require('./structures/ExtendedClient.js');
 const ExtendedGuild = require('./structures/ExtendedGuild.js');
 const CommandInteraction = require('./classes/CommandInteraction.js');
 const CommandManager = require('./classes/CommandManager.js');
+const { InteractionTypes } = require('./interfaces/Types.js');
 
 module.exports = function(client) {
 	if (!client||!client instanceof Client) throw new Error('INVAILD_ARGS');
@@ -16,7 +17,7 @@ module.exports = function(client) {
 	};
 
 	client.ws.on('INTERACTION_CREATE', data => {
-		if (interaction.type === InteractionTypes['APPLICATION_COMMAND']) {
+		if (data.type === InteractionTypes['APPLICATION_COMMAND']) {
 			client.emit('command', new CommandInteraction(client, data));
 		};
 	});
