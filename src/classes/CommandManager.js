@@ -78,7 +78,8 @@ class CommandManager extends Base {
 	 * @optional (Snowflake) id of guild
 	 * @return (Promise<(Command|Collection<Snowflake, Command>)>)
 	 */
-	async fetch({ commandId, guildId } = options) {
+	async fetch(options = {}) {
+		const { commandId, guildId } = options;
 		const guild = this.guildId ? this.guildId : guildId;
 		let data;
 		if (commandId) {
