@@ -15,6 +15,10 @@ class CommandManager extends Base {
 	 */
 	constructor(client) {
 		super(client);
+
+		this.clientId = this.client.user.id
+		? this.client.user.id
+		: this.client.api.users('@me').get().id;
 	};
 	/**
 	 * @return (Collection<Snowflake, Command>)
@@ -34,10 +38,9 @@ class CommandManager extends Base {
 	 * @optional (Promise<Command>)
 	 */
 	async create(commandData, guildId) {
-		if (!this.client.user) return console.log('oops');
 		const data = (guildId
-		? (await this.client.api.applications(this.client.user.id).guilds(guildId))
-		: (await this.client.api.applications(this.client.user.id)))
+		? (await this.client.api.applications(this.clientId).guilds(guildId))
+		: (await this.client.api.applications(this.clientId)))
 		.commands
 		.post({
 			data: commandData
@@ -51,8 +54,8 @@ class CommandManager extends Base {
 	 */
 	async delete(commandId, guildId) {
 		const data = (guildId
-		? (await this.client.api.applications(this.client.user.id).guilds(guildId))
-		: (await this.client.api.applications(this.client.user.id)))
+		? (await this.client.api.applications(this.clientId).guilds(guildId))
+		: (await this.client.api.applications(this.clientId)))
 		.commands(commandId)
 		.delete()
 		return new Command(this.client, data);
@@ -65,8 +68,8 @@ class CommandManager extends Base {
  	 */
  	async edit(commandId, commandData, guildId) {
  		const data = (guildId 
- 		? (await this.client.api.applications(this.client.user.id).guilds(guildId))
- 		: (await this.client.api.applications(this.client.user.id)))
+ 		? (await this.client.api.applications(this.clientId).guilds(guildId))
+ 		: (await this.client.api.applications(this.clientId)))
  		.commands(commandId)
  		.patch({
  			data: commandData
@@ -84,13 +87,13 @@ class CommandManager extends Base {
 		let data;
 		if (commandId) {
 			data = (guild
-			? (await this.client.api.applications(this.client.user.id).guilds(guild).commands(commandId))
-			: (await this.client.api.applications(this.client.user.id).commands(commandId))
+			? (await this.client.api.applications(this.clientId).guilds(guild).commands(commandId))
+			: (await this.client.api.applications(this.clientId).commands(commandId))
 			).get();
 		} else {
 			data = (guild
-			? (await this.client.api.applications(this.client.user.id).guilds(guild).commands)
-			: (await this.client.api.applications(this.client.user.id).commands)
+			? (await this.client.api.applications(this.clientId).guilds(guild).commands)
+			: (await this.client.api.applications(this.clientId).commands)
 			).get();
 		};
 
@@ -110,8 +113,8 @@ class CommandManager extends Base {
 	async set(arr, guildId) {
 		const guild = this.guildId ? this.guildId : guildId;
 		const data = (guildId 
-		? (await this.client.api.applications(this.client.user.id).guilds(guildId))
-		: (await this.client.api.applications(this.client.user.id)))
+		? (await this.client.api.applications(this.clientId).guilds(guildId))
+		: (await this.client.api.applications(this.clientId)))
 		.commands
 		.put(arr);
 		return new Command(this.client, data);
