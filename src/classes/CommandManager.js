@@ -34,7 +34,7 @@ class CommandManager extends Base {
 	 * @optional (Promise<Command>)
 	 */
 	async create(commandData, guildId) {
-		while (!this.client.user) setTimeout(() => undefined, 1);
+		if (!this.client.user) return console.log('oops');
 		const data = (guildId
 		? (await this.client.api.applications(this.client.user.id).guilds(guildId))
 		: (await this.client.api.applications(this.client.user.id)))
