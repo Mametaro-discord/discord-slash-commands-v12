@@ -86,14 +86,14 @@ class CommandManager extends Base {
 		const guild = this.guildId ? this.guildId : guildId;
 		let data;
 		if (commandId) {
-			data = (guild
+			data = await (guild
 			? (await this.client.api.applications(this.clientId).guilds(guild).commands(commandId))
 			: (await this.client.api.applications(this.clientId).commands(commandId))
 			).get();
 		} else {
 			data = (guild
 			? (await this.client.api.applications(this.clientId).guilds(guild).commands)
-			: (await this.client.api.applications(this.clientId).commands)
+			: (this.client.api.applications(this.clientId).commands)
 			).get();
 		};
 
