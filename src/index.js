@@ -31,7 +31,6 @@ module.exports.CommandAuthor = require('./classes/CommandAuthor.js');
 module.exports.CommandInteraction = require('./classes/CommandInteraction.js');
 module.exports.CommandManager = require('./classes/CommandManager.js');
 module.exports.CommandPermissionsManager = require('./classes/CommandPermissionsManager.js');
-module.exports.Followup = require('./classes/Followup.js');
 module.exports.Reply = require('./classes/Reply');
 
 //STRUCTURES

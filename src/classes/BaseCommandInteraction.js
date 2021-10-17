@@ -4,7 +4,6 @@ const Base = require('./Base.js');
 const CommandAuthor = require('./CommandAuthor.js');
 const ExtendedWebhookClient = require('../structures/ExtendedWebhookClient.js');
 const { InteractionTypes } = require('../interfaces/Types.js');
-const Followup = require('./Followup.js');
 const Reply = require('./Reply.js');
 
 /**
@@ -53,12 +52,6 @@ class BaseCommandInteraction extends Base {
 		this.version = data.version;
 
 		this.reply = new Reply(
-				this.client,
-				this,
-				new ExtendedWebhookClient(data.application_id, data.token, this.client.options)
-			);
-
-		this.followup = new Followup(
 				this.client,
 				this,
 				new ExtendedWebhookClient(data.application_id, data.token, this.client.options)
