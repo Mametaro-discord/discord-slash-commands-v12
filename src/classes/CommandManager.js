@@ -16,7 +16,7 @@ class CommandManager extends Base {
 	constructor(client) {
 		super(client);
 
-		this.clientId = this.client.user.id
+		this.clientId = this.client.user
 		? this.client.user.id
 		: this.client.api.users('@me').get().id;
 	};
