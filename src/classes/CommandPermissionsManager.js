@@ -14,9 +14,9 @@ class CommandPermissionsManager extends Base {
 	 * @param (Command|CommandManager|GuildCommandManager)
 	 */
 	constructor(manager) {
-		this.manager = manager;
-
 		super(manager.client);
+		
+		this.manager = manager;
 
 		this.guild = manager.guild 
 		? manager.guild 
