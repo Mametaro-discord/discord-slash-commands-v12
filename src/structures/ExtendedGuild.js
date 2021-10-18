@@ -8,17 +8,10 @@ const Guild = Structures.get('Guild');
  */
 class ExtendedGuild extends Guild {
 	/**
-	 * @param (Client) from discord.js
-	 * @param (object) data
-	 */
-	constructor(client, data) {
-		super(client, data);
-	};
-	/**
 	 * @return (Command)
 	 */
 	get commands() {
-		return new CommandManager(client);
+		return new CommandManager(this.client);
 	};
 };
 

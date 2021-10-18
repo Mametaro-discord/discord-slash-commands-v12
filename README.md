@@ -36,11 +36,14 @@ client.on('command', (data) => {
 **Ping-Pong** 
 ```js
 slash(client);
-const ping = {
-	name: 'ping',
-	description: 'pong!'
-};
-client.commands.create(ping);
+
+client.on('ready', () => {
+	const ping = {
+		name: 'ping',
+		description: 'pong!'
+	};
+	client.commands.create(ping);
+});
 
 client.on('command', data => {
 	if (data.commandName === 'ping') {

@@ -27,7 +27,6 @@
   },
   "homepage": "https://github.com/Mametaro-discord/discord-slash-command-v12#readme",
   "dependencies": {
-    "discord.js": "^12.5.3",
-    "fs": "0.0.1-security"
+    "discord.js": "^12.5.3"
   }
 }
