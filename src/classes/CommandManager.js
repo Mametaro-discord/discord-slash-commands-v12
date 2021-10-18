@@ -99,7 +99,7 @@ class CommandManager extends Base {
 			).get();
 		};
 
-		if (data instanceof Array) {
+		if (Array.isArray(data)) {
 			data = data.map(elm => new Command(this.client, elm));
 			data = await makeCol(data);
 		} else {
