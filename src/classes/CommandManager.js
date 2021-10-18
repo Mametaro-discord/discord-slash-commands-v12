@@ -98,7 +98,7 @@ class CommandManager extends Base {
 			: (this.client.api.applications(this.client.user.id).commands)
 			).get();
 		};
-
+console.log(data);
 		if (Array.isArray(data)) {
 			data = data.map(elm => new Command(this.client, elm));
 			data = await makeCol(data);
