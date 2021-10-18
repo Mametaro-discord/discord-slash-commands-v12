@@ -1,5 +1,9 @@
 # discord-slash-command-v12
 
+## Check it
+This package has some problems, and I fixing it.  
+So please give me reports(issue, pull request) to me.
+
 ## Description 
 By using this, You can use slash commands even if you use discord.js@12  
 However, you cannot use MessageComponents;  

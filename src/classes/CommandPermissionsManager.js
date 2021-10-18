@@ -30,7 +30,7 @@ class CommandPermissionsManager extends Base {
 	 * @return (Collection<(Snowflake, Collection<Snowflake, Array<CommandPermissions>>)>)
 	 */
 	get col() {
-		if (!client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
+		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
 		let colSrc;
 		const guilds = this.client.guilds.fetch();
 		for (guild of guilds) {
@@ -51,7 +51,7 @@ class CommandPermissionsManager extends Base {
 	 * @return (Promise<Array<CommandPermissions>>)
 	 */
 	async add({ guildId, commandId, permissions = [] } = options) {
-		if (!client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
+		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
 		const data = await this.client.api.applications(this.manager.clientId)
 		.guilds(this.guildId ? this.guildid : guildId)
 		.commands(this.commandId ? this.commandId : commandId)
@@ -65,7 +65,7 @@ class CommandPermissionsManager extends Base {
 	 * @return (Promise<(Array<CommandPermissions>|Collection<Snowflake, Array<CommandPermissions>>)>)
 	 */
 	async fetch({ guildId, commandId } = options) {
-		if (!client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
+		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
 		let data = !this.commandId&&!commandId
 		? (await this.client.api.applications(this.manager.clientId)
 		.guilds(this.guildId ? this.guildId : guildId)
@@ -89,7 +89,7 @@ class CommandPermissionsManager extends Base {
 	 * @return (Promise<Array<CommandPermissions>>)
 	 */
 	async remove({ guildId, commandId, users, roles } = options) {
-		if (!client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
+		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
 		const guild = this.guildId ? this.guildId : guildId;
 		const command = this.commandId ? this.commandId : commandId;
 
@@ -122,7 +122,7 @@ class CommandPermissionsManager extends Base {
 	 * @return (Promise<(Array<CommandPermissions>|Collection<Snowflake, Array<CommandPermissions>>)>)
 	 */
 	async set({ guildId, commandId, permissions, fullPermissions } = options) {
-		if (!client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
+		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
 		let data;
 		const guild = this.guildId ? this.guildId : guildId;
 		if (fullPermissions) {

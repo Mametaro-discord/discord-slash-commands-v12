@@ -2,7 +2,8 @@
 
 ## Checkit
 The commands property of 'client' or 'guild' is instance of the class 'CommandManager'.  
-
+if you wanna know interfaces of the arguments(ex: commandData), plz show data models.  
+  
 On methods of 'client.commands',  
 If the argument 'guildId' don't exist, global command is selected as target.
 Not global command + guild command.
