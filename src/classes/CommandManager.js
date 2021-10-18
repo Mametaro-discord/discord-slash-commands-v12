@@ -38,8 +38,8 @@ class CommandManager extends Base {
 	async create(commandData, guildId) {
 		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
 		const data = (guildId
-		? (await this.client.api.applications(this.clientId).guilds(guildId))
-		: (await this.client.api.applications(this.clientId)))
+		? (await this.client.api.applications(this.client.user.id).guilds(guildId))
+		: (await this.client.api.applications(this.client.user.id)))
 		.commands
 		.post({
 			data: commandData
@@ -54,8 +54,8 @@ class CommandManager extends Base {
 	async delete(commandId, guildId) {
 		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
 		const data = (guildId
-		? (await this.client.api.applications(this.clientId).guilds(guildId))
-		: (await this.client.api.applications(this.clientId)))
+		? (await this.client.api.applications(this.client.user.id).guilds(guildId))
+		: (await this.client.api.applications(this.client.user.id)))
 		.commands(commandId)
 		.delete()
 		return new Command(this.client, data);
@@ -69,8 +69,8 @@ class CommandManager extends Base {
  	async edit(commandId, commandData, guildId) {
  		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
  		const data = (guildId 
- 		? (await this.client.api.applications(this.clientId).guilds(guildId))
- 		: (await this.client.api.applications(this.clientId)))
+ 		? (await this.client.api.applications(this.client.user.id).guilds(guildId))
+ 		: (await this.client.api.applications(this.client.user.id)))
  		.commands(commandId)
  		.patch({
  			data: commandData
@@ -89,13 +89,13 @@ class CommandManager extends Base {
 		let data;
 		if (commandId) {
 			data = await (guild
-			? (await this.client.api.applications(this.clientId).guilds(guild).commands(commandId))
-			: (await this.client.api.applications(this.clientId).commands(commandId))
+			? (await this.client.api.applications(this.client.user.id).guilds(guild).commands(commandId))
+			: (await this.client.api.applications(this.client.user.id).commands(commandId))
 			).get();
 		} else {
 			data = (guild
-			? (await this.client.api.applications(this.clientId).guilds(guild).commands)
-			: (this.client.api.applications(this.clientId).commands)
+			? (await this.client.api.applications(this.client.user.id).guilds(guild).commands)
+			: (this.client.api.applications(this.client.user.id).commands)
 			).get();
 		};
 
@@ -116,8 +116,8 @@ class CommandManager extends Base {
 		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
 		const guild = this.guildId ? this.guildId : guildId;
 		const data = (guildId 
-		? (await this.client.api.applications(this.clientId).guilds(guildId))
-		: (await this.client.api.applications(this.clientId)))
+		? (await this.client.api.applications(this.client.user.id).guilds(guildId))
+		: (await this.client.api.applications(this.client.user.id)))
 		.commands
 		.put(arr);
 		return new Command(this.client, data);
