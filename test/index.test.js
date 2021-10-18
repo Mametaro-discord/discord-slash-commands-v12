@@ -1,11 +1,16 @@
-const { Client } = require('discord.js');
-const client = new Client();
-const slash = require('../src/index.js');
-slash(client);
-
-const ping = {
-	name: 'ping',
-	description: 'pong'
+class Main {
+	static async afn(content) {
+		return content
+	};
 };
 
-console.log(client.commands);
+let input;
+async function main() {
+	input = (Main
+		? (await Main)
+		: null
+		).afn(100);
+};
+main();
+
+console.log(input);

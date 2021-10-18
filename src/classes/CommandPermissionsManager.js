@@ -25,6 +25,8 @@ class CommandPermissionsManager extends Base {
 		this.guildId = manager.guildId ? manager.guildId : undefined;
 
 		this.commandId = manager.commandId ? manager.commandId : undefined;
+
+		this.path = () => this.client.api.applications(this.client.user.id);
 	};
 	/**
 	 * @return (Collection<(Snowflake, Collection<Snowflake, Array<CommandPermissions>>)>)
@@ -34,11 +36,11 @@ class CommandPermissionsManager extends Base {
 		let colSrc;
 		const guilds = this.client.guilds.fetch();
 		for (guild of guilds) {
-			const commands = this.client.api.applications(this.client.user.id)
+			const path = this.path()
 			.guilds(guild.id)
-			.commands
-			.get();
-			const col = makeCol(commands);
+			.commands;
+			const data = await path.get();
+			const col = makeCol(data);
 			colSrc.push([
 						guild.id,
 						col
@@ -52,10 +54,11 @@ class CommandPermissionsManager extends Base {
 	 */
 	async add({ guildId, commandId, permissions = [] } = options) {
 		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
-		const data = await this.client.api.applications(this.client.user.id)
+		const path = this.path()
 		.guilds(this.guildId ? this.guildid : guildId)
-		.commands(this.commandId ? this.commandId : commandId)
-		.put({
+		.commands(this.commandId ? this.commandId : commandId);
+
+		const data = await path.put({
 			data: permissions
 		});
 		return Util.transformApplicationCommandPermissions(data.permissions);
@@ -66,15 +69,15 @@ class CommandPermissionsManager extends Base {
 	 */
 	async fetch({ guildId, commandId } = options) {
 		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
-		let data = !this.commandId&&!commandId
-		? (await this.client.api.applications(this.client.user.id)
-		.guilds(this.guildId ? this.guildId : guildId)
-		.commands)
-		: (await this.client.api.applications(this.client.user.id)
-		.guilds(this.guildId ? this.guildId : guildId)
-		.commands(this.commandId ? this.commandId : commandId))
-		.permissions
-		.get();
+		const path = (!this.commandId&&!commandId
+				? (this.path()
+					.guilds(this.guildId ? this.guildId : guildId)
+					.commands)
+				: (this.path()
+					.guilds(this.guildId ? this.guildId : guildId)
+					.commands(this.commandId ? this.commandId : commandId))
+			).permissions;
+		let data = await path.get();
 
 		if (data instanceof Array) {
 			data = data.map(elm => Util.transformApplicationCommandPermissions(elm.permissions));
@@ -92,12 +95,12 @@ class CommandPermissionsManager extends Base {
 		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
 		const guild = this.guildId ? this.guildId : guildId;
 		const command = this.commandId ? this.commandId : commandId;
-
-		const src = await this.api.applications(this.client.user.id)
+		const path = this.path()
 		.guilds(guild)
 		.commands(command)
-		.permissions
-		.get();
+		.permissions;
+
+		const src = await path.get();
 
 		const permissions = src.permissions.filter(elm => {
 			if (elm.type === ApplicationCommandPermissionsTypes['ROLE']) {
@@ -107,11 +110,7 @@ class CommandPermissionsManager extends Base {
 			};
 		});
 
-		const data = await this.client.api.applications(this.manager.clientId)
-		.guilds(guild)
-		.commands(command)
-		.permissions
-		.put({
+		const data = await path.put({
 			data: permissions
 		});
 
@@ -126,20 +125,20 @@ class CommandPermissionsManager extends Base {
 		let data;
 		const guild = this.guildId ? this.guildId : guildId;
 		if (fullPermissions) {
-			data = await this.client.api.applications(this.client.user.id)
+			const path = this.path()
 			.guilds(guild)
-			.commands
-			.permissions
-			.put({
+			.command
+			.permissions;
+			data = await path.put({
 				data: fullPermissions
 			});
 		} else {
 			const command = this.commandId ? this.commandId : commandId;
-			data = await this.client.api.applications(this.client.user.id)
+			const path = this.path()
 			.guilds(guild)
 			.commands(command)
-			.permissions
-			.put({
+			.permissions;
+			data = await path.put({
 				data: permissions
 			});
 		};

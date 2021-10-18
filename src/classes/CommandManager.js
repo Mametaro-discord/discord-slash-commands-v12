@@ -15,6 +15,8 @@ class CommandManager extends Base {
 	 */
 	constructor(client) {
 		super(client);
+
+		this.path = () => this.client.api.applications(this.client.user.id);
 	};
 	/**
 	 * @return (Collection<Snowflake, Command>)
@@ -37,11 +39,11 @@ class CommandManager extends Base {
 	 */
 	async create(commandData, guildId) {
 		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
-		const data = (guildId
-		? (await this.client.api.applications(this.client.user.id).guilds(guildId))
-		: (await this.client.api.applications(this.client.user.id)))
-		.commands
-		.post({
+		const path = (guildId
+				? (this.path().guilds(guildId))
+				: this.path()
+			).command;
+		const data = await path.post({
 			data: commandData
 		});
 		return new Command(this.client, data);
@@ -53,11 +55,11 @@ class CommandManager extends Base {
 	 */
 	async delete(commandId, guildId) {
 		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
-		const data = (guildId
-		? (await this.client.api.applications(this.client.user.id).guilds(guildId))
-		: (await this.client.api.applications(this.client.user.id)))
-		.commands(commandId)
-		.delete()
+		const path = (guildId
+				? this.path().guilds(guildId)
+				: this.path()
+			).commands(commandId);
+		const data = await path.delete();
 		return new Command(this.client, data);
 	};
 	/**
@@ -68,11 +70,11 @@ class CommandManager extends Base {
  	 */
  	async edit(commandId, commandData, guildId) {
  		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
- 		const data = (guildId 
- 		? (await this.client.api.applications(this.client.user.id).guilds(guildId))
- 		: (await this.client.api.applications(this.client.user.id)))
- 		.commands(commandId)
- 		.patch({
+ 		const path = (guildId
+ 				? this.path().guilds(guildId)
+ 				: this.path()
+ 			).commands(commandId);
+ 		const data = await path.patch({
  			data: commandData
  		});
  		return new Command(this.client, data);
@@ -86,18 +88,19 @@ class CommandManager extends Base {
 		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
 		const { commandId, guildId } = options;
 		const guild = this.guildId ? this.guildId : guildId;
-		let data;
+		let path;
 		if (commandId) {
-			data = await (guild
-			? (await this.client.api.applications(this.client.user.id).guilds(guild).commands(commandId))
-			: (await this.client.api.applications(this.client.user.id).commands(commandId))
-			).get();
+			path = (guildId
+					? this.path().guilds(guildId)
+					: this.path()
+				).commands(commandId);
 		} else {
-			data = (guild
-			? (await this.client.api.applications(this.client.user.id).guilds(guild).commands)
-			: (await this.client.api.applications(this.client.user.id).commands)
-			).get();
+			path = (guildId
+					? this.path().guilds(guildId)
+					: this.path()
+				).commands;
 		};
+		let data = await path.get();
 console.log(data);
 		if (Array.isArray(data)) {
 			data = data.map(elm => new Command(this.client, elm));
@@ -112,14 +115,14 @@ console.log(data);
 	 * @optional (guildId)
 	 * @return (Promise<Collection<Snowflake, Command>>)
 	 */
-	async set(arr, guildId) {
+	async set(arr = [], guildId) {
 		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
 		const guild = this.guildId ? this.guildId : guildId;
-		const data = (guildId 
-		? (await this.client.api.applications(this.client.user.id).guilds(guildId))
-		: (await this.client.api.applications(this.client.user.id)))
-		.commands
-		.put(arr);
+		const path = (guildId
+				? this.path().guilds(guildId)
+				: this.path()
+			).commands;
+		const data = await path.put(arr);
 		return new Command(this.client, data);
 	};
 };
