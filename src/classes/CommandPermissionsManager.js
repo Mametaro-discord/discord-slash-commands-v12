@@ -34,18 +34,18 @@ class CommandPermissionsManager extends Base {
 	get col() {
 		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
 		let colSrc;
-		const guilds = this.client.guilds.fetch();
-		for (guild of guilds) {
+		const guilds = this.client.guilds.cache;
+		guilds.forEach(async guild => {
 			const path = this.path()
-			.guilds(guild.id)
+			guilds(guild.id)
 			.commands;
 			const data = await path.get();
 			const col = makeCol(data);
 			colSrc.push([
-						guild.id,
-						col
-				]);
-		};
+					guild.id,
+					col
+				])
+		});
 		return new Collection(colSrc);
 	};
 	/**
