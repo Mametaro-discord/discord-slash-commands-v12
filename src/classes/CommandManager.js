@@ -95,7 +95,7 @@ class CommandManager extends Base {
 		} else {
 			data = (guild
 			? (await this.client.api.applications(this.client.user.id).guilds(guild).commands)
-			: (this.client.api.applications(this.client.user.id).commands)
+			: (await this.client.api.applications(this.client.user.id).commands)
 			).get();
 		};
 console.log(data);
