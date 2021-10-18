@@ -40,7 +40,7 @@ class CommandPermissionsManager extends Base {
 			guilds(guild.id)
 			.commands;
 			const data = await path.get();
-			const col = makeCol(data);
+			const col = await makeCol(data);
 			colSrc.push([
 					guild.id,
 					col
