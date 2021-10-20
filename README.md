@@ -1,4 +1,4 @@
-![npm](https://img.shields.io/npm/v/discord-slash-commands-v12?style=flat-square) ![git-tag](https://img.shields.io/github/v/tag/Mametaro-discord/discord-slash-command-v12?style=flat-square) ![downloads](https://img.shields.io/npm/dt/discord-slash-commands-v12?style=flat-square) ![license](https://img.shields.io/github/license/Mametaro-discord/discord-slash-command-v12?style=flat-square)
+![version](https://img.shields.io/npm/v/discord-slash-commands-v12?style=flat-square) ![downloads](https://img.shields.io/npm/dt/discord-slash-commands-v12?style=flat-square) ![license](https://img.shields.io/github/license/Mametaro-discord/discord-slash-command-v12?style=flat-square)
 # discord-slash-command-v12
  
 ## Check it
