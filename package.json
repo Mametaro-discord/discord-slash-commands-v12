@@ -1,6 +1,6 @@
 {
   "name": "discord-slash-commands-v12",
-  "version": "3.1.23",
+  "version": "3.1.24",
   "description": "handling discord slash command",
   "main": "./src/index.js",
   "directories": {
