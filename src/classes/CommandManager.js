@@ -28,7 +28,7 @@ class CommandManager extends Base {
 	get col() {
 		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
 		let data;
-		const get = async () => await this.fetch();
+		const get = async () => data = await this.fetch();
 		get();
 		return data;
 	};
