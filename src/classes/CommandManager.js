@@ -15,15 +15,22 @@ class CommandManager extends Base {
 	 */
 	constructor(client) {
 		super(client);
-
-		this.path = () => this.client.api.applications(this.client.user.id);
+	};
+	/**
+	 * @return (?)
+	 */
+	get path() {
+		return this.client.api.applications(this.client.user.id);
 	};
 	/**
 	 * @return (Collection<Snowflake, Command>)
 	 */
 	get col() {
 		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
-		return this.fetch();
+		let data;
+		const get = async () => await this.fetch();
+		get();
+		return data;
 	};
 	/**
 	 * @return (CommandPermissionsManager)
@@ -40,9 +47,9 @@ class CommandManager extends Base {
 	async create(commandData, guildId) {
 		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
 		const path = (guildId
-				? (this.path().guilds(guildId))
-				: this.path()
-			).command;
+				? (this.path.guilds(guildId))
+				: this.path
+			).commands;
 		const data = await path.post({
 			data: commandData
 		});
@@ -56,8 +63,8 @@ class CommandManager extends Base {
 	async delete(commandId, guildId) {
 		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
 		const path = (guildId
-				? this.path().guilds(guildId)
-				: this.path()
+				? this.path.guilds(guildId)
+				: this.path
 			).commands(commandId);
 		const data = await path.delete();
 		return new Command(this.client, data);
@@ -71,8 +78,8 @@ class CommandManager extends Base {
  	async edit(commandId, commandData, guildId) {
  		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
  		const path = (guildId
- 				? this.path().guilds(guildId)
- 				: this.path()
+ 				? this.path.guilds(guildId)
+ 				: this.path
  			).commands(commandId);
  		const data = await path.patch({
  			data: commandData
@@ -91,17 +98,17 @@ class CommandManager extends Base {
 		let path;
 		if (commandId) {
 			path = (guildId
-					? this.path().guilds(guildId)
-					: this.path()
+					? this.path.guilds(guildId)
+					: this.path
 				).commands(commandId);
 		} else {
 			path = (guildId
-					? this.path().guilds(guildId)
-					: this.path()
+					? this.path.guilds(guildId)
+					: this.path
 				).commands;
 		};
 		let data = await path.get();
-console.log(data);
+
 		if (Array.isArray(data)) {
 			data = data.map(elm => new Command(this.client, elm));
 			data = await makeCol(data);
@@ -119,8 +126,8 @@ console.log(data);
 		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
 		const guild = this.guildId ? this.guildId : guildId;
 		const path = (guildId
-				? this.path().guilds(guildId)
-				: this.path()
+				? this.path.guilds(guildId)
+				: this.path
 			).commands;
 		const data = await path.put(arr);
 		return new Command(this.client, data);

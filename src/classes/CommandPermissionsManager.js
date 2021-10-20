@@ -25,8 +25,12 @@ class CommandPermissionsManager extends Base {
 		this.guildId = manager.guildId ? manager.guildId : undefined;
 
 		this.commandId = manager.commandId ? manager.commandId : undefined;
-
-		this.path = () => this.client.api.applications(this.client.user.id);
+	};
+	/**
+	 * @return (?)
+	 */
+	get path() {
+		return this.client.api.applications(this.client.user.id);
 	};
 	/**
 	 * @return (Collection<(Snowflake, Collection<Snowflake, Array<CommandPermissions>>)>)
@@ -36,7 +40,7 @@ class CommandPermissionsManager extends Base {
 		let colSrc;
 		const guilds = this.client.guilds.cache;
 		guilds.forEach(async guild => {
-			const path = this.path()
+			const path = this.path
 			guilds(guild.id)
 			.commands;
 			const data = await path.get();
@@ -54,7 +58,7 @@ class CommandPermissionsManager extends Base {
 	 */
 	async add({ guildId, commandId, permissions = [] } = options) {
 		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
-		const path = this.path()
+		const path = this.path
 		.guilds(this.guildId ? this.guildid : guildId)
 		.commands(this.commandId ? this.commandId : commandId);
 
@@ -70,10 +74,10 @@ class CommandPermissionsManager extends Base {
 	async fetch({ guildId, commandId } = options) {
 		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
 		const path = (!this.commandId&&!commandId
-				? (this.path()
+				? (this.path
 					.guilds(this.guildId ? this.guildId : guildId)
 					.commands)
-				: (this.path()
+				: (this.path
 					.guilds(this.guildId ? this.guildId : guildId)
 					.commands(this.commandId ? this.commandId : commandId))
 			).permissions;
@@ -95,7 +99,7 @@ class CommandPermissionsManager extends Base {
 		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
 		const guild = this.guildId ? this.guildId : guildId;
 		const command = this.commandId ? this.commandId : commandId;
-		const path = this.path()
+		const path = this.path
 		.guilds(guild)
 		.commands(command)
 		.permissions;
@@ -125,7 +129,7 @@ class CommandPermissionsManager extends Base {
 		let data;
 		const guild = this.guildId ? this.guildId : guildId;
 		if (fullPermissions) {
-			const path = this.path()
+			const path = this.path
 			.guilds(guild)
 			.command
 			.permissions;
@@ -134,7 +138,7 @@ class CommandPermissionsManager extends Base {
 			});
 		} else {
 			const command = this.commandId ? this.commandId : commandId;
-			const path = this.path()
+			const path = this.path
 			.guilds(guild)
 			.commands(command)
 			.permissions;
