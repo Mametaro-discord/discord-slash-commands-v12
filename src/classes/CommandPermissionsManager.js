@@ -33,26 +33,6 @@ class CommandPermissionsManager extends Base {
 		return this.client.api.applications(this.client.user.id);
 	};
 	/**
-	 * @return (Collection<(Snowflake, Collection<Snowflake, Array<CommandPermissions>>)>)
-	 */
-	get col() {
-		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
-		let colSrc;
-		const guilds = this.client.guilds.cache;
-		guilds.forEach(async guild => {
-			const path = this.path
-			guilds(guild.id)
-			.commands;
-			const data = await path.get();
-			const col = await makeCol(data);
-			colSrc.push([
-					guild.id,
-					col
-				])
-		});
-		return new Collection(colSrc);
-	};
-	/**
 	 * @param (AddCommandPermissionsOptions)
 	 * @return (Promise<Array<CommandPermissions>>)
 	 */
