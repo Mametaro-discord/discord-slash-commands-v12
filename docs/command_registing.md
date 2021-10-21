@@ -25,17 +25,6 @@ guild.commands.create(commandData);
 
 **return**: Command  
 
-## getting Collection(discord.js)<Command>
-**global command**  
-```js
-client.commands.col
-```  
-  
-**guild command**  
-```js
-guild.commands.col
-```  
-
 ## getting permissions
 ```js
 command.permissions

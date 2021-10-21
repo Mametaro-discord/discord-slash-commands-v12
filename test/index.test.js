@@ -1,16 +1,8 @@
-class Main {
-	static async afn(content) {
-		return content
-	};
-};
+const { Client, Structures } = require('discord.js');
+const client = new Client();
 
-let input;
-async function main() {
-	input = (Main
-		? (await Main)
-		: null
-		).afn(100);
-};
-main();
+const slash = require('../src/index.js');
 
-console.log(input);
+slash(client);
+
+const GuildCommandManager = require('../src/classes/GuildCommandManager.js')

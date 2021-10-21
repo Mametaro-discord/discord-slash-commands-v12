@@ -13,7 +13,8 @@ module.exports = client => {
 
 	client.commands = new CommandManager(client);
 
-	if (!Guild.prototype.commands||!Guild.prototype.commands instanceof CommandManager) {
+	if (!Guild.prototype.commands) {
+		console.log(Guild)
 		Structures.extend('Guild', () => ExtendedGuild);
 	};
 

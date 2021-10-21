@@ -1,6 +1,2 @@
-./classes/BaseInteraction.js
-./classes/CommandInteraction.js
-./classes/Followup.js
-./classes/Reply.js
-ExWebhookClient
-Interfaces(TYPEDEF)
+discord.jsのCacheManagerを継承しよう
+CommandManagerとかCommandPermissionsManagerとか

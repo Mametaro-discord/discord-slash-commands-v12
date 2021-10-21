@@ -73,6 +73,21 @@ class CommandPermissionsManager extends Base {
 	 */
 	async fetch({ guildId, commandId } = options) {
 		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
+		if (!this.guildId&&!guildId) {
+			let colSrc = [];
+			this.client.guilds.cache.forEach(async guild => {
+				const path = this.path
+				.guilds(guild.id)
+				.commands;
+				const data = await path.get();
+				const col = await makeCol(data);
+				colSrc.push([
+						guild.id,
+						col
+					]);
+			});
+			return new Collection(colSrc);
+		};
 		const path = (!this.commandId&&!commandId
 				? (this.path
 					.guilds(this.guildId ? this.guildId : guildId)

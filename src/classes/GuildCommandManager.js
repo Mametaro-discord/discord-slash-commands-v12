@@ -25,3 +25,5 @@ class GuildCommandManager extends CommandManager {
 		return new CommandPermissionsManager(this);
 	};
 };
+
+module.exports = GuildCommandManager;
