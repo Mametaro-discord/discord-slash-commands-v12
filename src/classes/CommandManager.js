@@ -23,16 +23,6 @@ class CommandManager extends Base {
 		return this.client.api.applications(this.client.user.id);
 	};
 	/**
-	 * @return (Collection<Snowflake, Command>)
-	 */
-	get col() {
-		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
-		let data;
-		const get = async () => data = await this.fetch();
-		get();
-		return data;
-	};
-	/**
 	 * @return (CommandPermissionsManager)
 	 */
 	get permissions() {

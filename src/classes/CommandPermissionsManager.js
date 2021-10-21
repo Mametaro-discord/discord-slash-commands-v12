@@ -71,7 +71,8 @@ class CommandPermissionsManager extends Base {
 	 * @param (CommandPermissionsOptions)
 	 * @return (Promise<(Array<CommandPermissions>|Collection<Snowflake, Array<CommandPermissions>>)>)
 	 */
-	async fetch({ guildId, commandId } = options) {
+	async fetch(options = {}) {
+		const { guildId, commandId } = options;
 		if (!this.client.user) throw new Error('NOT_LOGINED: You can access commands after login.\nYou should do that in the ready event block.');
 		if (!this.guildId&&!guildId) {
 			let colSrc = [];
