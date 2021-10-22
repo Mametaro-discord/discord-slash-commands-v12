@@ -5,6 +5,7 @@ const CommandAuthor = require('./CommandAuthor.js');
 const ExtendedWebhookClient = require('../structures/ExtendedWebhookClient.js');
 const { InteractionTypes } = require('../interfaces/Types.js');
 const Reply = require('./Reply.js');
+const Util = require('../util/Util.js');
 
 /**
  * @extends (Base)
@@ -21,8 +22,6 @@ class BaseCommandInteraction extends Base {
 
 		this.applicationId = data.application_id ? data.application_id : client.user.id;
 
-		this.author = new CommandAuthor(client, data, this);
-
 		this.channelId = data.channel_id;
 
 		this.channel = this.client.channels.cache.get(this.channelId);
@@ -33,15 +32,16 @@ class BaseCommandInteraction extends Base {
 
 		this.commandId = data.data.id;
 
-		this.command = (this.guild ? this.guild : this.client).commands.col.get(this.commandId);
+		// キャッシュが無いので一旦無効化
+		// this.command = (this.guild ? this.guild : this.client).commands.col.get(this.commandId);
 
-		this.commandName = this.command.name;
+		this.commandName = data.data.name;
 
 		this.options = Util.transformApplicationCommandOptions(data.options);
 
 		this.id = data.id;
 
-		this.userId = data.member.user.id;
+		this.userId = (data.member || data).user.id;
 
 		this.user = this.client.users.cache.get(this.userId);
 
@@ -50,6 +50,8 @@ class BaseCommandInteraction extends Base {
 		this.token = data.token;
 
 		this.version = data.version;
+
+		this.author = new CommandAuthor(client, data, this);
 
 		this.reply = new Reply(
 				this.client,
