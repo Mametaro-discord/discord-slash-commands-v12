@@ -26,22 +26,22 @@ module.exports = client => {
 };
 
 // CLASSES
-module.exports.Base = require('./classes/Base.js');
-module.exports.BaseCommand = require('./classes/BaseCommand.js');
-module.exports.BaseCommandInteraction = require('./classes/BaseCommandInteraction.js');
-module.exports.Command = require('./classes/Command.js');
-module.exports.CommandAuthor = require('./classes/CommandAuthor.js');
-module.exports.CommandInteraction = require('./classes/CommandInteraction.js');
-module.exports.CommandManager = require('./classes/CommandManager.js');
-module.exports.CommandPermissionsManager = require('./classes/CommandPermissionsManager.js');
-module.exports.Reply = require('./classes/Reply');
-
-//STRUCTURES
-module.exports.ExtendedClient = require('./structures/ExtendedClient.js');
-module.exports.ExtendedGuild = require('./structures/ExtendedGuild.js')
-module.exports.ExtendedWebhookClient = require('./structures/ExtendedWebhookClient.js');
-
-//Utilities
-module.exports.functions = require('./util/functions.js');
-module.exports.Util = require('./util/Util.js');
-module.exports.Types = require('./interfaces/Types.js');
+module.exports = {
+	Base: require('./classes/Base.js'),
+	BaseCommand: require('./classes/BaseCommand.js'),
+	BaseCommandInteraction: require('./classes/BaseCommandInteraction.js'),
+	Command: require('./classes/Command.js'),
+	CommandAuthor: require('./classes/CommandAuthor.js'),
+	CommandInteraction: require('./classes/CommandInteraction.js'),
+	CommandManager: require('./classes/CommandManager.js'),
+	CommandPermissionsManager: require('./classes/CommandPermissionsManager.js'),
+	Reply: require('./classes/Reply'),
+	//STRUCTURES
+	ExtendedClient: require('./structures/ExtendedClient.js'),
+	ExtendedGuild: require('./structures/ExtendedGuild.js'),
+	ExtendedWebhookClient: require('./structures/ExtendedWebhookClient.js'),
+	//Utilities
+	functions: require('./util/functions.js'),
+	Util: require('./util/Util.js'),
+	Types: require('./interfaces/Types.js'),
+};
