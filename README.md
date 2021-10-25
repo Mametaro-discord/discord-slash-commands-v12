@@ -2,7 +2,7 @@
 # discord-slash-command-v12
  
 ## Check it
-This package has some problems, and I fixing it.  
+This package got SOO BIG changing. sorry; 
 So please give me reports(issue, pull request) to me.
 
 ## Description 
