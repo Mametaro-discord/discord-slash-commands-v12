@@ -1,8 +1,9 @@
-const { Client, Structures } = require('discord.js');
-const client = new Client();
+const fn = a => console.log(a);
 
-const slash = require('../src/index.js');
+const obj = {
+	test: 'TestScript'
+};
 
-slash(client);
+const newobj = Object.assign(fn, obj);
 
-const GuildCommandManager = require('../src/classes/GuildCommandManager.js')
+console.log(newobj.toString());

@@ -1,2 +1,0 @@
-discord.jsのCacheManagerを継承しよう
-CommandManagerとかCommandPermissionsManagerとか

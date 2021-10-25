@@ -2,7 +2,15 @@
 
 const { Collection } = require('discord.js');
 
-module.exports.makeCol = async function(arr) {
-	const newArr = arr.map(elm => [elm.id, elm]);
-	return new Collection(newArr);
+/**
+ * @param {array}
+ * @return {Collection}
+ */
+module.exports.makeCol = function(arr = []) {
+	const data = arr.reduce((col, elm) => col.set(
+			elm.id,
+			elm
+		),
+		new Collection()
+	);
 };

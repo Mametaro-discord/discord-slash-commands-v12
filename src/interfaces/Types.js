@@ -1,6 +1,6 @@
 'use strict';
 
-function generateEnum(array) {
+function createEnum(array) {
 	let generated = {};
 	array.forEach((elm, idx) => {
 		if (elm === null) return;

@@ -1,48 +1,41 @@
 'use strict';
 
-const BaseCommandInteraction = require('./BaseCommandInteraction.js');
-const { deconstructor } = require('discord.js').SnowflakeUtil;
+const BaseInteraction = require('./BaseInteraction');
+const ExtendedWebhookClient = require('../structures/ExtendedWebhookClient');
 
-/**
- * @extends (BaseCommandInteraction)
- */
-class CommandInteraction extends BaseCommandInteraction {
+class CommandInteraction extends BaseInteraction {
 	/**
-	 * @param (Client)
-	 * @param (object)
+	 * @param {Client}
+	 * @param {InteractionData}
 	 */
-	constructor(client, data = {}) {
+	constructor(client, data) {
 		super(client, data);
+		/**
+		 * @type {Snowflake}
+		 */
+		this.commandId = data.data.id;
+		/**
+		 * @type {string}
+		 */
+		this.commandName = data.data.name;
+		/**
+		 * @type {boolean}
+		 */
+		this.deferred = this.reply.deferred;
+		/**
+		 * @type {boolean}
+		 */
+		this.replied = this.reply.replied;
+		/**
+		 * @type {boolean}
+		 */
+		this.isEphemeral = this.reply.isEphemeral;
 	};
 	/**
-	 * @return (boolean)
+	 * @return {ApplicationCommand}
 	 */
-	get deferred() {
-		return this.reply.deferred;
-	};
-	/**
-	 * @return (boolean)
-	 */
-	get replied() {
-		return this.reply.replied;
-	};
-	/**
-	 * @return (boolean)
-	 */
-	get ephemeral() {
-		return this.reply.ephemeral;
-	};
-	/**
-	 * @return (number)
-	 */
-	get createdTimestamp() {
-		return deconstructor(this.id).timestamp;
-	};
-	/**
-	 * @return (Date)
-	 */
-	get createdDate() {
-		return new Date(this.createdTimestamp);
+	get command() {
+		return (this.guild || client).commands.cache.get(this.commandId) || null;
 	};
 };
 

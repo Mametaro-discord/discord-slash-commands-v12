@@ -1,12 +1,13 @@
 'use strict';
 
-const { Client } = require('discord.js');
-
 class Base {
 	/**
-	 * @param (Client) from discord.js
+	 * @param  {Client} discord Client
 	 */
 	constructor(client) {
+		/**
+		 * @type {Client}
+		 */
 		Object.defineProperty(this, 'client', {
 			value: client
 		});

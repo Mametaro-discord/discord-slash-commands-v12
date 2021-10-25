@@ -4,48 +4,51 @@ const { ApplicationCommandTypes, ApplicationCommandOptionsTypes, ApplicationComm
 
 class Util {
 	/**
-	 * @param (Array<object>|object) data of command
+	 * @param (array<object>|object) data of command
 	 * @return (object)
 	 */
 	static transformApplicationCommand(options) {
-		const target = options instanceof Array ? options : [options];
-		const transformed = target.map(element => {
+		const target = Array.isArray(options) ? options : [options];
+		const transformed = target.map(elm => {
 			return {
-				id: element.id,
-				type: ApplicationCommandTypes[element.type],
-				application_id: element.application_id,
-				guild_id: element.guild_id,
-				name: element.name,
-				description: element.description,
-				options: this.transformApplicationCommandOptions(element.options),
-				default_permission: element.default_permission,
-				version: element.version
+				id: elm.id,
+				type: ApplicationCommandTypes[elm.type],
+				application_id: elm.application_id || elm.applicationId,
+				guild_id: elm.guild_id || elm.guildId,
+				name: elm.name,
+				description: elm.description,
+				options: this.transformApplicationCommandOptions(elm.options),
+				default_permission: elm.default_permission || defaultPermission,
+				version: elm.version
 			};
 		});
-		return options instanceof Array ? transformed : transformed.shift();
+		return Array.isArray(options) ? transformed : transformed.shift();
 	};
 	/*
 	* @param (Array<object>) data of command
 	* @return (object)
 	 */
 	static transformApplicationCommandOptions(options = []) {
-		const transformed = options.forEach(element => {
+		options.forEach(elm => {
 			let property = [];
 			while (true) {
-				const optionsStr = `element${property.join('')}`;
+				const optionsStr = property[0]
+				? `elm${property.join('')}`
+				: `elm`;
 				const code = `if (!${optionsStr}) break;\n${optionsStr} = execute(${optionsStr})`;
+				eval(code);
 				property.push('[options]');
 			};
 		});
 		function execute(options = []) {
-			return options.map(element => {
+			return options.map(elm => {
 				return {
-					type: ApplicationCommandOptionsTypes[element.type],
-					name: element.name,
-					description: element.description,
-					required: element.required,
-					choices: element.choices,
-					options: element.options
+					type: ApplicationCommandTypes[elm.type],
+					name: elm.name,
+					description: elm.description,
+					required: elm.required,
+					choices: elm.choices,
+					options: elm.options
 				};
 			});
 		};
@@ -56,7 +59,7 @@ class Util {
 	 * @return (object)
 	 */
 	static transformApplicationCommandPermissions(options) {
-		const target = options instanceof Array ? options : [options]
+		const target = Array.isArray(options) ? options : [options];
 		const transformed = target.map(element => {
 			return {
 				id: elm.id,
@@ -64,7 +67,7 @@ class Util {
 				permission: elm.permission
 			};
 		});
-		return options instanceof Array ? transformed : transformed.shift();
+		return Array.isArray(options) ? transformed : transformed.shift();
 	};
 };
 
