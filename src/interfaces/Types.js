@@ -1,29 +1,29 @@
 'use strict';
 
 function createEnum(array) {
-	let generated = {};
+	let created = {};
 	array.forEach((elm, idx) => {
 		if (elm === null) return;
-		generated[elm] = idx;
-		generated[idx] = elm;
+		created[elm] = idx;
+		created[idx] = elm;
 	});
-	return generated;
+	return created;
 };
 
-module.exports.ApplicationCommandTypes = generateEnum([
+module.exports.ApplicationCommandTypes = createEnum([
 		null,
 		'CHAT_INPUT',
 		'USER',
 		'MESSAGE'
 	]);
 
-module.exports.ApplicationCommandPermissionsTypes = generateEnum([
+module.exports.ApplicationCommandPermissionsTypes = createEnum([
 		null,
 		'ROLE',
 		'USER'
 	]);
 
-module.exports.ApplicationCommandOptionsTypes = generateEnum([
+module.exports.ApplicationCommandOptionsTypes = createEnum([
 		null,
 		'SUB_COMMAND',
 		'SUB_COMMAND_GROUP',
@@ -37,7 +37,7 @@ module.exports.ApplicationCommandOptionsTypes = generateEnum([
 		'NUMBER'
 	]);
 
-module.exports.ChannelTypes = generateEnum([
+module.exports.ChannelTypes = createEnum([
 		'GUILD_TEXT',
 		'DM',
 		'GUILD_VOICE',
@@ -54,14 +54,14 @@ module.exports.ChannelTypes = generateEnum([
 		'GUILD_STAGE_VOICE'
 	]);
 
-module.exports.InteractionTypes = generateEnum([
+module.exports.InteractionTypes = createEnum([
 		null,
 		'PING',
 		'APPLICATION_COMMAND',
 		'MESSAGE_COMPONENT'
 	]);
 
-module.exports.InteractionReplyTypes = generateEnum([
+module.exports.InteractionReplyTypes = createEnum([
 		null,
 		'PONG',
 		null,
@@ -72,7 +72,7 @@ module.exports.InteractionReplyTypes = generateEnum([
 		'UPDATE_MESSAGE'
 	]);
 
-module.exports.MessageComponentTypes = generateEnum([
+module.exports.MessageComponentTypes = createEnum([
 		null,
 		'ACTION_ROW',
 		'BUTTON',
