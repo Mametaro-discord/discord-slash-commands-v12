@@ -27,6 +27,7 @@ guild.commands.create(commandData);
 
 ## getting permissions
 ```js
+//ApplicationCommandPermissionsManager
 command.permissions
 ```  
   

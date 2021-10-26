@@ -33,10 +33,6 @@ class ApplicationCommand extends Base {
 		 * @type {ApplicationCommandType}
 		 */
 		this.type = ApplicationCommandTypes[data.type];
-		/**
-		 * @type {Snowflake}
-		 */
-		this.userId = (data.member.user||data.user).id;
 
 		this.patch(data);
 	};
@@ -62,8 +58,8 @@ class ApplicationCommand extends Base {
 	 * @return {ApplicationCommandPermissionsManager}
 	 */
 	get permissions() {
-		return {};
-	}
+		return new ApplicationCommandPermissionsManager(this);
+	};
 	/**
 	 * @param {object}
 	 * @return {undefined}
