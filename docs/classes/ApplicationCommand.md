@@ -1,6 +1,6 @@
 # ApplicationCommand  
 
-**Extends: [Base](https://github.com/Mametaro-discord/discord-slash-commands-v12/blob/master/src/classes/Base.js)**  
+**Extends: [Base](https://github.com/Mametaro-discord/discord-slash-commands-v12/blob/master/docs/classes/Base.md)**  
   
 **The application command structure**  
 
@@ -16,14 +16,13 @@ guildId|[Snowflake](https://discord.js.org/#/docs/main/v12/typedef/Snowflake)|id
 name|type|description  
 ---|---|---  
 applicationId|[Snowflake](https://discord.js.org/#/docs/main/v12/typedef/Snowflake)|id of application  
-client|[Client](https://discord.js.org/#/docs/main/v12/class/Client)|discord client
 createdAt|[Date](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date)|date command was created  
 createdTimestamp|number|timestamp command was created  
 guild|[Guild](https://discord.js.org/#/docs/main/v12/class/Guild)|guild of application command  
 guildId|[Snowflake](https://discord.js.org/#/docs/main/v12/typedef/Snowflake)|id of guild of application command  
 id|[Snowflake](https://discord.js.org/#/docs/main/v12/typedef/Snowflake)|id of application command  
-manager|[ApplicationCommandManager](https://github.com/Mametaro-discord/discord-slash-commands-v12/blob/master/src/classes/ApplicationCommandManager.js)\|\|[GuildApplicationCommandManager](https://github.com/Mametaro-discord/discord-slash-commands-v12/blob/master/src/classes/GuildApplicationCommandManager.js)|manager of application command  
-permissions|[ApplicationCommandPermissionsManager](https://github.com/Mametaro-discord/discord-slash-commands-v12/blob/master/src/classes/ApplicationCommandPermissionsManager.js)|manager of permissions of application command  
+manager|[ApplicationCommandManager](https://github.com/Mametaro-discord/discord-slash-commands-v12/blob/master/docs/classes/ApplicationCommandManager.md)\|\|[GuildApplicationCommandManager](https://github.com/Mametaro-discord/discord-slash-commands-v12/blob/master/docs/classes/GuildApplicationCommandManager.md)|manager of application command  
+permissions|[ApplicationCommandPermissionsManager](https://github.com/Mametaro-discord/discord-slash-commands-v12/blob/master/docs/classes/ApplicationCommandPermissionsManager)|manager of permissions of application command  
 type|string|type of application command  
 
 ## Methods  
@@ -33,9 +32,9 @@ type|string|type of application command
 **Arguments**  
 name|type|description  
 ---|---|---  
-data|[CommandData]|data of application command   
+data|[CommandData]()|data of application command   
   
-**Return: [ApplicationCommand](https://github.com/Mametaro-discord/discord-slash-commands-v12/blob/master/src/classes/ApplicationCommand.js)**  
+**Return: [ApplicationCommand](https://github.com/Mametaro-discord/discord-slash-commands-v12/blob/master/docs/classes/ApplicationCommand.md)**  
 
 #### delete  
-**Return: [ApplicationCommand](https://github.com/Mametaro-discord/discord-slash-commands-v12/blob/master/src/classes/ApplicationCommand.js)**
+**Return: [ApplicationCommand](https://github.com/Mametaro-discord/discord-slash-commands-v12/blob/master/docs/classes/ApplicationCommand.md)**
