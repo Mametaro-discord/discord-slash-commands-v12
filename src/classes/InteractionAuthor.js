@@ -2,7 +2,7 @@
 
 const Base = require('./Base');
 
-class InteractionAuthor {
+class InteractionAuthor extends Base {
 	/**
 	 * @param {Client}
 	 * @param {BaseInteraction||CommandInteraction}

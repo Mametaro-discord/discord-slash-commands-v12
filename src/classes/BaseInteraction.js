@@ -50,6 +50,10 @@ class BaseInteraction extends Base {
 		 * @type {number}
 		 */
 		this.version = data.version;
+		/**
+		 * @type {Snowflake}
+		 */
+		this.userId = (data.member.user || data.user).id;
 	};
 	/**
 	 * @return {Reply}
