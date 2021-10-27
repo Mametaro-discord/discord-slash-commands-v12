@@ -16,7 +16,7 @@ the reply will be ephemeral.
 interaction.reply.send(content, MessageOptions);
 ```  
   
-**return**: The reply  
+**return**: [Reply](https://github.com/Mametaro-discord/discord-slash-commands-v12/blob/master/docs/classes/Reply.md)
 
 ## Edit Reply  
 If you set the second argument to true(boolean), or set the property "flags" of options to 64(number),  
@@ -25,21 +25,21 @@ the reply will be ephemeral.
 interaction.reply.edit(content, MessageOptions);
 ```  
   
-**return**: The reply  
+**return**: [Reply](https://github.com/Mametaro-discord/discord-slash-commands-v12/blob/master/docs/classes/Reply.md)  
 
 ## Delete Reply  
 ```js
 interaction.reply.delete();
 ``` 
   
-**return**: The reply
+**return**: [Reply](https://github.com/Mametaro-discord/discord-slash-commands-v12/blob/master/docs/classes/Reply.md)
 
 ## Fetch Reply  
 ```js
 interaction.reply.fetch();
 ```  
   
-**return**: The reply  
+**return**: [Reply](https://github.com/Mametaro-discord/discord-slash-commands-v12/blob/master/docs/classes/Reply.md)  
 
 ## Defer Reply
 If you set the argument to true(boolean), this reply will be ephemeral.  
@@ -47,7 +47,7 @@ If you set the argument to true(boolean), this reply will be ephemeral.
 interaction.reply.defer(ephemeral);
 ```  
   
-**return**: The reply  
+**return**: [Reply](https://github.com/Mametaro-discord/discord-slash-commands-v12/blob/master/docs/classes/Reply.md)  
 
 ## Think for The Reply  
 If you set the argument to true(boolean), this reply will be ephemeral.  
@@ -55,4 +55,4 @@ If you set the argument to true(boolean), this reply will be ephemeral.
 interaction.reply.think(ephemeral);
 ```  
 
-**return**: The reply
+**return**: [Reply](https://github.com/Mametaro-discord/discord-slash-commands-v12/blob/master/docs/classes/Reply.md)
