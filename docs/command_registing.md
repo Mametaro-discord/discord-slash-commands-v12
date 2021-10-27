@@ -1,4 +1,4 @@
-# Registing command etc...
+# How to register
 
 ## Checkit
 The commands property of "client" or "guild" is instance of the class "CommandManager".  
@@ -9,13 +9,13 @@ If the argument "guildId" don't exist, global command is selected as target.
 Not global command + guild command.
 
 
-## registing command
-**global command**  
+## Register Command
+**Global Command**  
 ```js
 client.commands.create(commandData);
 ```  
 
-**guild command**  
+**Guild Command**  
 ```js
 client.commands.create(commandData, guildId);
 ```  
@@ -23,32 +23,32 @@ client.commands.create(commandData, guildId);
 guild.commands.create(commandData);
 ```  
 
-**return**: Command  
+**return**: The created command  
 
-## getting permissions
+## Get Permissions
 ```js
 //ApplicationCommandPermissionsManager
 command.permissions
 ```  
   
-**global command**
+**Global Command**
 ```js
 client.commands.permissions
 ```  
   
-**guild command**
+**Guild Command**
 ```js
 guild.commands.permissions
 ```  
 
-## fetching command
-**global command**  
+## Fetch Commands
+**Global Command**  
 ```js
 client.commands.fetch(); //all global commands
 client.commands.fetch({ commandId: '000000000000000000' }); 
 ```  
   
-**guild command**
+**Guild Command**
 ```js
 client.commands.fetch({ guildId: '000000000000000000'}); //all guild commands
 client.commands.fetch({ commandId: '000000000000000000', guildId: '000000000000000000'});
@@ -59,17 +59,17 @@ guild.commands.fetch(); // all guild commands
 guild.commands.fetch({ commandId: '000000000000000000'});
 ```  
 
-## deleting command
+## Delete Command
 ```js
 command.delete();
 ```  
 
-**global command**
+**Global Command**
 ```js
 client.commands.delete('000000000000000000');
 ```  
   
-**guild command**
+**Guild Command**
 ```js
 client.commands.delete('000000000000000000' /*commandId*/, '000000000000000000' /*guildId*/);
 ```  
@@ -78,17 +78,17 @@ client.commands.delete('000000000000000000' /*commandId*/, '000000000000000000' 
 guild.commands.delete('000000000000000000');
 ```  
 
-## editing command
+## Edit Command
 ```js
 command.edit(commandData);
 ```  
   
-**global command**  
+**Global Command**  
 ```js
 client.commands.edit('000000000000000000', commandData);
 ```  
   
-**guild command**  
+**Guild Command**  
 ```js
 client.commands.edit('000000000000000000' /*commandId*/, commandData, '000000000000000000' /*guildId*/);
 ```  
@@ -97,13 +97,13 @@ client.commands.edit('000000000000000000' /*commandId*/, commandData, '000000000
 guild.commands.edit('000000000000000000', commandData);
 ```
 
-## Overwriting command  
-**global command**
+## Overwrite Command  
+**Global Command**
 ```js
 client.commands.set(commandData[]);
 ```  
   
-**guild command**
+**Guild Command**
 ```js
 client.commands.set(commandData[], '000000000000000000' /*guildId*/);
 ```  
