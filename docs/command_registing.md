@@ -23,7 +23,7 @@ client.commands.create(commandData, guildId);
 guild.commands.create(commandData);
 ```  
 
-**return**: The created command  
+**return**: [ApplicationCommand](https://github.com/Mametaro-discord/discord-slash-commands-v12/blob/master/docs/classes/ApplicationCommand.md)
 
 ## Get Permissions
 ```js
