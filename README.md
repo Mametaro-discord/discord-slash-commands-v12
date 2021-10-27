@@ -1,4 +1,8 @@
-![version](https://img.shields.io/npm/v/discord-slash-commands-v12?style=flat-square) ![downloads](https://img.shields.io/npm/dt/discord-slash-commands-v12?style=flat-square) ![issue](https://img.shields.io/github/issues/Mametaro-discord/discord-slash-command-v12?style=flat-square) ![pull request](https://img.shields.io/github/issues-pr/Mametaro-discord/discord-slash-command-v12?style=flat-square) ![license](https://img.shields.io/github/license/Mametaro-discord/discord-slash-command-v12?style=flat-square)
+[![version](https://img.shields.io/npm/v/discord-slash-commands-v12?style=flat-square)](https://www.npmjs.com/package/discord-slash-commands-v12?activeTab=versions)
+[![downloads](https://img.shields.io/npm/dt/discord-slash-commands-v12?style=flat-square)](https://www.npmjs.com/package/discord-slash-commands-v12)
+[![issue](https://img.shields.io/github/issues/Mametaro-discord/discord-slash-command-v12?style=flat-square)](https://github.com/Mametaro-discord/discord-slash-commands-v12/issues)
+[![pull request](https://img.shields.io/github/issues-pr/Mametaro-discord/discord-slash-command-v12?style=flat-square)](https://github.com/Mametaro-discord/discord-slash-commands-v12/pulls)
+[![license](https://img.shields.io/github/license/Mametaro-discord/discord-slash-command-v12?style=flat-square)](https://github.com/Mametaro-discord/discord-slash-commands-v12/blob/master/LICENSE)
 # discord-slash-commands-v12
  
 ## Check it
