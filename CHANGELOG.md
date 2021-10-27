@@ -1,3 +1,4 @@
-# 5.0.1  
-Added cache to ApplicationCommandManager(extended BaseManager).  
-You can get commands syncronous.    
+# 5.0.1
+## Add Cache
+We have added cache function to [ApplicationCommandManager](docs/classes/ApplicationCommandManager).<br>
+You can now get commands synchronously.    
