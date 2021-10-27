@@ -1,4 +1,4 @@
-# Responsing interaction etc...  
+# How to response
 
 ## checkit
 ```js
@@ -9,50 +9,50 @@ When you response an interaction, you can use methods of "interaction.reply". It
   
 The keyword "interaction" means argument of callback↑ here.
 
-## sending reply  
+## Send Reply  
 If you set the second argument true(boolean), or set the property "flags" of options 64(number),  
 the reply will be ephemeral.  
 ```js
 interaction.reply.send(content, MessageOptions);
 ```  
   
-**return**: Reply  
+**return**: The reply  
 
-## editing reply  
+## Edit Reply  
 If you set the second argument to true(boolean), or set the property "flags" of options to 64(number),  
 the reply will be ephemeral.  
 ```js
 interaction.reply.edit(content, MessageOptions);
 ```  
   
-**return**: Reply  
+**return**: The reply  
 
-## deleting reply  
+## Delete Reply  
 ```js
 interaction.reply.delete();
 ``` 
   
-**return**: Reply
+**return**: The reply
 
-## fetching reply  
+## Fetch Reply  
 ```js
 interaction.reply.fetch();
 ```  
   
-**return**: Reply  
+**return**: The reply  
 
-## defering reply  
+## Defer Reply
 If you set the argument to true(boolean), this reply will be ephemeral.  
 ```js
 interaction.reply.defer(ephemeral);
 ```  
   
-**return**: Reply  
+**return**: The reply  
 
-## responsing thinking reply  
+## Think for The Reply  
 If you set the argument to true(boolean), this reply will be ephemeral.  
 ```js
 interaction.reply.think(ephemeral);
 ```  
 
-**return**: Reply
+**return**: The reply
