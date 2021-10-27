@@ -2,8 +2,8 @@
 # discord-slash-commands-v12
  
 ## Check it
-This package got SOO BIG changing. sorry; 
-So please give me reports(issue, pull request) to me.
+This package got SOO BIG changing. sorry;<br>
+So please give me reports(with issues and pull requests) to me.
 
 ## Description 
 By using this, You can use slash commands even if you use discord.js@12  
@@ -16,10 +16,10 @@ npm i discord-slash-commands-v12
 ```  
   
 **Give Scopes**  
-You need to give scope 'applications.commands' to your bot for using slash commands.  
-↓url example
+You need to give scope "applications.commands" to your bot for using slash commands.  
+↓example url
 ```
-https://discord.com/api/oauth2/authorize?client_id={YOUR_BOT's_ID}&permissions=0&scope=bot%20applications.commands
+https://discord.com/api/oauth2/authorize?client_id={BOTS_ID}&permissions=0&scope=bot+applications.commands
 ```
 
 ## Usage 
