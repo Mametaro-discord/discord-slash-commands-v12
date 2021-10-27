@@ -1,6 +1,7 @@
 'use strict';
 
 const Base = require('./Base');
+const Reply = require('./Reply');
 const ExtendedWebhookClient = require('../structures/ExtendedWebhookClient');
 const InteractionAuthor = require('./InteractionAuthor');
 const { InteractionTypes } = require('../interfaces/Types'); 
@@ -53,7 +54,7 @@ class BaseInteraction extends Base {
 		/**
 		 * @type {Snowflake}
 		 */
-		this.userId = (data.member.user || data.user).id;
+		this.userId = (data.member || data).user.id;
 	};
 	/**
 	 * @return {Reply}
@@ -112,3 +113,5 @@ class BaseInteraction extends Base {
 	 */
 	isSelectMenu() {}; 
 };
+
+module.exports = BaseInteraction;

@@ -1,7 +1,7 @@
 'use strict';
 
 const { Client } = require('discord.js');
-const CommandManager = require('../classes/CommandManager.js');
+const CommandManager = require('../classes/ApplicationCommandManager.js');
 
 /**
  * @extends (Client)
