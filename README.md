@@ -6,28 +6,28 @@
 # discord-slash-commands-v12
  
 ## Check it
-This package got SOO BIG changing. sorry;<br>
+This package got so big changing. sorry;<br>
 So please give me reports(with issues and pull requests) to me.
 
 ## Description 
 By using this, You can use slash commands even if you use discord.js@12  
 However, you cannot use MessageComponents;  
 
-## Before Using
-**Install**  
+## Getting Started
+**Installation**  
 ```
 npm i discord-slash-commands-v12 
 ```  
   
-**Give Scopes**  
-You need to give scope "applications.commands" to your bot for using slash commands.  
+**Mandatory Preparation**  
+You have to give the scope "applications.commands" to handle slash commands.  
 ↓example url
 ```
 https://discord.com/api/oauth2/authorize?client_id={BOTS_ID}&permissions=0&scope=bot+applications.commands
 ```
 
 ## Usage 
-**setup** 
+**Setup** 
 ```js
 const { Client } = require('discord.js');
 const client = new Client();
@@ -35,14 +35,16 @@ const slash = require('discord-slash-commands-v12');
 slash(client);
 ``` 
 
+<!--
 **Event Listener** 
 ```js
 client.on('command', (data) => {
 	//code
 });
-``` 
+```
+-->
 
-**Ping-Pong** 
+**Example**(Ping-Pong)
 ```js
 slash(client);
 
@@ -61,12 +63,12 @@ client.on('command', data => {
 });
 ``` 
 
-## You need more help?
-[my discord server](https://discord.gg/UQSUBHwM7T)
+## Need more help?
+You can ask in [my discord server](https://discord.gg/UQSUBHwM7T)
 
 ## Commemt
 I hope I did no mistake;  
 Give me issues if you find bugs!  
  
-I will make MessageComponents usable.  
-So, wait for next new releases.  
+I will make MessageComponents be usable.  
+So, please wait for new releases.  
