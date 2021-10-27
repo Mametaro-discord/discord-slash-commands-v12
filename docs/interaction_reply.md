@@ -4,13 +4,13 @@
 ```js
 client.on('command', interaction => {});
 ```
-The argument 'interaction' of callback argument of **command** event is instance of CommandInteraction.  
-When you response an interaction, you can use methods of 'interaction.reply'. It is instance of Reply.  
+The argument "interaction" of callback argument of **command** event is instance of CommandInteraction.  
+When you response an interaction, you can use methods of "interaction.reply". It is instance of Reply.  
   
-The keyword 'interaction' means argument of callback↑ here.
+The keyword "interaction" means argument of callback↑ here.
 
 ## sending reply  
-If you set the second argument true(boolean), or set the property 'flags' of options 64(number),  
+If you set the second argument true(boolean), or set the property "flags" of options 64(number),  
 the reply will be ephemeral.  
 ```js
 interaction.reply.send(content, MessageOptions);
@@ -19,7 +19,7 @@ interaction.reply.send(content, MessageOptions);
 **return**: Reply  
 
 ## editing reply  
-If you set the second argument to true(boolean), or set the property 'flags' of options to 64(number),  
+If you set the second argument to true(boolean), or set the property "flags" of options to 64(number),  
 the reply will be ephemeral.  
 ```js
 interaction.reply.edit(content, MessageOptions);
