@@ -7,6 +7,7 @@ const {
 } = require('discord.js');
 
 const {
+	GuildApplicationCommandManager,
 	ApplicationCommandManager,
 	ExtendedGuild,
 	Types
@@ -26,7 +27,12 @@ module.exports = client => {
 
 	const guild = Structures.get('Guild');
 	if (!(Guild.prototype.commands && guild.prototype.commands)) {
-		Guild.prototype.commands = ExtendedGuild.prototype.commands;
+		const commands = {
+			get () {
+				return new GuildApplicationCommandManager(this);
+			}
+		};
+		Guild.prototype.commands = commands;
 		Structures.extend('Guild', () => ExtendedGuild);
 	};
 
