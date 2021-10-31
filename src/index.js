@@ -27,8 +27,8 @@ module.exports = client => {
 
 	const guild = Structures.get('Guild');
 	if (!(Guild.prototype.commands && guild.prototype.commands)) {
-		Object.defineProperties(Guild.prototype, {
-			get commands() {
+		Object.defineProperty(Guild.prototype, 'commands', {
+			get () {
 				return new GuildApplicationCommandManager(this);
 			}
 		});
