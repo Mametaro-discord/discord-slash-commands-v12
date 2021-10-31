@@ -10,7 +10,7 @@ const {
 const {
 	ApplicationCommandManager,
 	ExtendedGuild,
-	Types
+	Type
 } = require('./util/Classes');
 
 const {
