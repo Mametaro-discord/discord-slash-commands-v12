@@ -1,7 +1,7 @@
 'use strict';
 
 const Guild = require('discord.js').Structures.get('Guild');
-const GuildCommandManager = require('../classes/GuildCommandManager.js');
+const GuildApplicationCommandManager = require('../classes/GuildApplicationCommandManager.js');
 
 /**
  * @extends (Guild)
@@ -11,7 +11,7 @@ class ExtendedGuild extends Guild {
 	 * @return (Command)
 	 */
 	get commands() {
-		return new GuildCommandManager(this);
+		return new GuildApplicationCommandManager(this);
 	};
 };
 
