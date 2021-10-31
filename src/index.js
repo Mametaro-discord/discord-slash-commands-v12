@@ -27,12 +27,11 @@ module.exports = client => {
 
 	const guild = Structures.get('Guild');
 	if (!(Guild.prototype.commands && guild.prototype.commands)) {
-		const commands = {
-			get () {
+		Object.defineProperties(Guild.prototype, {
+			get commands() {
 				return new GuildApplicationCommandManager(this);
 			}
-		};
-		Guild.prototype.commands = commands;
+		});
 		Structures.extend('Guild', () => ExtendedGuild);
 	};
 
