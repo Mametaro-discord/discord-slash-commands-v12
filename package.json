@@ -6,10 +6,6 @@
   "directories": {
     "test": "test"
   },
-  "files": [
-    "src",
-    "LICENSE"
-  ],
   "keywords": [
     "discord.js"
   ],

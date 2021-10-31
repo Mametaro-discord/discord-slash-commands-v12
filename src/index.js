@@ -1,6 +1,5 @@
 'use strict';
 
-const discord = require('discord.js');
 const {
 	Client,
 	Guild,
@@ -27,7 +26,7 @@ module.exports = client => {
 
 	const guild = Structures.get('Guild');
 	if (!(Guild.prototype.commands && guild.prototype.commands)) {
-		discord.Guild = ExtendedGuild;
+		Guild.prototype.commands = ExtendedGuild.prototype.commands;
 		Structures.extend('Guild', () => ExtendedGuild);
 	};
 
