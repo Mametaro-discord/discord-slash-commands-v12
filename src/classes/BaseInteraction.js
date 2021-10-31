@@ -112,3 +112,5 @@ class BaseInteraction extends Base {
 	 */
 	isSelectMenu() {}; 
 };
+
+module.exports = BaseInteraction;
