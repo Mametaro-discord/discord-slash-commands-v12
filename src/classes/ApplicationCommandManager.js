@@ -50,14 +50,14 @@ class ApplicationCommandManager extends BaseManager {
 	 */
 	async create(data, guildId) {
 		const guild = this.guildId || guildId;
-		const data = await this.commandPath({
+		const result = await this.commandPath({
 			guildId: guild
 		})
 		.post({
 			data: Util.transformApplicationCommand(data)
 		});
 
-		this.add(data, true, guild);
+		this.add(result, true, guild);
 	};
 	/**
 	 * @param {array<ApplicationCommandData>}
