@@ -1,7 +1,7 @@
 'use strict';
 
 const { Client } = require('discord.js');
-const CommandManager = require('../classes/CommandManager.js');
+const ApplicationCommandManager = require('../classes/ApplicationCommandManager.js');
 
 /**
  * @extends (Client)
@@ -17,7 +17,7 @@ class ExtendedClient extends Client {
 	 * @return (CommandManager)
 	 */
 	get commands() {
-		return new CommandManager(this);
+		return new ApplicationCommandManager(this);
 	};
 };
 
