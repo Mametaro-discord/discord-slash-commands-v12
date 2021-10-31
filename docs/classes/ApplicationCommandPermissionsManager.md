@@ -13,7 +13,7 @@ manager|[ApplicationCommand](https://github.com/Mametaro-discord/discord-slash-c
 name|type|description  
 ---|---|---  
 manager|[ApplicationCommand](https://github.com/Mametaro-discord/discord-slash-commands-v12/blob/master/docs/classes/ApplicationCommand.md)\|\|[ApplicationCommandManager](https://github.com/Mametaro-discord/discord-slash-commands-v12/blob/master/docs/classes/ApplicationCommandManager.md)\|\|[GuildApplicationCommandManager](https://github.com/Mametaro-discord/discord-slash-commands-v12/blob/master/docs/classes/GuildApplicationCommandManager.md)|-  
-guild|[Guild](https://discord.js.org/#/docs/main/v12/classes/Guild)|discord guild  
+guild|[Guild](https://discord.js.org/#/docs/main/v12/class/Guild)|discord guild  
 guildId|[Snowflake](https://discord.js.org/#/docs/main/v12/typedef/Snowflake)\|\|null|id of guild  
 commandId|[Snowflake](https://discord.js.org/#docs/main/v12/typedef/Snowflake)\|\|command of id  
 

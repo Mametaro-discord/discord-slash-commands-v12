@@ -7,7 +7,7 @@
 ## Constructor  
 name|type|description  
 ---|---|---  
-client|[Client](https://discord.js.org/#/docs/main/v12/classes/Client)|discord client  
+client|[Client](https://discord.js.org/#/docs/main/v12/class/Client)|discord client  
 data|[InteractionData](https://github.com/Mametaro-discord/discord-slash-commands-v12/blob/master/docs/types/InteractionData.md)  
 
 ## Properties  

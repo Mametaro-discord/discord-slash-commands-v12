@@ -5,7 +5,7 @@
 ## Constructor  
 name|type|description  
 ---|---|---  
-client|[Client](https://discord.js.org/#/docs/main/v12/classes/Client)|discord client  
+client|[Client](https://discord.js.org/#/docs/main/v12/class/Client)|discord client  
 interaction|[Interaction](https://github.com/Mametaro-discord/discord-slash-commands-v12/blob/master/docs/classes/Interaction.md)|-  
 webhook|[ExtendedWebhookClient](https://github.com/Mametaro-discord/discord-slash-commands-v12/blob/master/docs/classes/ExtendedWebhookClient.md)
 
@@ -41,7 +41,7 @@ ephemeral|boolean|whether reply is ephemeral
 **Returns: [Reply](https://github.com/Mametaro-discord/discord-slash-commands-v12/blob/master/docs/classes/Reply.md)**  
 
 ## fetch  
-**Returns: [Message](https://discord.js.org/#/docs/main/v12/classes/Message)**  
+**Returns: [Message](https://discord.js.org/#/docs/main/v12/class/Message)\|\|[APIMessage](https://discord.js.org/#/docs/main/v12/class/APIMessage)**  
 
 ## send  
 **Arguments**

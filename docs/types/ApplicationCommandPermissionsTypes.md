@@ -1,4 +1,4 @@
-# ApplicationCommandPermissionsType  
+# ApplicationCommandPermissionsTypes  
   
 **Type: string**  
   

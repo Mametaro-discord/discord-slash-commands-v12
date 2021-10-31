@@ -1,6 +1,6 @@
 'use strict';
 
-const { APIMessage, MessageEmbed, WebhookClient } = require('discord.js'); 
+const { APIMessage, Message, MessageEmbed, WebhookClient } = require('discord.js'); 
 
 /**
  * @extends (WebhookClient)
@@ -43,12 +43,10 @@ class ExtendedWebhookClient extends WebhookClient {
 
 		apiMessage = await apiMessage.resolveFiles();
 
-		await this.client.api.webhooks(this.id, this.token).post({
+		return await this.client.api.webhooks(this.id, this.token).post({
 			data: apiMessage.data,
 			files: apiMessage.files
 		});
-
-		return this;
 	};
 	/**
 	 * @param () 
@@ -88,20 +86,17 @@ class ExtendedWebhookClient extends WebhookClient {
 
 		apiMessage = await apiMessage.resolveFiles();
 
-		await this.client.api.webhooks(this.id, this.token).messages(message).patch({
+		return await this.client.api.webhooks(this.id, this.token).messages(message).patch({
 			data: apiMessage.data,
 			files: apiMessage.files
 		});
-
-		return this;
 	};
 	/**
 	 * @param ()
 	 * @return (true)
 	 */
 	async deleteMessage(message) {
-		await this.client.api.webhooks(this.id, this.token).messages(message).delete();
-		return true;
+		return await this.client.api.webhooks(this.id, this.token).messages(message).delete();
 	};
 	/**
 	 * @param ()

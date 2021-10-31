@@ -20,7 +20,7 @@ class ApplicationCommand extends Base {
 		/**
 		 * @type {Snowflake}
 		 */
-		this.applicationId = data.application_id;
+		this.applicationId = data.application_id || data.applicationId;
 		/**
 		 * @type {Guild}
 		 */
@@ -28,7 +28,7 @@ class ApplicationCommand extends Base {
 		/**
 		 * @type {Snowflake}
 		 */
-		this.guildId = guild.id || guildId || null;
+		this.guildId = guild.id || guildId || data.guild_id || data.guildId || null;
 		/**
 		 * @type {ApplicationCommandType}
 		 */

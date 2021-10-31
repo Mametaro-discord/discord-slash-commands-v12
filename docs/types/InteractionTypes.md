@@ -1,4 +1,4 @@
-# InteractionType  
+# InteractionTypes  
   
 **Type: string**  
 

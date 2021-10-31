@@ -11,7 +11,7 @@ allowedMentions|[MessageMentionOptions](https://discord.js.org/#/docs/main/v12/t
 code|string\|\|boolean|-  
 content|string|-  
 disableMentions|[DisableMentionType](https://discord.js.org/#/docs/main/v12/typedef/DisableMentionType)|-    
-embed|[MessageEmbed](https://discord.js.org/#/docs/main/v12/classes/MessageEmbed)|-  
+embed|[MessageEmbed](https://discord.js.org/#/docs/main/v12/class/MessageEmbed)|-  
 embeds|Array<[MessageEmbed](https://discord.js.org/#/docs/main/v12/classes/MessageEmbed)>|-  
 files|Array<[BufferResolvable](https://discord.js.org/#/docs/main/v12/typedef/BufferResolvable)>\|\|Array<[FileOptions](https://discord.js.org/#/docs/main/v12/typedef/FileOptions)>|-  
 flags|number|flags of message
