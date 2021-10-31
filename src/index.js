@@ -4,7 +4,7 @@ const {
 	Client,
 	Guild,
 	Structures
-} = discord;
+} = require('discord.js');
 
 const {
 	ApplicationCommandManager,
