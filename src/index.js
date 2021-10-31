@@ -44,4 +44,4 @@ module.exports = client => {
 	});
 };
 
-module.exports = Object.assign(module.exports, require('../util/Classes'));
+module.exports = Object.assign(module.exports, require('./util/Classes'));
