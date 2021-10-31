@@ -1,58 +1,56 @@
 # Responsing interaction etc...  
 
-## checkit
+## Checkit
 ```js
 client.on('command', interaction => {});
-```
-The argument 'interaction' of callback argument of **command** event is instance of CommandInteraction.  
-When you response an interaction, you can use methods of 'interaction.reply'. It is instance of Reply.  
+```  
+commandイベントのコールバックの引数のinteractionは[CommandInteraction](https://github.com/Mametaro-discord/discord-slash-commands-v12/master/docs/classes/CommandInteraction.md)です。  
+リプライするときは[Reply](https://github.com/Mametaro-discord/discord-slash-commands-v12/master/docs/classes/Reply.md)のメソッドを使います。これはinteraction.replyで取得できます。  
   
-The keyword 'interaction' means argument of callback↑ here.
+この先のinteractionは↑のinteractionを示します(コールバックの引数)  
 
-## sending reply  
-If you set the second argument true(boolean), or set the property 'flags' of options 64(number),  
-the reply will be ephemeral.  
+## リプライを送信する
+第二引数をtrueにするか、そのflagsプロパティを64にするとリプライはephemeralになります。  
 ```js
-interaction.reply.send(content, MessageOptions);
+interaction.reply.send(content, options);
 ```  
   
-**return**: Reply  
+**Return**: [Reply](https://github.com/Mametaro-discord/discord-slash-commands-v12/master/docs/classes/Reply.md)  
 
-## editing reply  
-If you set the second argument to true(boolean), or set the property 'flags' of options to 64(number),  
-the reply will be ephemeral.  
+## リプライを編集する  
+第二引数をtrueにするか、そのflagsプロパティを64にするとリプライはephemeralになります。 
 ```js
-interaction.reply.edit(content, MessageOptions);
+interaction.reply.edit(content, options);
 ```  
   
-**return**: Reply  
+**Return**: [Reply](https://github.com/Mametaro-discord/discord-slash-commands-v12/master/docs/classes/Reply.md)
 
-## deleting reply  
+## リプライを削除する 
 ```js
 interaction.reply.delete();
 ``` 
   
-**return**: Reply
+**Return**: [Reply](https://github.com/Mametaro-discord/discord-slash-commands-v12/master/docs/classes/Reply.md)  
 
-## fetching reply  
+## リプライを取得する
 ```js
-interaction.reply.fetch();
+await interaction.reply.fetch();
 ```  
   
-**return**: Reply  
+**return**: [Reply](https://github.com/Mametaro-discord/discord-slash-commands-v12/master/docs/classes/Reply.md)  
 
-## defering reply  
-If you set the argument to true(boolean), this reply will be ephemeral.  
+## リプライを一時的にする(defer)  
+引数をtrueにするとephemeralになります。
 ```js
 interaction.reply.defer(ephemeral);
 ```  
   
-**return**: Reply  
+**Return**: [Reply](https://github.com/Mametaro-discord/discord-slash-commands-v12/master/docs/classes/Reply.md)  ) 
 
-## responsing thinking reply  
-If you set the argument to true(boolean), this reply will be ephemeral.  
+## 考え中のリプライ  
+引数をtrueにするとephemeralになります。
 ```js
 interaction.reply.think(ephemeral);
 ```  
 
-**return**: Reply
+**Return**: [Reply](https://github.com/Mametaro-discord/discord-slash-commands-v12/master/docs/classes/Reply.md)  

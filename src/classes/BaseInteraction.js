@@ -29,7 +29,7 @@ class BaseInteraction extends Base {
 		/**
 		 * @type {Snowflake}
 		 */
-		this.applicationId = data.application_id;
+		this.applicationId = data.application_id || data.applicationId;
 		/**
 		 * @type {Snowflake||null}
 		 */

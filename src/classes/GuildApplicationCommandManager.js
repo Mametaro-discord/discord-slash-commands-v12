@@ -5,9 +5,7 @@ const ApplicationCommandPermissionsManager = require('./ApplicationCommandPermis
 
 class GuildApplicationCommandManager extends ApplicationCommandManager {
 	/**
-	 * @param {Client}
-	 * @param {Array<"Structure">}
-	 * @param {"Structure".constructor}
+	 * @param {Guild}
 	 */
 	constructor(guild) {
 		super(guild.client);

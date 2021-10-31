@@ -45,7 +45,7 @@ class ApplicationCommandPermissionsManager extends Base {
 	/**
 	 * @param {Snowflake} options.guildId
 	 * @param {Snowflake} options.commandId
-	 * @return {Promise<(ApplicationCommandPermissions[]||Collection<Snowflake, ApplicationCommandPermissions[]||Collection<Snowflake, ApplicationCommandPermissions>>)>} 
+	 * @return {Promise<(ApplicationCommandPermissions[]||Collection<Snowflake, ApplicationCommandPermissions[]>)>} 
 	 */
 	async fetch({ guildId, commandId } = {}) {
 		const guild = this.guildId || guildId;
@@ -59,8 +59,6 @@ class ApplicationCommandPermissionsManager extends Base {
 		};
 
 		if (Array.isArray(data)) {
-			data = data.map(elm => [elm.id, Util.transformApplicationCommandPermissions(elm.permissions)]);
-			data = new Collection(data);
 			data = data.reduce((col, elm) => col.set(
 					elm.id,
 					Util.transformApplicationCommandPermissions(elm.permissions)
@@ -155,7 +153,7 @@ class ApplicationCommandPermissionsManager extends Base {
 	 * @param {Snowflake} options.commandId
 	 * @param {Snowflake[]} options.users
 	 * @param {Snowflake[]} options.roles
-	 * @return {Promise<ApplicationCommandPermissions>}
+	 * @return {Promise<ApplicationCommandPermissions[]>}
 	 */
 	async remove({ guildId, commandId, users, roles } = {}) {
 		const guild = this.guildId || guildId;
@@ -194,7 +192,7 @@ class ApplicationCommandPermissionsManager extends Base {
 	 * @param {Snowflake} options.id (id of user or role)
 	 * @return {Promise<boolean>}
 	 */
-	async has({ guildId, commandId, id} = {}) {
+	async has({ guildId, commandId, id } = {}) {
 		const guild = this.guildId || guildId;
 		const command = this.commandId || commandId;
 

@@ -1,21 +1,19 @@
 # Registing command etc...
 
-## Checkit
-The commands property of 'client' or 'guild' is instance of the class 'CommandManager'.  
-if you wanna know interfaces of the arguments(ex: commandData), plz show data models.  
+## Checkit  
+ここでの`client.commands`や`guild.commands`はApplicationCommandManagerです。  
   
-On methods of 'client.commands',  
-If the argument 'guildId' don't exist, global command is selected as target.
-Not global command + guild command.
+ApplicationCommandManagerのメソッドにおいて、  
+guildIdを指定しなかったとき、グローバルコマンドが補完されます。  
+グローバルコマンドとギルドコマンドではありません。
 
-
-## registing command
-**global command**  
+## コマンドを追加する  
+**グローバルコマンド**  
 ```js
 client.commands.create(commandData);
 ```  
 
-**guild command**  
+**ギルドコマンド**  
 ```js
 client.commands.create(commandData, guildId);
 ```  
@@ -23,53 +21,53 @@ client.commands.create(commandData, guildId);
 guild.commands.create(commandData);
 ```  
 
-**return**: Command  
+**Return**: [ApplicationCommand](https://github.com/Mametaro-discord/discord-slash-commands-v12/master/docs/classes/ApplicationCommand.md)    
 
-## getting permissions
+## ApplicationCommandPermissionsManagerを取得する
 ```js
 //ApplicationCommandPermissionsManager
 command.permissions
 ```  
   
-**global command**
+**グローバルコマンド**
 ```js
 client.commands.permissions
 ```  
   
-**guild command**
+**ギルドコマンド**
 ```js
 guild.commands.permissions
 ```  
 
-## fetching command
-**global command**  
+## コマンドを取得する  
+**グローバルコマンド**  
 ```js
-client.commands.fetch(); //all global commands
-client.commands.fetch({ commandId: '000000000000000000' }); 
+await client.commands.fetch(); //すべてのグローバルコマンド
+await client.commands.fetch({ commandId: '000000000000000000' }); 
 ```  
   
-**guild command**
+**ギルドコマンド**
 ```js
-client.commands.fetch({ guildId: '000000000000000000'}); //all guild commands
-client.commands.fetch({ commandId: '000000000000000000', guildId: '000000000000000000'});
+await client.commands.fetch({ guildId: '000000000000000000'}); //すべてのギルドコマンド
+await client.commands.fetch({ commandId: '000000000000000000', guildId: '000000000000000000'});
 ```  
   
 ```js
-guild.commands.fetch(); // all guild commands
-guild.commands.fetch({ commandId: '000000000000000000'});
+await guild.commands.fetch(); // すべてのギルドコマンド
+await guild.commands.fetch({ commandId: '000000000000000000'});
 ```  
 
-## deleting command
+## コマンドを削除する
 ```js
 command.delete();
 ```  
 
-**global command**
+**グローバルコマンド**
 ```js
 client.commands.delete('000000000000000000');
 ```  
   
-**guild command**
+**ギルドコマンド**
 ```js
 client.commands.delete('000000000000000000' /*commandId*/, '000000000000000000' /*guildId*/);
 ```  
@@ -78,17 +76,17 @@ client.commands.delete('000000000000000000' /*commandId*/, '000000000000000000' 
 guild.commands.delete('000000000000000000');
 ```  
 
-## editing command
+## コマンドを編集する
 ```js
 command.edit(commandData);
 ```  
   
-**global command**  
+**グローバルコマンド**  
 ```js
 client.commands.edit('000000000000000000', commandData);
 ```  
   
-**guild command**  
+**ギルドコマンド**  
 ```js
 client.commands.edit('000000000000000000' /*commandId*/, commandData, '000000000000000000' /*guildId*/);
 ```  
@@ -97,7 +95,7 @@ client.commands.edit('000000000000000000' /*commandId*/, commandData, '000000000
 guild.commands.edit('000000000000000000', commandData);
 ```
 
-## Overwriting command  
+## コマンドを上書きする
 **global command**
 ```js
 client.commands.set(commandData[]);

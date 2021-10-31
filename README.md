@@ -1,13 +1,17 @@
-![version](https://img.shields.io/npm/v/discord-slash-commands-v12?style=flat-square) ![downloads](https://img.shields.io/npm/dt/discord-slash-commands-v12?style=flat-square) ![issue](https://img.shields.io/github/issues/Mametaro-discord/discord-slash-command-v12?style=flat-square) ![pull request](https://img.shields.io/github/issues-pr/Mametaro-discord/discord-slash-command-v12?style=flat-square) ![license](https://img.shields.io/github/license/Mametaro-discord/discord-slash-command-v12?style=flat-square)
+[![version](https://img.shields.io/npm/v/discord-slash-commands-v12?style=flat-square)](https://www.npmjs.com/package/discord-slash-commands-v12?activeTab=versions)
+[![downloads](https://img.shields.io/npm/dt/discord-slash-commands-v12?style=flat-square)](https://www.npmjs.com/package/discord-slash-commands-v12)
+[![issue](https://img.shields.io/github/issues/Mametaro-discord/discord-slash-command-v12?style=flat-square)](https://github.com/Mametaro-discord/discord-slash-commands-v12/issues)
+[![pull request](https://img.shields.io/github/issues-pr/Mametaro-discord/discord-slash-command-v12?style=flat-square)](https://github.com/Mametaro-discord/discord-slash-commands-v12/pulls)
+[![license](https://img.shields.io/github/license/Mametaro-discord/discord-slash-command-v12?style=flat-square)](https://github.com/Mametaro-discord/discord-slash-commands-v12/blob/master/LICENSE)
 # discord-slash-commands-v12
  
 ## Check it
-This package got SOO BIG changing. sorry; 
-So please give me reports(issue, pull request) to me.
+このパッケージにとても大きな変更を加えました。
+なのでバグやミスがたくさんあるかもしれません；；
 
 ## Description 
-By using this, You can use slash commands even if you use discord.js@12  
-However, you cannot use MessageComponents;  
+これを使えばdiscord.jsのv12でもスラッシュコマンドを操作することができます！  
+MessageComponentsは使えません。
 
 ## Before Using
 **Install**  
@@ -15,11 +19,11 @@ However, you cannot use MessageComponents;
 npm i discord-slash-commands-v12 
 ```  
   
-**Give Scopes**  
-You need to give scope 'applications.commands' to your bot for using slash commands.  
-↓url example
+**Scopes**  
+スラッシュコマンドを使うためにボットにapplication.commandsスコープを渡す必要が有ります。  
+↓URLの例  
 ```
-https://discord.com/api/oauth2/authorize?client_id={YOUR_BOT's_ID}&permissions=0&scope=bot%20applications.commands
+https://discord.com/api/oauth2/authorize?client_id={BOT_ID}&permissions=0&scope=bot%20applications.commands
 ```
 
 ## Usage 
@@ -61,8 +65,6 @@ client.on('command', data => {
 [my discord server](https://discord.gg/UQSUBHwM7T)
 
 ## Commemt
-I hope I did no mistake;  
-Give me issues if you find bugs!  
- 
-I will make MessageComponents usable.  
-So, wait for next new releases.  
+ミスやバグを見つけたらissueやPRお願いします。  
+  
+MessageComponents未対応です。
