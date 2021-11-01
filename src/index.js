@@ -9,6 +9,7 @@ const {
 const {
 	GuildApplicationCommandManager,
 	ApplicationCommandManager,
+	CommandInteraction,
 	ExtendedGuild,
 	Types
 } = require('./util/Classes');

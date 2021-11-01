@@ -20,7 +20,7 @@ class InteractionAuthor extends Base {
 		/**
 		 * @type {GuildMember||null}
 		 */
-		this.member = interaction.guild.members.cache.get(interaction.userId) || null;
+		this.member = (interaction.guild && interaction.guild.members.cache.get(interaction.userId)) || null;
 	};
 	/**
 	 * @return {InteractionAuthor}
