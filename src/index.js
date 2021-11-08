@@ -4,7 +4,8 @@ const Command = require('./actions/Command');
 const {
 	Client,
 	Guild,
-	Structures
+	Structures,
+	MessageFlags
 } = require('discord.js');
 
 const {
@@ -19,6 +20,12 @@ const {
 	ApplicationCommandTypes,
 	InteractionTypes
 } = Types;
+
+Object.assign(MessageFlags, {
+	HAS_THREAD: 1 << 5,
+	EPHEMERAL: 1 << 6,
+	LOADING: 1 << 7
+});
 
 module.exports = client => {
 	if (!(client instanceof Client)) throw new Error('INVALID_ARGUMENT: the argument must be an instance of Client');

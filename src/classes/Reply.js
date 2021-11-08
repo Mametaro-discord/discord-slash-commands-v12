@@ -1,6 +1,6 @@
 'use strict';
 
-const { APIMessage } = require('discord.js');
+const { APIMessage, MessageFlags } = require('discord.js');
 const { InteractionReplyTypes } = require('../interfaces/Types.js');
 const Base = require('./Base.js');
 
@@ -45,6 +45,10 @@ class Reply extends Base {
 			apiMessage = content.resolveData();
 		} else {
 			apiMessage = APIMessage.create(this, content, options).resolveData();
+		};
+
+		if (options && options.flags) {
+			apiMessage.data.flags = new MessageFlags(options.flags).bitfield;
 		};
 
 		if (Array.isArray(apiMessage.data.content)) {
