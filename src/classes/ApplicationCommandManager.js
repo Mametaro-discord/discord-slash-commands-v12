@@ -39,7 +39,7 @@ class ApplicationCommandManager extends BaseManager {
 	 */
 	commandPath({ commandId, guildId } = {}) {
 		const guild = this.guildId || guildId;
-		let path = this.client.api.applications(this.client.application.commandId);
+		let path = this.client.api.applications(this.client.user.id);
     	if (guild) path = path.guilds(guild);
     	return commandId ? path.commands(commandId) : path.commands;
 	};
