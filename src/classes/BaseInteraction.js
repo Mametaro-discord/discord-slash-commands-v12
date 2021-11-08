@@ -40,6 +40,10 @@ class BaseInteraction extends Base {
 		 */
 		this.channelId = data.channel_id || null;
 		/**
+		 * @type {Snowflake}
+		 */
+		this.userId = (data.member || data).user.id;
+		/**
 		 * @type {ApplicationCommandAuthor}
 		 */
 		this.author = new InteractionAuthor(this.client, this);
@@ -51,10 +55,6 @@ class BaseInteraction extends Base {
 		 * @type {number}
 		 */
 		this.version = data.version;
-		/**
-		 * @type {Snowflake}
-		 */
-		this.userId = (data.member || data).user.id;
 	};
 	/**
 	 * @return {Reply}
