@@ -55,16 +55,14 @@ class BaseInteraction extends Base {
 		 * @type {number}
 		 */
 		this.version = data.version;
-	};
-	/**
-	 * @return {Reply}
-	 */
-	get reply() {
-		return new Reply(
-				this.client,
-				this,
-				new ExtendedWebhookClient(this.applicationId, this.token, this.client.options)
-			);
+		/**
+		 * @return {Reply}
+		 */
+		this.reply = new Reply(
+			this.client,
+			this,
+			new ExtendedWebhookClient(this.applicationId, this.token, this.client.options)
+		);
 	};
 	/**
 	 * @return {TextChannel||null}
