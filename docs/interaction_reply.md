@@ -45,7 +45,7 @@ await interaction.reply.fetch();
 interaction.reply.defer(ephemeral);
 ```  
   
-**Return**: [Reply](https://github.com/Mametaro-discord/discord-slash-commands-v12/master/docs/classes/Reply.md)  ) 
+**Return**: [Reply](https://github.com/Mametaro-discord/discord-slash-commands-v12/master/docs/classes/Reply.md)  
 
 ## 考え中のリプライ  
 引数をtrueにするとephemeralになります。
