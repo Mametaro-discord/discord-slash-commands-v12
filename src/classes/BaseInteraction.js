@@ -40,6 +40,10 @@ class BaseInteraction extends Base {
 		 */
 		this.channelId = data.channel_id || null;
 		/**
+		 * @type {Snowflake}
+		 */
+		this.userId = (data.member || data).user.id;
+		/**
 		 * @type {ApplicationCommandAuthor}
 		 */
 		this.author = new InteractionAuthor(this.client, this);
@@ -52,19 +56,13 @@ class BaseInteraction extends Base {
 		 */
 		this.version = data.version;
 		/**
-		 * @type {Snowflake}
+		 * @return {Reply}
 		 */
-		this.userId = (data.member || data).user.id;
-	};
-	/**
-	 * @return {Reply}
-	 */
-	get reply() {
-		return new Reply(
-				this.client,
-				this,
-				new ExtendedWebhookClient(this.applicationId, this.token, this.client.options)
-			);
+		this.reply = new Reply(
+			this.client,
+			this,
+			new ExtendedWebhookClient(this.applicationId, this.token, this.client.options)
+		);
 	};
 	/**
 	 * @return {TextChannel||null}
