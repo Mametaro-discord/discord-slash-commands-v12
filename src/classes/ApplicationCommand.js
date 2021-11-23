@@ -28,7 +28,7 @@ class ApplicationCommand extends Base {
 		/**
 		 * @type {Snowflake}
 		 */
-		this.guildId = guild.id || guildId || data.guild_id || data.guildId || null;
+		this.guildId = (guild && guild.id) || guildId || data.guild_id || data.guildId || null;
 		/**
 		 * @type {ApplicationCommandType}
 		 */

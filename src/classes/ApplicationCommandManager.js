@@ -57,7 +57,7 @@ class ApplicationCommandManager extends BaseManager {
 			data: Util.transformApplicationCommand(data)
 		});
 
-		this.add(result, true, guild);
+		return this.add(result, true, guild);
 	};
 	/**
 	 * @param {array<ApplicationCommandData>}

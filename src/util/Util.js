@@ -18,7 +18,7 @@ class Util {
 				name: elm.name,
 				description: elm.description,
 				options: this.transformApplicationCommandOptions(elm.options),
-				default_permission: elm.default_permission || defaultPermission,
+				default_permission: elm.default_permission || elm.defaultPermission,
 				version: elm.version
 			};
 		});
