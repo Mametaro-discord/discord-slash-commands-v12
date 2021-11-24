@@ -2,7 +2,8 @@ import {
   Client,
   Snowflake,
   Guild,
-  Collection
+  Collection,
+  BaseManager
 } from "discord.js";
 
 export function main(client:Client): void;
@@ -29,11 +30,46 @@ export type ApplicationCommandPermissions = {
   id: Snowflake;
   type: ApplicationCommandPermissionsTypes;
   permission: boolean;
+};
+
+export type ChannelTypes = "GUILD_TEXT" | "DM" | "GUILD_VOICE" | "GROUP_DM" | "GUILD_CATEGORY" | "GUILD_NEWS" | "GUILD_STORE" | "GUILD_NEWS_THREAD" | "GUILD_PUBLIC_THREAD" | "GUILD_PRIVATE_THREAD" | "GUILD_STAGE_VOICE";
+
+export type	ApplicationCommandOptionsChoices = {
+  name: string;
+  value: string | number;
+};
+
+export type ApplicationCommandOptions = {
+  autocomplete?: boolean;
+  channel_types?: ChannelTypes[];
+  choices?: ApplicationCommandOptionsChoices[]
+};
+
+export type ApplicationCommandOptionsTypes = "SUB_COMMAND" | "SUB_COMMAND_GROUP" | "STRING" | "INTEGER" | "BOOLEAN" | "USER" | "CHANNEL" | "ROLE" | "MENTIONABLE" | "NUMBER";
+
+export type ApplicationCommandData = {
+  applicationId: Snowflake;
+  default_permission?: boolean;
+  guildId?: Snowflake;
+  id: Snowflake;
+  options?: ApplicationCommandOptions[];
+  description: string;
+  name: string;
+  required?: boolean;
+  type: ApplicationCommandOptionsTypes;
+};
+
+export type ApplicationCommandResolvable = ApplicationCommand | Snowflake;
+
+export class ApplicationCommandManager extends BaseManager<Snowflake, {},ApplicationCommandResolvable> {
+  protected constructor(client: Client, iterable: Array<"Structure">, holds: unknown);
+  get permissions(): ApplicationCommandPermissionsManager;
+  add(data: ApplicationCommandData, cache:boolean, guildId: Snowflake): "Structure";
+  
 }
 
 export class ApplicationCommandPermissionsManager extends Base {
-  // TODO
-  public manager: ApplicationCommand;
+  public manager: ApplicationCommand | ApplicationCommandManager | GuildApplicationCommandManager;
   public guild: Guild
   public guildId: Snowflake | null;
   public commandId: Snowflake | null;
@@ -50,6 +86,8 @@ export class ApplicationCommand extends Base {
   public type: ApplicationCommandTypes;
   get createdTimestamp(): number;
   get createdAt(): Date;
-  get manager(): ApplicationCommandPermissionsManager
+  get manager(): ApplicationCommandManager;
+  get permissions(): ApplicationCommandPermissionsManager;
+  patch(data): void
 }
 
