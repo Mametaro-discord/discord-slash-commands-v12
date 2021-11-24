@@ -3,6 +3,7 @@
   "version": "7.0.0",
   "description": "handling discord slash command",
   "main": "./src/index.js",
+  "types": "./typings/index.d.ts",
   "directories": {
     "test": "test"
   },
