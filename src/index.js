@@ -27,7 +27,7 @@ Object.assign(MessageFlags, {
 	LOADING: 1 << 7
 });
 
-module.exports = client => {
+function main(client) {
 	if (!(client instanceof Client)) throw new Error('INVALID_ARGUMENT: the argument must be an instance of Client');
 	
 	if (!client.actions.Command) {
@@ -50,5 +50,7 @@ module.exports = client => {
 
 	client.ws.on('INTERACTION_CREATE', data => client.actions.Command.handle(data));
 };
+
+module.exports = main
 
 module.exports = Object.assign(module.exports, require('./util/Classes'));
