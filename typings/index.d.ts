@@ -61,14 +61,40 @@ export type ApplicationCommandData = {
 
 export type ApplicationCommandResolvable = ApplicationCommand | Snowflake;
 
+export type ApplicationCommandPermissionsAddOptions = {
+  guildId?: Snowflake;
+  commandId: Snowflake;
+  permissions: ApplicationCommandPermissions[];
+};
+
+export type ApplicationCommandPermissionsRemoveOptions = {
+  guildId?: Snowflake;
+  commandId: Snowflake;
+  users?: Snowflake[];
+  roles?: Snowflake[];
+};
+
+export type ApplicationCommandPermissionsHasOptions = {
+  guildId?: Snowflake;
+  commandId: Snowflake;
+  id: Snowflake;
+};
+
+export type ApplicationCommandPermissionsCommandPathOptions = {
+  commandId: Snowflake,
+  guildId?: Snowflake
+}
+
 export class ApplicationCommandManager extends BaseManager<Snowflake, {},ApplicationCommandResolvable> {
   protected constructor(client: Client, iterable: Array<"Structure">, holds: unknown);
   get permissions(): ApplicationCommandPermissionsManager;
-  add(data: ApplicationCommandData, cache:boolean, guildId: Snowflake): "Structure";
-  
+  add(data: ApplicationCommandData, cache:boolean, guildId: unknown): unknown; 
+  commandPath(options:ApplicationCommandPermissionsCommandPathOptions): unknown;
+  create(data: ApplicationCommandData, guildId?: Snowflake): Promise<ApplicationCommand>;
 }
 
 export class ApplicationCommandPermissionsManager extends Base {
+  protected constructor(manager: ApplicationCommand | ApplicationCommandManager | GuildApplicationCommandManager);
   public manager: ApplicationCommand | ApplicationCommandManager | GuildApplicationCommandManager;
   public guild: Guild
   public guildId: Snowflake | null;
@@ -76,9 +102,13 @@ export class ApplicationCommandPermissionsManager extends Base {
   permissionsPath(guildId: Snowflake, commandId: Snowflake): unknown;
   fetch(options: ApplicationCommandPermissionsFetchOptions): Promise<ApplicationCommandPermissions[] | Collection<Snowflake, ApplicationCommandPermissions[]>>;
   set(options: ApplicationCommandPermissionsSetOptions): Promise<ApplicationCommandPermissions[] | Collection<Snowflake, ApplicationCommandPermissions[]>>;
+  add(options: ApplicationCommandPermissionsAddOptions): Promise<ApplicationCommandPermissions[]>;
+  remove(options: ApplicationCommandPermissionsRemoveOptions): Promise<ApplicationCommandPermissions[]>;
+  has(options: ApplicationCommandPermissionsHasOptions): Promise<boolean>;
 }
 
 export class ApplicationCommand extends Base {
+  protected constructor(client: Client, data: unknown, guild: Guild, guildId: Snowflake);
   public id: Snowflake;
   public applicationId: Snowflake;
   public guild: Guild | null;
@@ -88,6 +118,9 @@ export class ApplicationCommand extends Base {
   get createdAt(): Date;
   get manager(): ApplicationCommandManager;
   get permissions(): ApplicationCommandPermissionsManager;
-  patch(data): void
+  patch(data: Partial<ApplicationCommandData>): void;
+  edit(data: ApplicationCommandData): Promise<ApplicationCommand>;
+  delete(): Promise<ApplicationCommand>;
+  static transformOptions(): ApplicationCommandData;
 }
 
