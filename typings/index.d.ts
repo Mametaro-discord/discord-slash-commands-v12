@@ -83,6 +83,13 @@ export type ApplicationCommandPermissionsHasOptions = {
 export type ApplicationCommandPermissionsCommandPathOptions = {
   commandId: Snowflake,
   guildId?: Snowflake
+};
+
+export type ApplicationCommandFetchOptions = {
+  commandId: Snowflake;
+  guildId?: Snowflake;
+  cache?: boolean;
+  force: boolean;
 }
 
 export class ApplicationCommandManager extends BaseManager<Snowflake, {},ApplicationCommandResolvable> {
@@ -91,6 +98,10 @@ export class ApplicationCommandManager extends BaseManager<Snowflake, {},Applica
   add(data: ApplicationCommandData, cache:boolean, guildId: unknown): unknown; 
   commandPath(options:ApplicationCommandPermissionsCommandPathOptions): unknown;
   create(data: ApplicationCommandData, guildId?: Snowflake): Promise<ApplicationCommand>;
+  set(commands: ApplicationCommandData[], guildId?: Snowflake): Promise<Collection<Snowflake, ApplicationCommand>>;
+  edit(commandId: Snowflake, data: Partial<ApplicationCommandData>, guildId?: Snowflake): Promise<ApplicationCommand>;
+  delete(commandId: Snowflake, guildId?: Snowflake): Promise<ApplicationCommand>;
+  fetch(options: ApplicationCommandFetchOptions): Promise<ApplicationCommand | Collection<Snowflake, ApplicationCommand>>;
 }
 
 export class ApplicationCommandPermissionsManager extends Base {
@@ -105,6 +116,7 @@ export class ApplicationCommandPermissionsManager extends Base {
   add(options: ApplicationCommandPermissionsAddOptions): Promise<ApplicationCommandPermissions[]>;
   remove(options: ApplicationCommandPermissionsRemoveOptions): Promise<ApplicationCommandPermissions[]>;
   has(options: ApplicationCommandPermissionsHasOptions): Promise<boolean>;
+
 }
 
 export class ApplicationCommand extends Base {
@@ -122,5 +134,10 @@ export class ApplicationCommand extends Base {
   edit(data: ApplicationCommandData): Promise<ApplicationCommand>;
   delete(): Promise<ApplicationCommand>;
   static transformOptions(): ApplicationCommandData;
+}
+
+export class GuildApplicationCommandManager extends ApplicationCommandManager {
+  protected constructor(guild: Guild);
+  get permissions(): ApplicationCommandPermissionsManager;
 }
 
