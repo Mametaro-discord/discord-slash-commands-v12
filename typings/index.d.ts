@@ -4,7 +4,14 @@ import {
   Guild,
   Collection,
   BaseManager,
-  TextChannel
+  TextChannel,
+  User,
+  GuildMember,
+  Webhook,
+  StringResolvable,
+  APIMessage,
+  Message,
+  WebhookClient
 } from "discord.js";
 
 export function main(client:Client): void;
@@ -98,7 +105,7 @@ export type ApplicationCommandFetchOptions = {
 export class ApplicationCommandManager extends BaseManager<Snowflake, {},ApplicationCommandResolvable> {
   protected constructor(client: Client, iterable: Array<"Structure">, holds: unknown);
   get permissions(): ApplicationCommandPermissionsManager;
-  add(data: ApplicationCommandData, cache:boolean, guildId: unknown): unknown; 
+  add(data: ApplicationCommandData, cache:boolean, guildId: unknown): {}; 
   commandPath(options:ApplicationCommandPermissionsCommandPathOptions): unknown;
   create(data: ApplicationCommandData, guildId?: Snowflake): Promise<ApplicationCommand>;
   set(commands: ApplicationCommandData[], guildId?: Snowflake): Promise<Collection<Snowflake, ApplicationCommand>>;
@@ -184,3 +191,39 @@ export class CommandInteraction<Cached extends CacheType = CacheType> extends Ba
   public isEphemeral: boolean;
   get command(): ApplicationCommand;
 }
+
+export class InteractionAuthor extends Base {
+  protected constructor(client: Client, interaction: BaseInteraction | CommandInteraction);
+  public interaction: BaseInteraction | CommandInteraction;
+  public user: User;
+  public member: GuildMember;
+  fetch(): Promise<InteractionAuthor>;
+}
+
+export class Reply extends Base {
+  protected constructor(client: Client, interaction: CommandInteraction, webhook: Webhook);
+  public deferred: boolean;
+  public replied: boolean;
+  public isEphemeral: boolean | undefined;
+
+  send(content: StringResolvable | APIMessage, options: boolean): Promise<Reply>;
+
+  edit(content: StringResolvable | APIMessage, options: unknown): Promise<Reply>;
+
+  send(content: StringResolvable | APIMessage, options: boolean): Promise<Reply>;
+
+  defer(ephemeral: boolean): Promise<Reply>;
+  think(ephemeral: boolean): Promise<Reply>;
+
+  fetch(): Promise<Message | APIMessage>;
+  
+  delete(): Promise<void>;
+}
+
+export class ExtendedWebhookClient extends WebhookClient {
+  sendMessage(content: StringResolvable | APIMessage, options: unknown): Promise<void>;
+  editMessage(message: string, content: StringResolvable | APIMessage, options: unknown): Promise<APIMessage>;
+  deleteMessage(message: string): Promise<void>;
+  fetchMessage(message: string): Promise<APIMessage>;
+}
+
