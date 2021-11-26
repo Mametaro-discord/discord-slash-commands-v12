@@ -43,6 +43,10 @@ class ExtendedWebhookClient extends WebhookClient {
 
 		apiMessage = await apiMessage.resolveFiles();
 
+		if (content && content.ephemeral || options && options.ephemeral) {
+			apiMessage.data.flags = 64;
+		}
+
 		return await this.client.api.webhooks(this.id, this.token).post({
 			data: apiMessage.data,
 			files: apiMessage.files,
