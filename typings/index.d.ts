@@ -3,17 +3,20 @@ import {
   Snowflake,
   Guild,
   Collection,
-  BaseManager
+  BaseManager,
+  TextChannel
 } from "discord.js";
 
 export function main(client:Client): void;
 
-declare type ApplicationCommandTypes = "CHAT_INPUT" | "USER" | "MESSAGE";
+export type ApplicationCommandTypes = "CHAT_INPUT" | "USER" | "MESSAGE";
 
-declare type ApplicationCommandPermissionsTypes = "ROLE" | "USER";
+export type InteractionTypes = "PING" | "APPLICATION_COMMAND" | "MESSAGE_COMPONENT"
+
+export type ApplicationCommandPermissionsTypes = "ROLE" | "USER";
 
 export class Base {
-	public client: Client;
+	public readonly client: Client;
 }
 
 export type ApplicationCommandPermissionsFetchOptions = {
@@ -141,3 +144,43 @@ export class GuildApplicationCommandManager extends ApplicationCommandManager {
   get permissions(): ApplicationCommandPermissionsManager;
 }
 
+//TODO:説明があり次第追記
+export type InteractionData = CommandInteractionData;
+
+export type CacheType = 'cached' | 'raw' | 'present';
+
+export class BaseInteraction<Cached extends CacheType = CacheType> extends Base {
+  protected constructor(client: Client, data: InteractionData);
+  private readonly _cacheType: Cached;
+  public type: InteractionTypes;
+  public id: Snowflake;
+  public readonly token: string;
+  public applicationId: Snowflake;
+  public guildId: Snowflake | null;
+  public channelId: Snowflake | null;
+  public userId: Snowflake | null;
+  //TODO: ApplicationCommandAuthorかこれか明確に
+  public author: InteractionAuthor;
+  public webhook: ExtendedWebhookClient;
+  public version: number;
+  public reply: Reply;
+  //TODO: ほかにもあるのでは
+  get channel(): TextChannel | null;
+  get guild(): Guild | null;
+  inGuild(): this is BaseInteraction<"present">;
+  inCachedGuild(): this is BaseInteraction<"cached">;
+  inRawGuild(): this is BaseInteraction<"raw">;
+  isCommand(): this is CommandInteraction<Cached>;
+  isButton(): this is ButtonInteraction<Cached>;
+  isSelectMenu(): this is SelectMenuInteraction<Cached>;
+}
+
+export class CommandInteraction<Cached extends CacheType = CacheType> extends BaseInteraction<Cached> {
+  protected constructor(client: Client, data: InteractionData);
+  public commandId: Snowflake;
+  public commandName: string;
+  public deferred: boolean;
+  public replied: boolean;
+  public isEphemeral: boolean;
+  get command(): ApplicationCommand;
+}
