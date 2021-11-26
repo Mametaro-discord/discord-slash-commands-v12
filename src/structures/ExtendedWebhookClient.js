@@ -7,9 +7,9 @@ const { APIMessage, Message, MessageEmbed, WebhookClient } = require('discord.js
  */
 class ExtendedWebhookClient extends WebhookClient {
 	/**
-	 * @param (string)
-	 * @param (object)
-	 * @return ()
+	 * @param (any)
+	 * @optional (Object)
+	 * @return (Object)
 	 */
 	async sendMessage(content, options) {
 		if (content&&content.embed instanceof MessageEmbed) {
@@ -51,10 +51,10 @@ class ExtendedWebhookClient extends WebhookClient {
 		});
 	};
 	/**
-	 * @param () 
 	 * @param (string)
-	 * @optional (object)
-	 * @return ()
+	 * @optional (any)
+	 * @optional (Object)
+	 * @return (Object)
 	 */
 	async editMessage(message, content, options) {
 		if (content&&content.embed instanceof MessageEmbed) {
@@ -90,22 +90,32 @@ class ExtendedWebhookClient extends WebhookClient {
 
 		return await this.client.api.webhooks(this.id, this.token).messages(message).patch({
 			data: apiMessage.data,
-			files: apiMessage.files
+			files: apiMessage.files,
+			auth: false
 		});
 	};
 	/**
-	 * @param ()
-	 * @return (true)
+	 * @param (string)
+	 * @return (void)
 	 */
 	async deleteMessage(message) {
-		return await this.client.api.webhooks(this.id, this.token).messages(message).delete();
+		await this.client.api
+		.webhooks(this.id, this.token)
+		.messages(message)
+		.delete({
+			auth: false
+		});
 	};
 	/**
-	 * @param ()
-	 * @return ()
+	 * @param (string)
+	 * @return (Object)
 	 */
 	async fetchMessage(message) {
-		return await this.client.api.webhooks(this.id, this.token).messages(message).get();
+		return await this.client.api
+		.webhooks(this.id, this.token)
+		.messages(message).get({
+			auth: false
+		});
 	};
 };
 
