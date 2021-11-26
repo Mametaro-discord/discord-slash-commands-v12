@@ -45,7 +45,9 @@ class ExtendedWebhookClient extends WebhookClient {
 
 		return await this.client.api.webhooks(this.id, this.token).post({
 			data: apiMessage.data,
-			files: apiMessage.files
+			files: apiMessage.files,
+			query: { wait: true },
+			auth: false
 		});
 	};
 	/**
