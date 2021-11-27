@@ -222,8 +222,8 @@ export class Reply extends Base {
 
 export class ExtendedWebhookClient extends WebhookClient {
   sendMessage(content: StringResolvable | APIMessage, options: unknown): Promise<void>;
-  editMessage(message: string, content: StringResolvable | APIMessage, options: unknown): Promise<APIMessage>;
+  editMessage(message: string, content: StringResolvable | APIMessage, options: unknown): Promise<Object>;
   deleteMessage(message: string): Promise<void>;
-  fetchMessage(message: string): Promise<APIMessage>;
+  fetchMessage(message: string): Promise<Object>;
 }
 
