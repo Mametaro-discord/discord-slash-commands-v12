@@ -102,10 +102,14 @@ export type ApplicationCommandFetchOptions = {
   force: boolean;
 }
 
-export class ApplicationCommandManager extends BaseManager<Snowflake, {},ApplicationCommandResolvable> {
-  protected constructor(client: Client, iterable: Array<"Structure">, holds: unknown);
+declare class OverridableManager<V, K, R> extends BaseManager<V, K, R> {
+  public add(...args: any[]): any;
+}
+
+export class ApplicationCommandManager extends OverridableManager<Snowflake, ApplicationCommand, ApplicationCommandResolvable> {
+  protected constructor(client: Client, iterable: Array<any>);
   get permissions(): ApplicationCommandPermissionsManager;
-  add(data: ApplicationCommandData, cache:boolean, guildId: unknown): {}; 
+  add(data: ApplicationCommandData, cache:boolean, guildId: Snowflake): ApplicationCommand; 
   commandPath(options:ApplicationCommandPermissionsCommandPathOptions): unknown;
   create(data: ApplicationCommandData, guildId?: Snowflake): Promise<ApplicationCommand>;
   set(commands: ApplicationCommandData[], guildId?: Snowflake): Promise<Collection<Snowflake, ApplicationCommand>>;
