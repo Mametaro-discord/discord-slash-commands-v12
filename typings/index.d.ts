@@ -217,7 +217,7 @@ export class Reply extends Base {
 
   fetch(): Promise<Message | APIMessage>;
   
-  delete(): Promise<void>;
+  delete(): Promise<Reply>;
 }
 
 export class ExtendedWebhookClient extends WebhookClient {
