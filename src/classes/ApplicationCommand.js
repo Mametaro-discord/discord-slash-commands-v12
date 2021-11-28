@@ -52,7 +52,7 @@ class ApplicationCommand extends Base {
 	 * @return {ApplicationCommandManager}
 	 */
 	get manager() {
-		return new ApplicationCommandPermissionsManager(this);
+		return (this.guild || this.client).commands;
 	};
 	/**
 	 * @return {ApplicationCommandPermissionsManager}
