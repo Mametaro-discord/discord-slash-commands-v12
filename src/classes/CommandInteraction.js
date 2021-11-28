@@ -21,16 +21,20 @@ class CommandInteraction extends BaseInteraction {
 		/**
 		 * @type {boolean}
 		 */
-		this.deferred = this.reply.deferred;
-		/**
-		 * @type {boolean}
-		 */
-		this.replied = this.reply.replied;
-		/**
-		 * @type {boolean}
-		 */
 		this.isEphemeral = this.reply.isEphemeral;
 	};
+	/**
+	 * @return {boolean}
+	 */
+	get deferred() {
+		return this.reply.deferred;
+	}
+	/**
+	* @return {boolean}
+	*/
+	get replied() {
+		return this.reply.replied;
+	}
 	/**
 	 * @return {ApplicationCommand}
 	 */
