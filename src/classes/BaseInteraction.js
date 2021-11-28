@@ -4,7 +4,7 @@ const Base = require('./Base');
 const Reply = require('./Reply');
 const ExtendedWebhookClient = require('../structures/ExtendedWebhookClient');
 const InteractionAuthor = require('./InteractionAuthor');
-const { InteractionTypes } = require('../interfaces/Types'); 
+const { InteractionTypes, MessageComponentTypes } = require('../interfaces/Types'); 
 
 class BaseInteraction extends Base {
 	/**
@@ -101,15 +101,27 @@ class BaseInteraction extends Base {
 	/**
 	 * @type {boolean}
 	 */
-	isCommand() {};
+	isCommand() {
+		return InteractionTypes[this.type] === InteractionTypes.APPLICATION_COMMAND && typeof this.targetId === 'undefined';
+	};
 	/**
 	 * @type {boolean}
 	 */
-	isButton() {};
+	isButton() {
+		return (
+			InteractionTypes[this.type] === InteractionTypes.MESSAGE_COMPONENT &&
+			MessageComponentTypes[this.componentType] === MessageComponentTypes.BUTTON
+		);
+	};
 	/**
 	 * @type {boolean}
 	 */
-	isSelectMenu() {}; 
+	isSelectMenu() {
+		return (
+			InteractionTypes[this.type] === InteractionTypes.MESSAGE_COMPONENT &&
+			MessageComponentTypes[this.componentType] === MessageComponentTypes.SELECT_MENU
+		);
+	};
 };
 
 module.exports = BaseInteraction;
