@@ -193,7 +193,7 @@ export class CommandInteraction<Cached extends CacheType = CacheType> extends Ba
   public deferred: boolean;
   public replied: boolean;
   public isEphemeral: boolean;
-  get command(): ApplicationCommand;
+  get command(): ApplicationCommand | null;
 }
 
 export class InteractionAuthor extends Base {
