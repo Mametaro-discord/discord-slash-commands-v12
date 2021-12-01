@@ -121,7 +121,7 @@ export class ApplicationCommandManager extends OverridableManager<Snowflake, App
 export class ApplicationCommandPermissionsManager extends Base {
   protected constructor(manager: ApplicationCommand | ApplicationCommandManager | GuildApplicationCommandManager);
   public manager: ApplicationCommand | ApplicationCommandManager | GuildApplicationCommandManager;
-  public guild: Guild
+  public guild: Guild | null;
   public guildId: Snowflake | null;
   public commandId: Snowflake | null;
   permissionsPath(guildId: Snowflake, commandId: Snowflake): unknown;
