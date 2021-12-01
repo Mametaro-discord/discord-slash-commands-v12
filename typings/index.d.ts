@@ -169,7 +169,7 @@ export class BaseInteraction<Cached extends CacheType = CacheType> extends Base 
   public applicationId: Snowflake;
   public guildId: Snowflake | null;
   public channelId: Snowflake | null;
-  public userId: Snowflake | null;
+  public userId: Snowflake;
   //TODO: ApplicationCommandAuthorかこれか明確に
   public author: InteractionAuthor;
   public webhook: ExtendedWebhookClient;
