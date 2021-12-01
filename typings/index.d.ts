@@ -205,7 +205,7 @@ export class InteractionAuthor extends Base {
 }
 
 export class Reply extends Base {
-  protected constructor(client: Client, interaction: CommandInteraction, webhook: Webhook);
+  protected constructor(client: Client, interaction: CommandInteraction, webhook: ExtendedWebhookClient);
   public deferred: boolean;
   public replied: boolean;
   public isEphemeral: boolean | undefined;
