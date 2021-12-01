@@ -214,8 +214,6 @@ export class Reply extends Base {
 
   edit(content: StringResolvable | APIMessage, options: unknown): Promise<Reply>;
 
-  send(content: StringResolvable | APIMessage, options: boolean): Promise<Reply>;
-
   defer(ephemeral: boolean): Promise<Reply>;
   think(ephemeral: boolean): Promise<Reply>;
 
