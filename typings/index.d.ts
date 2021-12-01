@@ -152,6 +152,8 @@ export class ApplicationCommand extends Base {
 
 export class GuildApplicationCommandManager extends ApplicationCommandManager {
   protected constructor(guild: Guild);
+  public guild: Guild;
+  public guildId: Snowflake;
   get permissions(): ApplicationCommandPermissionsManager;
 }
 
