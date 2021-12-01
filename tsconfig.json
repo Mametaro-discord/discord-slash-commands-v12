@@ -1,0 +1,12 @@
+{
+  // Mapped from https://www.typescriptlang.org/tsconfig
+  "compilerOptions": {
+    "strict": true,
+
+    // Modules
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "lib": ["ESNext"],
+    "target": "ES2020",
+  }
+}
