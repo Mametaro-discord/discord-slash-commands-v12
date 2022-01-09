@@ -66,7 +66,7 @@ class ApplicationCommandPermissionsManager extends Base {
 				new Collection()
 			);
 		} else {
-			data = Util.transformApplicationCommandPermissions(elm.permissions);
+			data = Util.transformApplicationCommandPermissions(data.permissions);
 		};
 
 		return data;
@@ -108,9 +108,7 @@ class ApplicationCommandPermissionsManager extends Base {
 		data = await this.permissionsPath(guild).put({
 			data: data
 		});
-
-		data = data.map(elm => [elm.id, Util.transformApplicationCommandPermissions(elm.permissions)]);
-		return new Collection(data);
+		
 		data = data.reduce((col, elm) => col.set(
 				elm.id,
 				Util.transformApplicationCommandPermissions(elm.permissions)

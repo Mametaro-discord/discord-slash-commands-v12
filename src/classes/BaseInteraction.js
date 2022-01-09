@@ -44,7 +44,7 @@ class BaseInteraction extends Base {
 		 */
 		this.userId = (data.member || data).user.id;
 		/**
-		 * @type {ApplicationCommandAuthor}
+		 * @type {InteractionAuthor}
 		 */
 		this.author = new InteractionAuthor(this.client, this);
 		/**

@@ -17,12 +17,10 @@ class GuildApplicationCommandManager extends ApplicationCommandManager {
 		 * @type {Snowflake}
 		 */
 		this.guildId = guild.id;
-	};
-	/**
-	 * @type {ApplicationCommandPermissionsManager}
-	 */
-	get permissions() {
-		return new ApplicationCommandPermissionsManager(this);
+		/**
+		 * @type {ApplicationCommandPermissionsManager}
+		 */
+		this.permissions = new ApplicationCommandPermissionsManager(this);
 	};
 };
 

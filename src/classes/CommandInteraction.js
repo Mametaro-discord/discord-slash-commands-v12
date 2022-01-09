@@ -18,25 +18,42 @@ class CommandInteraction extends BaseInteraction {
 		 * @type {string}
 		 */
 		this.commandName = data.data.name;
-		/**
-		 * @type {boolean}
-		 */
-		this.deferred = this.reply.deferred;
-		/**
-		 * @type {boolean}
-		 */
-		this.replied = this.reply.replied;
-		/**
-		 * @type {boolean}
-		 */
-		this.isEphemeral = this.reply.isEphemeral;
 	};
 	/**
-	 * @return {ApplicationCommand}
+	 * @type {ApplicationCommand}
+	 * @readonly
 	 */
 	get command() {
 		return (this.guild || client).commands.cache.get(this.commandId) || null;
 	};
+	/**
+	 * @type {boolean}
+	 * @readonly
+	 */
+	get deferred() {
+		return this.reply.deferred;
+	};
+	/**
+	 * @type {boolean}
+	 * @readonly
+	 */
+	get ephemeral() {
+		return this.reply.ephemeral;
+	};
+	/**
+	 * @type {boolean}
+	 * @readonly
+	 */
+	get replied() {
+		return this.reply.replied;
+	};
+	/**
+	 * @type {boolean}
+	 * @readonly
+	 */
+	get isEphemeral() {
+		return this.reply.isEphemeral;
+	}
 };
 
 module.exports = CommandInteraction;

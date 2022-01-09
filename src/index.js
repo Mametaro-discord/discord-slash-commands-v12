@@ -1,12 +1,13 @@
 'use strict';
 
 const Command = require('./actions/Command');
+const discord = require('discord.js');
 const {
 	Client,
 	Guild,
 	Structures,
 	MessageFlags
-} = require('discord.js');
+} = discord;
 
 const {
 	GuildApplicationCommandManager,
@@ -28,7 +29,8 @@ Object.assign(MessageFlags, {
 });
 
 module.exports = client => {
-	if (!(client instanceof Client)) throw new Error('INVALID_ARGUMENT: the argument must be an instance of Client');
+	if (Number(discord.version.split('.').shift()) !== 12) throw new Error('Invalid discord.js version: discord.js must be 12x');
+	if (!(client instanceof Client)) throw new TypeError('INVALID_ARGUMENT: the argument must be an instance of Client');
 	
 	if (!client.actions.Command) {
 		client.actions.register(Command);

@@ -1,9 +1,10 @@
-const fn = a => console.log(a);
-
 const obj = {
-	test: 'TestScript'
+	MessageFlags: {}
 };
+const { MessageFlags } = obj;
 
-const newobj = Object.assign(fn, obj);
+Object.assign(MessageFlags, {
+	string: 'test'
+});
 
-console.log(newobj.toString());
+console.log(obj.MessageFlags);

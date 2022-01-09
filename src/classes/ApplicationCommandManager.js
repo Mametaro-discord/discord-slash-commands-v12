@@ -9,23 +9,20 @@ const { makeCol } = require('../util/functions');
 class ApplicationCommandManager extends BaseManager {
 	/**
 	 * @param {Client}
-	 * @param {Array<"Structure">}
-	 * @param {"Structure".constructor}
+	 * @param {ApplicationCommand[]}
 	 */
-	constructor(client, iterable, holds) {
+	constructor(client, iterable) {
 		super(client, iterable, ApplicationCommand);
-	};
-	/**
-	 * @type {ApplicationCommandPermissionsManager}
-	 */
-	get permissions() {
-		return new ApplicationCommandPermissionsManager(this);
+		/**
+		 * @type {ApplicationCommandPermissionsManager}
+		 */
+		this.permissions = new ApplicationCommandPermissionsManager(this);
 	};
 	/**
 	 * @param {ApplicationCommandData}
 	 * @param {boolean}
 	 * @param {Snowflake}
-	 * @return {"Structure"}
+	 * @return {ApplicationCommand}
 	 */
 	add(data, cache, guildId) {
 		return super.add(data, cache, {
@@ -107,12 +104,9 @@ class ApplicationCommandManager extends BaseManager {
 			guildId: guild
 		})
 		.delete();
-		this.cache.delete();
-
-		if (!guild) {
-			this.cache.delete(commandId);
-		};
-		return this.cache.get(commandId) || null;
+		const command = this.cache.get(commandId) || null;
+		this.cache.delete(commandId);
+		return command;
 	};
 	/**
 	 * @param {Snowflake} options.id

@@ -30,6 +30,10 @@ class ApplicationCommand extends Base {
 		 */
 		this.guildId = (guild && guild.id) || guildId || data.guild_id || data.guildId || null;
 		/**
+		 * @type {ApplicationCommandPermissionsManager}
+		 */
+		this.permissions = new ApplicationCommandPermissionsManager(this);
+		/**
 		 * @type {ApplicationCommandType}
 		 */
 		this.type = ApplicationCommandTypes[data.type];
@@ -53,12 +57,6 @@ class ApplicationCommand extends Base {
 	 */
 	get manager() {
 		return (this.guild || this.client).commands;
-	};
-	/**
-	 * @return {ApplicationCommandPermissionsManager}
-	 */
-	get permissions() {
-		return new ApplicationCommandPermissionsManager(this);
 	};
 	/**
 	 * @param {object}
