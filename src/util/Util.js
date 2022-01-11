@@ -24,35 +24,34 @@ class Util {
 		});
 		return Array.isArray(options) ? transformed : transformed.shift();
 	};
-	/*
-	* @param (Array<object>) data of command
-	* @return (object)
+	/**
+	 * @param {(APIApplicationCommandOption | ApplicationCommandOptionData) | Array<()>}
+	 * @optional {boolean} whether the options is for API
+	 * @return {ApplicationCommandOption | ApplicationCommandOption[]}
 	 */
-	static transformApplicationCommandOptions(options = []) {
-		options.forEach(elm => {
-			let property = [];
-			while (true) {
-				const optionsStr = property[0]
-				? `elm${property.join('')}`
-				: `elm`;
-				const code = `if (!${optionsStr}) break;\n${optionsStr} = execute(${optionsStr})`;
-				eval(code);
-				property.push('[options]');
+	static transformOptions(options, toAPI) {
+		let target = Array.isArray(options) ? options : [options];
+
+		const channelTypesKey = toAPI ? 'channel_types' : 'channelTypes';
+		const minValueKey = toAPI ? 'min_value' : 'minValue';
+		const maxValueKey = toAPI ? 'max_value' : 'maxValue';
+
+		target.map(elm => {
+			return {
+				type: ApplicationCommandOptionTypes[elm.type],
+				name: elm.name,
+				description: elm.description,
+				required: elm.required,
+				choices: choices,
+				options: this.transformOptions(elm.options),
+				[channelTypesKey]: resolveChannelTypes(elm.channelTypes || elm.channel_types),
+				[minValueKey]: elm.minValue || elm.min_value,
+				[maxValueKey]: elm.maxValue || elm.max_value,
+				autocomplete: elm.autocomplete
 			};
 		});
-		function execute(options = []) {
-			return options.map(elm => {
-				return {
-					type: ApplicationCommandTypes[elm.type],
-					name: elm.name,
-					description: elm.description,
-					required: elm.required,
-					choices: elm.choices,
-					options: elm.options
-				};
-			});
-		};
-		return options;
+
+		return Array.isArray(options) ? options : options.shift();
 	};
 	/**
 	 * @param (Array<object>|object) data of permission
