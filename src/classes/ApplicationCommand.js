@@ -2,6 +2,7 @@
 
 const ApplicationCommandPermissionsManager = require('./ApplicationCommandPermissionsManager');
 const Base = require('./Base');
+const { transformApplicationCommandOptions } = require('../util/Util');
 const { SnowflakeUtil } = require('discord.js');
 const { ApplicationCommandTypes } = require('../interfaces/Types'); 
 
@@ -95,7 +96,7 @@ class ApplicationCommand extends Base {
 			/**
 			 * @type {Array<ApplicationCommandOptions>}
 			 */
-			this.options = data.options;
+			this.options = transformApplicationCommandOptions(data.options);
 		} else if (!('options' in this)) {
 			/**
 			 * @type {Array}
