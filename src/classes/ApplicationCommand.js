@@ -96,7 +96,7 @@ class ApplicationCommand extends Base {
 			/**
 			 * @type {Array<ApplicationCommandOptions>}
 			 */
-			this.options = transformApplicationCommandOptions(data.options);
+			this.options = transformApplicationCommandOptions(data.options, false);
 		} else if (!('options' in this)) {
 			/**
 			 * @type {Array}

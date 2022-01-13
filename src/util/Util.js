@@ -1,8 +1,23 @@
 'use strict';
 
-const { ApplicationCommandTypes, ApplicationCommandOptionsTypes, ApplicationCommandPermissionsTypes } = require('../interfaces/Types.js');
+const { ApplicationCommandTypes, ApplicationCommandOptionsTypes, ApplicationCommandPermissionsTypes, ChannelTypes } = require('../interfaces/Types.js');
 
 class Util {
+	/**
+	 * @param {APIChannelType | APIChannelType[]}
+	 * @param {boolean} whether the result is for API
+	 * @return {ChannelType}
+	 */
+	static resolveChannelTypes(types, toAPI) {
+		let target = Array.isArray(types) ? types : [types];
+
+		target.map(elm => toAPI
+				? (typeof elm === 'number' ? elm : ChannelTypes[elm])
+				: (typeof elm === 'string' ? elm : ChannelType[elm])
+			);
+
+		return Array.isArray(types) ? target : target.shift();
+	};
 	/**
 	 * @param (array<object>|object) data of command
 	 * @return (object)
@@ -29,12 +44,12 @@ class Util {
 	 * @optional {boolean} whether the options is for API
 	 * @return {ApplicationCommandOption | ApplicationCommandOption[]}
 	 */
-	static transformOptions(options, toAPI) {
+	static transformApplicationCommandOptions(options, notToAPI) {
 		let target = Array.isArray(options) ? options : [options];
 
-		const channelTypesKey = toAPI ? 'channel_types' : 'channelTypes';
-		const minValueKey = toAPI ? 'min_value' : 'minValue';
-		const maxValueKey = toAPI ? 'max_value' : 'maxValue';
+		const channelTypesKey = !notToAPI ? 'channel_types' : 'channelTypes';
+		const minValueKey = !notToAPI ? 'min_value' : 'minValue';
+		const maxValueKey = !notToAPI ? 'max_value' : 'maxValue';
 
 		target.map(elm => {
 			return {
@@ -43,8 +58,8 @@ class Util {
 				description: elm.description,
 				required: elm.required,
 				choices: choices,
-				options: this.transformOptions(elm.options),
-				[channelTypesKey]: resolveChannelTypes(elm.channelTypes || elm.channel_types),
+				options: this.transformApplicationCommandOptions(elm.options),
+				[channelTypesKey]: this.resolveChannelTypes(elm.channelTypes || elm.channel_types, toAPI),
 				[minValueKey]: elm.minValue || elm.min_value,
 				[maxValueKey]: elm.maxValue || elm.max_value,
 				autocomplete: elm.autocomplete

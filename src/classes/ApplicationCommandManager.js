@@ -51,7 +51,7 @@ class ApplicationCommandManager extends BaseManager {
 			guildId: guild
 		})
 		.post({
-			data: Util.transformApplicationCommand(data)
+			data: Util.transformApplicationCommand(data, true)
 		});
 
 		return this.add(result, true, guild);
