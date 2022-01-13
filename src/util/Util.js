@@ -53,7 +53,7 @@ class Util {
 
 		target.map(elm => {
 			return {
-				type: ApplicationCommandOptionTypes[elm.type],
+				type: ApplicationCommandOptionsTypes[elm.type],
 				name: elm.name,
 				description: elm.description,
 				required: elm.required,
