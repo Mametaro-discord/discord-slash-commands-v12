@@ -57,7 +57,7 @@ class Util {
 				name: elm.name,
 				description: elm.description,
 				required: elm.required,
-				choices: choices,
+				choices: elm.choices,
 				options: this.transformApplicationCommandOptions(elm.options),
 				[channelTypesKey]: this.resolveChannelTypes(elm.channelTypes || elm.channel_types, toAPI),
 				[minValueKey]: elm.minValue || elm.min_value,
