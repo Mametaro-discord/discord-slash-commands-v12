@@ -32,7 +32,7 @@ class Util {
 				guild_id: elm.guild_id || elm.guildId,
 				name: elm.name,
 				description: elm.description,
-				options: this.transformApplicationCommandOptions(elm.options),
+				options: this.transformApplicationCommandOptions(elm.options || []),
 				default_permission: elm.default_permission || elm.defaultPermission,
 				version: elm.version
 			};
