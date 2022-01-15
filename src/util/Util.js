@@ -67,7 +67,7 @@ class Util {
 				required: elm.required,
 				choices: elm.choices,
 				options: this.transformApplicationCommandOptions(elm.options),
-				[channelTypesKey]: this.resolveChannelTypes(elm.channelTypes || elm.channel_types, toAPI),
+				[channelTypesKey]: this.resolveChannelTypes(elm.channelTypes || elm.channel_types, !notToAPI),
 				[minValueKey]: elm.minValue || elm.min_value,
 				[maxValueKey]: elm.maxValue || elm.max_value,
 				autocomplete: elm.autocomplete
