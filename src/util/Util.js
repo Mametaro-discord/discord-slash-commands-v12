@@ -25,9 +25,9 @@ class Util {
 	static transformApplicationCommand(options) {
 		const target = Array.isArray(options)
 			? options
-			: typeof options === 'undefined'
-				? []
-				: [options];
+			: typeof options === 'object'
+				? [options]
+				: [];
 		const transformed = target.map(elm => {
 			return {
 				id: elm.id,
