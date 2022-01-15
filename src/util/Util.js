@@ -23,7 +23,11 @@ class Util {
 	 * @return (object)
 	 */
 	static transformApplicationCommand(options) {
-		const target = Array.isArray(options) ? options : [options];
+		const target = Array.isArray(options)
+			? options
+			: typeof options === 'undefined'
+				? []
+				: [options];
 		const transformed = target.map(elm => {
 			return {
 				id: elm.id,
