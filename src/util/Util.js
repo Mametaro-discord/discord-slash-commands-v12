@@ -20,9 +20,10 @@ class Util {
 	};
 	/**
 	 * @param (array<object>|object) data of command
+	 * @param {boolean} @optional
 	 * @return (object)
 	 */
-	static transformApplicationCommand(options) {
+	static transformApplicationCommand(options, received) {
 		let target = Array.isArray(options)
 			? options
 			: typeof options === 'object'
@@ -36,7 +37,7 @@ class Util {
 				guild_id: elm.guild_id || elm.guildId,
 				name: elm.name,
 				description: elm.description,
-				options: this.transformApplicationCommandOptions(elm.options || []),
+				options: this.transformApplicationCommandOptions(elm.options || [], received),
 				default_permission: elm.default_permission || elm.defaultPermission,
 				version: elm.version
 			};
@@ -48,18 +49,18 @@ class Util {
 	 * @optional {boolean} whether the options is for API
 	 * @return {ApplicationCommandOption | ApplicationCommandOption[]}
 	 */
-	static transformApplicationCommandOptions(options, notToAPI) {
+	static transformApplicationCommandOptions(options, received) {
 		let target = Array.isArray(options)
 			? options
 			: typeof options === 'object'
 				? [options]
 				: [];
 
-		const channelTypesKey = !notToAPI ? 'channel_types' : 'channelTypes';
-		const minValueKey = !notToAPI ? 'min_value' : 'minValue';
-		const maxValueKey = !notToAPI ? 'max_value' : 'maxValue';
+		const channelTypesKey = received ? 'channelTypes' : 'channel_types';
+		const minValueKey = received ? 'minValue' : 'min_value';
+		const maxValueKey = received ? 'maxValue' : 'max_value';
 
-		target.map(elm => {
+		target = target.map(elm => {
 			return {
 				type: ApplicationCommandOptionsTypes[elm.type],
 				name: elm.name,
