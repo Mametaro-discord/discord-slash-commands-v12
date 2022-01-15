@@ -23,12 +23,12 @@ class Util {
 	 * @return (object)
 	 */
 	static transformApplicationCommand(options) {
-		const target = Array.isArray(options)
+		let target = Array.isArray(options)
 			? options
 			: typeof options === 'object'
 				? [options]
 				: [];
-		const transformed = target.map(elm => {
+		target = target.map(elm => {
 			return {
 				id: elm.id,
 				type: ApplicationCommandTypes[elm.type],
@@ -41,7 +41,7 @@ class Util {
 				version: elm.version
 			};
 		});
-		return Array.isArray(options) ? transformed : transformed.shift();
+		return Array.isArray(options) ? target : target.shift();
 	};
 	/**
 	 * @param {(APIApplicationCommandOption | ApplicationCommandOptionData) | Array<()>}
@@ -49,7 +49,11 @@ class Util {
 	 * @return {ApplicationCommandOption | ApplicationCommandOption[]}
 	 */
 	static transformApplicationCommandOptions(options, notToAPI) {
-		let target = Array.isArray(options) ? options : [options];
+		let target = Array.isArray(options)
+			? options
+			: typeof options === 'object'
+				? [options]
+				: [];
 
 		const channelTypesKey = !notToAPI ? 'channel_types' : 'channelTypes';
 		const minValueKey = !notToAPI ? 'min_value' : 'minValue';
@@ -70,7 +74,7 @@ class Util {
 			};
 		});
 
-		return Array.isArray(options) ? options : options.shift();
+		return Array.isArray(options) ? target : target.shift();
 	};
 	/**
 	 * @param (Array<object>|object) data of permission
