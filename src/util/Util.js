@@ -13,7 +13,7 @@ class Util {
 
 		target.map(elm => toAPI
 				? (typeof elm === 'number' ? elm : ChannelTypes[elm])
-				: (typeof elm === 'string' ? elm : ChannelType[elm])
+				: (typeof elm === 'string' ? elm : ChannelTypes[elm])
 			);
 
 		return Array.isArray(types) ? target : target.shift();
