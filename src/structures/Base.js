@@ -1,17 +1,16 @@
 'use strict';
 
-class Base {
+module.exports = class Base {
 	/**
-	 * @param  {Client} discord Client
+	 * @param {Client}
 	 */
 	constructor(client) {
 		/**
 		 * @type {Client}
+		 * @readonly
 		 */
 		Object.defineProperty(this, 'client', {
 			value: client
 		});
 	};
 };
-
-module.exports = Base;

@@ -1,56 +1,44 @@
 'use strict';
 
-const Command = require('./actions/Command');
-const discord = require('discord.js');
+const TypeError = require('./util/errors').makeError(TypeError);
+const WeakMap = require('./structures/extend/ExtendedWeakMap');
 const {
 	Client,
-	Guild,
+	MessageFlags,
 	Structures,
-	MessageFlags
-} = discord;
+	version
+} = require('discord.js');
 
-const {
-	GuildApplicationCommandManager,
-	ApplicationCommandManager,
-	CommandInteraction,
-	ExtendedGuild,
-	Types
-} = require('./util/Classes');
+function main(client) {
+	if (String(version).split('.').shift() !== '12') throw new Error('The version of discord.js must be 12x');
+	if (!(client instanceof Client)) throw new TypeError('invalid argument', 'client', 'Client');
 
-const {
-	ApplicationCommandTypes,
-	InteractionTypes
-} = Types;
+	client.commands = new ApplicationCommandManager(client);
 
-Object.assign(MessageFlags, {
-	HAS_THREAD: 1 << 5,
-	EPHEMERAL: 1 << 6,
-	LOADING: 1 << 7
-});
-
-module.exports = client => {
-	if (Number(discord.version.split('.').shift()) !== 12) throw new Error('Invalid discord.js version: discord.js must be 12x');
-	if (!(client instanceof Client)) throw new TypeError('INVALID_ARGUMENT: the argument must be an instance of Client');
-	
-	if (!client.actions.Command) {
-		client.actions.register(Command);
-	};
-
-	if (!client.commands) {
-		client.commands = new ApplicationCommandManager(client);
-	};
-
-	const guild = Structures.get('Guild');
-	if (!(Guild.prototype.commands && guild.prototype.commands)) {
-		Object.defineProperty(Guild.prototype, 'commands', {
-			get () {
-				return new GuildApplicationCommandManager(this);
-			}
-		});
-		Structures.extend('Guild', () => ExtendedGuild);
-	};
-
-	client.ws.on('INTERACTION_CREATE', data => client.actions.Command.handle(data));
+	extend();
 };
 
-module.exports = Object.assign(module.exports, require('./util/Classes'));
+function extend() {
+	Object.assign(MessageFlags, {
+		HAS_THREAD: 1 << 5,
+		EPHEMERAL: 1 << 6,
+		LOADING: 1 << 7
+	});
+
+	Structures.extend(
+			'Guild',
+			Base => class Extended extends Base {
+				constructor(...args) {
+					super(...args);
+					this.commands = new GuildApplicationCommandManager(this);
+				};
+			}
+		);
+
+	const hasManager = new WeakMap();
+	Object.defineProperty(Guild.prototype, {
+		get() {
+			return hasManager.get(this) || hasManager.set(this, new GuildApplicationCommandManager(this));
+		}
+	});
+};

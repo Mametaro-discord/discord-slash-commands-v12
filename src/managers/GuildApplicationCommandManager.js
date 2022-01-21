@@ -3,25 +3,20 @@
 const ApplicationCommandManager = require('./ApplicationCommandManager');
 const ApplicationCommandPermissionsManager = require('./ApplicationCommandPermissionsManager');
 
-class GuildApplicationCommandManager extends ApplicationCommandManager {
+module.exports = class GuildApplicationCommandManager extends ApplicationCommandManager {
 	/**
 	 * @param {Guild}
+	 * @param {ApplicationCommand[]}
 	 */
-	constructor(guild) {
-		super(guild.client);
+	constructor(guild, iterable) {
+		super(guild.client, iterable);
 		/**
 		 * @type {Guild}
 		 */
 		this.guild = guild;
-		/**
-		 * @type {Snowflake}
-		 */
-		this.guildId = guild.id;
 		/**
 		 * @type {ApplicationCommandPermissionsManager}
 		 */
 		this.permissions = new ApplicationCommandPermissionsManager(this);
 	};
 };
-
-module.exports = GuildApplicationCommandManager;
