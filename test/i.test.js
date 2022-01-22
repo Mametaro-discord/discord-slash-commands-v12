@@ -1,14 +1,7 @@
-class ExtendedWeakMap extends WeakMap {
-	set(...args) {
-		super.set(...args);
-		return args[1];
-	};
+const obj = {
+	key: 'value'
 };
 
-const wm = new ExtendedWeakMap();
+const { key: k } = obj;
 
-function main() {
-	return wm.get(this) || wm.set(this, 'value');
-};
-
-console.log(main());
+console.log(k)

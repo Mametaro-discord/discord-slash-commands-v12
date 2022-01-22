@@ -1,13 +1,5 @@
-const errors = require('./errors');
-
-exports.makeError = function(BaseError) {
-	class SlashError extends BaseError {
-		constructor(fn, ...args) {
-			super(errors[fn](...args));
-		};
-	};
-	SlashError.name = BaseError.name;
-	return SlashError;
+exports.entries2Object = function(entries) {
+	let result;
+	entries.forEach([key, value] => result[key] = value);
+	return result;
 };
-
-exports.TypeError = exports.makeError(TypeError);
