@@ -2,6 +2,7 @@
 
 const BaseInteraction = require('./BaseInteraction');
 const ExtendedWebhookClient = require('./extend/ExtendedWebhookClient');
+const InteractionFollowup = require('./InteractionFollowup');
 const InteractionReply = require('./InteractionReply');
 const {
 	ApplicationCommandOptionTypes,
@@ -32,6 +33,10 @@ module.exports = class ApplicationCommandInteraction extends BaseInteraction {
 		 * @type {ExtendedWebhookClient}
 		 */
 		this.webhook = new ExtendedWebhookClient(this.client, this.applicationId, this.token);
+		/**
+		 * @type {InteractionFollowup}
+		 */
+		this.followup = new InteractionFollowup(this.webhook);
 		/**
 		 * @type {InteractionReply}
 		 */

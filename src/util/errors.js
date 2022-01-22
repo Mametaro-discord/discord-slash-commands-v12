@@ -17,3 +17,7 @@ exports.makeError = function(BaseError) {
 	SlashError.name = BaseError.name;
 	return SlashError;
 };
+
+exports.Error = exports.makeError(Error);
+
+exports.TypeError = exports.makeError(TypeError);

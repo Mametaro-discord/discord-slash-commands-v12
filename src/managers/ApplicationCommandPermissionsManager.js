@@ -4,8 +4,7 @@ const Base = require('../structures/Base');
 const {
 	ApplicationCommandPermissionTypes
 } = require('../interfaces/consts');
-const { makeError } = require('../util/errors');
-const TypeError = makeError(TypeError);
+const { TypeError } = require('../util/errors');
 const { Collection } = require('discord.js');
 
 module.exports = class ApplicationCommandPermissionsManager extends Base {

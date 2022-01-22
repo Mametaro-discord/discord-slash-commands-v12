@@ -6,8 +6,7 @@ const {
 	ApplicationCommandTypes
 } = require('../interfaces/consts');
 const { BaseManager, Collection } = require('discord.js');
-const { makeError } = require('../util/errors');
-const TypeError = makeError(TypeError);
+const { TypeError } = require('../util/errors');
 
 module.exports = class ApplicationCommandManager extends BaseManager {
 	/**

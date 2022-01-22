@@ -13,6 +13,8 @@ module.exports = class ExtendedAPIMessage extends APIMessage {
 
 		if (this.options.ephemeral) this.data.flags = 1 << 6;
 
+		if (this.options.component) {};
+
 		return this;
 	}
 }

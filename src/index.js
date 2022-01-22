@@ -1,19 +1,21 @@
 'use strict';
 
-const ApplicationCommandManager = require('./managers/ApplicationCommandManager');
-const GuildApplicationCommandManager = require('./managers/GuildApplicationCommandManager');
-const Util = require('./util/index');
-const ErrorUtil = require('./util/errors');
-const typeerror = ErrorUtil.makeError(TypeError); const TypeError = typeerror;
-const WeakMap = require('./structures/extend/ExtendedWeakMap');
-const InteractionCreateAction = require('./actions/InteractionCreate');
+const discord = require('discord.js');
 const {
 	Client,
 	MessageFlags,
 	Structures,
 	version
-} = require('discord.js');
+} = discord;
 
+const { TypeError } = require('./util/errors');
+const WeakMap = require('./structures/extend/ExtendedWeakMap');
+const ApplicationCommanManager = require('./managers/ApplicationCommandManager');
+const GuildApplicationCommandManager = require('./managers/GuildApplicationCommandManager');
+const Util = require('./util');
+const ErrorUtil = require('./util/errors');
+const InteractionCreateAction = require('./actions/InteractionCreate');
+const channelmethods = require('./structures/extend/ExtendedChannelMethods');
 
 function main(client) {
 	if (String(version).split('.').shift() !== '12') throw new Error('The version of discord.js must be 12x');
@@ -51,6 +53,21 @@ function extend() {
 			return hasManager.get(this) || hasManager.set(this, new GuildApplicationCommandManager(this));
 		}
 	});
+
+	const classes = ['DMChannel', 'NewsChannel', 'TextChannel']
+	classes.forEach(
+			cls => Structures.extend(
+					cls,
+					Base => {
+						Object.assign(Base.prototype, channelmethods);
+						return Base;
+					}
+				)
+		);
+
+	classes
+		.map(cls => discord[cls])
+		.forEach(cls => Object.assign(cls.prototype, channelmethods));
 };
 
 module.exports = Object.assign(
@@ -71,9 +88,18 @@ module.exports = Object.assign(
 					'AutocompleteInteraction',
 					'Base',
 					'BaseInteraction',
+					'BaseMessageComponent',
+					'ButtonInteraction',
 					'ContextMenuInteraction',
 					'InteractionAuthor',
-					'InteractionReply'
+					'InteractionCollector',
+					'InteractionFollowup',
+					'InteractionReply',
+					'MessageActionRow',
+					'MessageButton',
+					'MessageSelectMenu',
+					'SelectMenuInteraction',
+					'SelectOption'
 				]
 				.map(name => [name, require(`./structures/${name}`)])
 			)
