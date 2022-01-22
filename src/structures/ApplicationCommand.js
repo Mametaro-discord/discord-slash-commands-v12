@@ -1,6 +1,6 @@
 'use strict';
 
-const ApplicationCommandPermissionManager = require('../managers/ApplicationCommandPermissionManager');
+const ApplicationCommandPermissionManager = require('../managers/ApplicationCommandPermissionsManager');
 const Base = require('./Base');
 const { SnowflakeUtil } = require('discord.js');
 const {

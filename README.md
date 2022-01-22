@@ -29,33 +29,42 @@ const { Client } = require('discord.js');
 const client = new Client();
 const slash = require('discord-slash-commands-v12');
 slash(client);
-``` 
+```  
+セットアップ関数はそのものを返します。つまり、  
+```js
+const slash = require('discord-slash-commands-v12');
+slash === slash(); //true
+```  
+こういうことです；
 
 **Event Listener** 
 ```js
-client.on('command', (data) => {
+client.on('commandInteraction', (data) => {
 	//code
 });
 ``` 
 
 **Ping-Pong** 
 ```js
-slash(client);
-
 client.on('ready', () => {
 	const ping = {
 		name: 'ping',
 		description: 'pong!'
 	};
-	client.commands.create(ping);
+	client.commands.create(ping); //グローバルコマンド
+	guild.commands.create(ping); //ギルドコマンド
 });
 
-client.on('command', data => {
+client.on('commandInteraction', data => {
 	if (data.commandName === 'ping') {
 		data.reply.send('pong!');
 	};
-});
-``` 
+}); //ContextMenuも含まれます(メッセージコマンドとユーザーコマンドのことです。)
+```  
+**Autocomplete interaction**  
+```js
+client.on('autocompleteInteraction', data => {});
+```
 
 ## You need more help?
 [my discord server](https://discord.gg/UQSUBHwM7T)

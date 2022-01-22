@@ -88,3 +88,19 @@ exports.InteractionReplyTypes = createEnum([
 		'UPDATE_MESSAGE',
 		'APPLICATION_COMMAND_AUTOCOMPLETE_RESULT'
 	]);
+
+exports.MessageButtonStyles = createEnum([
+		null,
+		'blurple',
+		'grey',
+		'green',
+		'red',
+		'url'
+	]);
+
+exports.MessageComponentTypes = createEnum([
+		null,
+		'ACTION_ROW',
+		'MESSAGE_COMPONENT',
+		'SELECT_MENU'
+	]);
