@@ -14,7 +14,7 @@ module.exports = class ApplicationCommandManager extends BaseManager {
 	 * @param {ApplicationCommandData[]} @optional
 	 */
 	constructor(client, itrable) {
-		super(client, ApplicationCommand, iterable);
+		super(client, iterable, ApplicationCommand);
 		/**
 		 * @param {ApplicationCommandPermissionsManager}
 		 */
