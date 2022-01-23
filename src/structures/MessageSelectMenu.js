@@ -26,11 +26,11 @@ module.exports = class MessageSelectMenu extends BaseMessageComponent {
 	 * @return {undefined}
 	 */
 	patch(data) {
-		if ('custom_id' in data) {
+		if ('custom_id' in data || 'customId' in data) {
 			/**
 			 * @type {string}
 			 */
-			this.customId = data.custom_id;
+			this.customId = data.custom_id || data.customId;
 		};
 
 		if (Array.isArray(data.options)) {
@@ -47,18 +47,18 @@ module.exports = class MessageSelectMenu extends BaseMessageComponent {
 			this.placeholder = data.placeholder;
 		};
 
-		if ('min_values' in data) {
+		if ('min_values' in data || 'minValues' in data) {
 			/**
 			 * @type {number}
 			 */
-			this.minValues = data.min_values;
+			this.minValues = data.min_values || data.minValues;
 		};
 
-		if ('max_values' in data) {
+		if ('max_values' in data || 'maxValues' in data) {
 			/**
 			 * @type {number}
 			 */
-			this.maxValues = data.max_values;
+			this.maxValues = data.max_values || data.maxValues;
 		};
 
 		if ('disabled' in data) {

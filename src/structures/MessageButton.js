@@ -42,14 +42,14 @@ module.exports = class MessageButton extends BaseMessageComponent {
 			/**
 			 * @type {Emoji | PartialEmoji}
 			 */
-			this.emoji = this.client ? this.client.emojis.resolve(data.emoji.id) || emoji : emoji
+			this.emoji = this.client ? this.client.emojis.resolve(data.emoji.id) || data.emoji : data.emoji
 		};
 
-		if ('custom_id' in data) {
+		if ('custom_id' in data || 'customId' in data) {
 			/**
 			 * @type {string}
 			 */
-			this.customId = data.custom_id;
+			this.customId = data.custom_id || data.customId;
 		};
 
 		if ('url' in data) {

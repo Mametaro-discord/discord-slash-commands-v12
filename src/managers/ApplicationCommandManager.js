@@ -1,7 +1,7 @@
 'use strict';
 
 const ApplicationCommand = require('../structures/ApplicationCommand');
-const ApplicationCommandPermissionManager = require('./ApplicationCommandPermissionsManager');
+const ApplicationCommandPermissionsManager = require('./ApplicationCommandPermissionsManager');
 const {
 	ApplicationCommandTypes
 } = require('../interfaces/consts');
@@ -18,7 +18,7 @@ module.exports = class ApplicationCommandManager extends BaseManager {
 		/**
 		 * @param {ApplicationCommandPermissionsManager}
 		 */
-		this.permissions = new ApplicationCommandPermissionManager(this);
+		this.permissions = new ApplicationCommandPermissionsManager(this);
 	};
 	/**
 	 * @param {ApplicationCommandData}

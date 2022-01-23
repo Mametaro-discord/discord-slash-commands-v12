@@ -1,6 +1,6 @@
 'use strict';
 
-const ApplicationCommandPermissionManager = require('../managers/ApplicationCommandPermissionsManager');
+const ApplicationCommandPermissionsManager = require('../managers/ApplicationCommandPermissionsManager');
 const Base = require('./Base');
 const { SnowflakeUtil } = require('discord.js');
 const {
@@ -44,7 +44,7 @@ module.exports = class ApplicationCommand extends Base {
 		/**
 		 * @type {ApplicationCommandPermissionManager}
 		 */
-		this.permissions = new ApplicationCommandPermissionManager(this);
+		this.permissions = new ApplicationCommandPermissionsManager(this);
 	};
 	/**
 	 * @param {ApplicationCommandData}
