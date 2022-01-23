@@ -60,7 +60,7 @@ class MessageActionRow extends BaseMessageComponent {
 	toJSON() {
 		return {
 			type: MessageComponentTypes[this.type],
-			components: this.components.map(c => c.toJSON());
+			components: this.components.map(c => c.toJSON())
 		};
 	};
 };

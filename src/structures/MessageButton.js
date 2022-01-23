@@ -127,6 +127,20 @@ module.exports = class MessageButton extends BaseMessageComponent {
 		this.disabled = false;
 	};
 	/**
+	 * @return {APIMessageButton}
+	 */
+	toJSON() {
+		return {
+			type: MessageComponentTypes[this.type],
+			style: this.constructor.resolveStyle(this.style),
+			label: this.label,
+			emoji: this.emoji,
+			custom_id: this.customId,
+			url: this.url,
+			disabled: this.disabled
+		};
+	};
+	/**
 	 * @param {MessageButtonStyle}
 	 * @param {boolean} @optional //Whether the style was received from API
 	 * @return {MessageButtonStyle}
