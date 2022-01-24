@@ -1,7 +1,13 @@
-const obj = {
-	key: 'value'
+async function sub() {
+	return 100;
 };
 
-const { key: k } = obj;
+function main() {
+	return new Promise((resolve, reject) => resolve(sub()));
+};
 
-console.log(k)
+async function echo() {
+	console.log(await main());
+};
+
+echo();

@@ -4,6 +4,7 @@ const discord = require('discord.js');
 const {
 	Client,
 	MessageFlags,
+	Permissions,
 	Structures,
 	version
 } = discord;
@@ -31,10 +32,18 @@ function main(client) {
 };
 
 function extend() {
-	Object.assign(MessageFlags, {
+	Object.assign(MessageFlags.FLAGS, {
 		HAS_THREAD: 1 << 5,
 		EPHEMERAL: 1 << 6,
 		LOADING: 1 << 7
+	});
+
+	Object.assign(Permissions.FLAGS, {
+		USE_APPLICATION_COMMANDS: 1 << 31,
+		MANAGE_THREADS: 1 << 34,
+		CREATE_PUBLIC_THREADS: 1 << 35,
+		CREATE_PRIVATE_THREADS: 1 << 36,
+		SEND_MESSAGES_IN_THREADS: 1 << 38
 	});
 
 	Structures.extend(

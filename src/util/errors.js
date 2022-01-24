@@ -4,7 +4,8 @@ const errors = {
 	INTERACTION_EPHEMERAL_REPLIED: 'Cannot delete ephemeral reply',
 	INVALID_ARGUMENT: (name, expected) => `Supplied ${name} is not ${'aeiou'.split('').includes(expected.split('').shift().toLowerCase()) ? 'an' : 'a'} ${expected}`,
 	INVALID_ELEMENT: (type, name, elm) => `Supplied ${type} ${name} includes an invalid element: ${elm}`,
-	NO_GUILD_BUT_ROLE: 'Cannot resolve roles from, provide ID of role'
+	NO_GUILD_BUT_ROLE: 'Cannot resolve roles from, provide ID of role',
+	THREAD_INVITABLE_TYPE: type => `Thread invitable cannot be edited on ${type}`
 };
 
 exports.makeError = function(BaseError) {
@@ -19,5 +20,7 @@ exports.makeError = function(BaseError) {
 };
 
 exports.Error = exports.makeError(Error);
+
+exports.RangeError = exports.makeError(RangeError);
 
 exports.TypeError = exports.makeError(TypeError);
