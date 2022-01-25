@@ -4,7 +4,7 @@ const BaseMessageComponent = require('./BaseMessageComponent');
 const SelectOption = require('./SelectOption');
 const {
 	MessageComponentTypes
-} = require('./interfaces/consts');
+} = require('../interfaces/consts');
 
 module.exports = class MessageSelectMenu extends BaseMessageComponent {
 	/**

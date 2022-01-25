@@ -1,13 +1,7 @@
-async function sub() {
-	return 100;
-};
+const invalid_date = new Date({});
 
-function main() {
-	return new Promise((resolve, reject) => resolve(sub()));
-};
-
-async function echo() {
-	console.log(await main());
-};
-
-echo();
+try {
+	console.log(invalid_date.toISOString());
+} catch(e) {
+	console.log('err')
+}
