@@ -4,7 +4,7 @@ const { Collection, Collector } = require('discord.js');
 const {
 	InteractionTypes,
 	MessageComponentTypes
-} = require('../interfaces/Types');
+} = require('../interfaces/consts');
 
 module.exports = class InteractionCollector extends Collector {
 	/**

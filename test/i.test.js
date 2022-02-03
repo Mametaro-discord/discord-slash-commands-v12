@@ -1,7 +1,5 @@
-const invalid_date = new Date({});
+const data = {
+	content: [100, 200]
+};
 
-try {
-	console.log(invalid_date.toISOString());
-} catch(e) {
-	console.log('err')
-}
+console.log(data.split());

@@ -11,7 +11,7 @@ const {
 
 const { TypeError } = require('./util/errors');
 const WeakMap = require('./structures/extend/ExtendedWeakMap');
-const ApplicationCommanManager = require('./managers/ApplicationCommandManager');
+const ApplicationCommandManager = require('./managers/ApplicationCommandManager');
 const GuildApplicationCommandManager = require('./managers/GuildApplicationCommandManager');
 const Util = require('./util');
 const ErrorUtil = require('./util/errors');
@@ -99,7 +99,7 @@ module.exports = Object.assign(
 					'BaseInteraction',
 					'BaseMessageComponent',
 					'ButtonInteraction',
-					'ContextMenuInteraction',
+					'ContextMenuCommandInteraction',
 					'InteractionAuthor',
 					'InteractionCollector',
 					'InteractionFollowup',

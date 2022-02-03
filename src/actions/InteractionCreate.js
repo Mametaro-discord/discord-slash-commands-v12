@@ -12,7 +12,7 @@ const {
 	MessageComponentTypes
 } = require('../interfaces/consts');
 
-module.exports = class InteractionCreateAction extends Action {
+module.exports = class InteractionCreateAction extends GenericAction {
 	handle(data) {
 		this.getChannel(data);
 

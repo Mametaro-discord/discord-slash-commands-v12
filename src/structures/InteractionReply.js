@@ -4,8 +4,7 @@ const Base = require('./Base');
 const {
 	InteractionReplyTypes
 } = require('../interfaces/consts');
-const { makeError } = require('../util/errors');
-const Error = makeError(Error);
+const { Error } = require('../util/errors');
 
 module.exports = class InteractionReply extends Base {
 	/**
