@@ -3,6 +3,7 @@
 const discord = require('discord.js');
 const {
 	Client,
+	Guild,
 	MessageFlags,
 	Permissions,
 	Structures,
@@ -16,7 +17,11 @@ const GuildApplicationCommandManager = require('./managers/GuildApplicationComma
 const Util = require('./util');
 const ErrorUtil = require('./util/errors');
 const InteractionCreateAction = require('./actions/InteractionCreate');
-const channelmethods = require('./structures/extend/ExtendedChannelMethods');
+const {
+	send,
+	createMessageComponentCollector,
+	awaitMessageComponent
+} = require('./structures/extend/ExtendedChannelMethods');
 
 function main(client) {
 	if (String(version).split('.').shift() !== '12') throw new Error('The version of discord.js must be 12x');
@@ -68,15 +73,28 @@ function extend() {
 			cls => Structures.extend(
 					cls,
 					Base => {
-						Object.assign(Base.prototype, channelmethods);
-						return Base;
+						return class Extended extends Base {
+							send(...args) {
+								return send(...args);
+							};
+							createMessageComponentCollector(...args) {
+								return createMessageComponentCollector(...args);
+							};
+							awaitMessageComponent(...args) {
+								return awaitMessageComponent(...args);
+							};
+						};
 					}
 				)
 		);
 
 	classes
 		.map(cls => discord[cls])
-		.forEach(cls => Object.assign(cls.prototype, channelmethods));
+		.forEach(cls => Object.assign(cls.prototype, {
+			send,
+			createMessageComponentCollector,
+			awaitMessageComponent
+		}));
 };
 
 module.exports = Object.assign(
@@ -113,3 +131,5 @@ module.exports = Object.assign(
 				.map(name => [name, require(`./structures/${name}`)])
 			)
 	);
+
+extend()
